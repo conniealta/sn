@@ -7,7 +7,28 @@ class Post {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
             die('Inkorrekte Länge!');
         }
+
         if ($loggedIn_userid == $profileUserId) { //wenn die eingeloggte Person auf ihrer eigenen Profilseite ist, dann darf sie Einträge posten
+
+
+            if(count(self::notify($postbody)) !=0){
+                foreach(self::notify($postbody) as $key => $n ) {
+                    $s = $loggedIn_userid;
+                    #s ist der eingeloggte User
+
+                    $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username' => $key))[0]['id'];
+                    #r ist der User der markiert wird oder dessen Post geliked wird
+
+                    if ($r != 0) {
+                        #solange der User existiert, wird eine Benachrichtigung gesendet
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :reciever, :sender, :extra)', array(':type' => $n["type"], ':reciever' => $r, ':sender' => $s, ':extra'=> $n["extra"] ));
+                    }
+                }
+
+            }
+
+
+
             DB::query('INSERT INTO posts VALUES (\'\', :postbody, NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $profileUserId));
         } // -> '\'= die erste Spalte in der Datenbanktabelle ("id"); NOW() = das ist eine Funktion, die das aktuelle Datum und Uhrzeit anzeigt; '0'= die Standardanzahl der "Likes"
         else {
@@ -34,6 +55,54 @@ class Post {
     }
 
 
+    public static function notify($text){
+
+
+        $text = explode(" ", $text);
+        $notify = array();
+
+        foreach ($text as $word){
+            if (substr($word, 0, 1) == "@"){
+                $notify[substr($word,1)] = array("type"=>1, "extra"=> '{"postbody": "'.htmlentities (implode($text, " " )).'""}' );
+
+
+            }
+        }
+
+
+        return $notify;
+
+
+
+
+    }
+
+
+
+
+
+    public static function link_add($text){
+
+        $text = explode(" ", $text);
+        $newstring = "";
+
+        foreach ($text as $word){
+            if (substr($word, 0, 1) == "@"){
+                $newstring .= "<a href='profile.php?username=".substr($word, 1)."'>".htmlspecialchars($word) . " </a> ";
+            } else {
+                $newstring .= htmlspecialchars($word ). " ";
+            }
+        }
+
+
+
+        return ($newstring);
+
+
+
+    }
+
+
 
     public static function displayPosts($userid, $username, $loggedIn_userid) {
 
@@ -49,12 +118,21 @@ class Post {
                  <span>".$p['likes']." likes</span>
               </form>
               <hr /></br />";
-            }
-            else {
+
+
+            } else {
                 $posts .= htmlspecialchars($p['body']) . "
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
+                 
+                  ";
+              if ($userid == $loggedIn_userid){
+                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+              }
+
+                $posts .="
+                        
               </form>
               <hr /></br />";
             }
@@ -62,6 +140,7 @@ class Post {
         }
 
         return $posts;
+
 
         //mit "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
 

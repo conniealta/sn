@@ -41,12 +41,8 @@ session_start();
                 </li>
 
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Benachrichtigungen</a>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
+                    <a href="notify.php">Benachrichtigungen</a>
+
                 </li>
             </ul>
         </div>
@@ -146,6 +142,24 @@ if (isset($_GET['username'])) {
         } /* Wir schreiben hier (außerhalb der Hauptbedingung) fast den gleichen Code wie oben nochmals, sodass er ausgeführt wird, auch wenn der Follow-Button nicht geklickt wird:
           Siehe die Bedingung oben: "if (isset($_POST['follow'])) ..." */
     }
+
+    if (isset($_POST['deletepost'])) {
+        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid))) {
+            DB::query('DELETE FROM posts WHERE id=:postid and user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid));
+            DB::query('DELETE FROM post_likes WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
+            DB::query('DELETE FROM comments WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
+            echo 'Post gelöscht!';
+        }
+    }
+
+    if (isset($_POST['comment'])) {
+        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
+            Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin);
+            //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+        }
+    }
+
+
 
 
     if (isset($_POST['post'])) { //prüfen, ob  der Post-Button geklickt wurde und wenn ja:

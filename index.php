@@ -38,12 +38,8 @@ session_start();
                 </li>
 
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Benachrichtigungen</a>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
+                    <a href="notify.php">Benachrichtigungen</a>
+
                 </li>
             </ul>
         </div>
