@@ -224,7 +224,9 @@ if (isset($_GET['username'])) {
     <?php echo $posts; ?>
 </div>
 
+<br><br><br>
 
+<h2> Bild-Upload</h2>
 
 <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
