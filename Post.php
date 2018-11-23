@@ -8,7 +8,8 @@ class Post {
             die('Inkorrekte Länge!');
         }
 
-        if ($loggedIn_userid == $profileUserId) { //wenn die eingeloggte Person auf ihrer eigenen Profilseite ist, dann darf sie Einträge posten
+        if ($loggedIn_userid == $profileUserId) {
+            //wenn die eingeloggte Person auf ihrer eigenen Profilseite ist, dann darf sie Einträge posten
 
 
             if(count(self::notify($postbody)) !=0){
@@ -39,6 +40,30 @@ class Post {
 
 
 
+    public static function createImgPost($postbody, $loggedInUserId, $profileUserId) {
+        if (strlen($postbody) > 160) {
+            die('Incorrect length!');
+        }
+        if ($loggedInUserId == $profileUserId) {
+            if (count(self::notify($postbody)) != 0) {
+                foreach (self::notify($postbody) as $key => $n) {
+                    $s = $loggedInUserId;
+                    $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
+                    if ($r != 0) {
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"]));
+                    }
+                }
+            }
+            DB::query('INSERT INTO posts VALUES (\'\', :postbody, NOW(), :userid, 0, \'\', \'\')', array(':postbody'=>$postbody, ':userid'=>$profileUserId));
+            $postid = DB::query('SELECT id FROM posts WHERE user_id=:userid ORDER BY ID DESC LIMIT 1;', array(':userid'=>$loggedInUserId))[0]['id'];
+            return $postid;
+        } else {
+            die('Incorrect user!');
+        }
+    }
+    #funktion für bilder
+
+
     public static function likePost($postid, $likerId) {
 
         if (!DB::query('SELECT user_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid'=>$postid, ':userid'=>$likerId))) {
@@ -53,7 +78,6 @@ class Post {
             DB::query('DELETE FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $postid, ':userid' => $likerId));
         }
     }
-
 
     public static function notify($text){
 
@@ -77,10 +101,6 @@ class Post {
 
     }
 
-
-
-
-
     public static function link_add($text){
 
         $text = explode(" ", $text);
@@ -102,8 +122,6 @@ class Post {
 
     }
 
-
-
     public static function displayPosts($userid, $username, $loggedIn_userid) {
 
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
@@ -112,29 +130,33 @@ class Post {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= htmlspecialchars($p['body']) . "
-              <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+                $posts .= "<img src='".$p['postimg']."'>".(self::link_add($p['body'])) . "
+              <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
-              </form>
-              <hr /></br />";
+              ";
+                if ($userid == $loggedIn_userid){
+                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                }
 
-
-            } else {
-                $posts .= htmlspecialchars($p['body']) . "
+                $posts .="
+              </form><hr /></br />
+                ";
+            }
+            else {
+                $posts .= htmlspecialchars(self::link_add($p['body'])) . "
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
-                 
-                  ";
-              if ($userid == $loggedIn_userid){
+                 ";
+                if ($userid == $loggedIn_userid){
                     $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
-              }
+                }
 
                 $posts .="
-                        
-              </form>
-              <hr /></br />";
+              </form><hr /></br />
+                ";
+
             }
 
         }
@@ -142,17 +164,6 @@ class Post {
         return $posts;
 
 
-        //mit "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
-
-        /* $p = ein Array mit den Datenbankeinträgen: z.B. --> Array ([id]=>1 [0]=>1 [body]=>Hello [1]=>Hello [posted_at]=>2018-11-08 17:37:23 ...)
-        $p[body] = unser Post wird bei "body" in der Datenbanktabelle gespeichert --> mit dieser Funktion sehen wir nur den Inhalt des Posts (nicht id, Datum, etc.)
-        $posts = "" -> zunächst leer Array
-        "<hr />" = horizontale Linie
-        ".=" (->  $txt1 = "Hello"; $txt2 = " world!"; $txt1 .= $txt2; --> Hello world)
-        htmlspecialchars = wandelt Sonderzeichen in HTML-Codes um
-        postid = das ist die "id" des jeweiligen Posteintrag
-        if (isset($_GET['postid']) -> prüfen, ob der Like-Button geklickt wurde, wenn ja
-        */
     }
 
 
