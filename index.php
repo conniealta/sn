@@ -99,6 +99,48 @@ if (isset($_POST['comment'])) {
     Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
 }
 
+if(isset($_POST['searchbox'])) {
+    $tosearch = explode(" ", $_POST['searchbox']); //wir splittern es in einzelnen Leerfeldern (in Buchstaben) auf
+    if (count($tosearch) == 1) { // wenn es ein Wort ist
+        $tosearch = str_split($tosearch[0], 2); // z.B. "Robert" -> "Ro be rt"
+    }
+    $whereclause = "";
+    $paramsarray = array(':username'=>'%'.$_POST['searchbox'].'%');
+    for ($i = 0; $i < count($tosearch); $i++) {
+        $whereclause .= " OR username LIKE :u$i ";
+        $paramsarray[":u$i"] = $tosearch[$i];
+    }
+
+    $users = DB::query('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'', $paramsarray);
+    print_r($users);
+
+    $whereclause = "";
+    $paramsarray = array(':body'=>'%'.$_POST['searchbox'].'%');
+    for ($i = 0; $i < count($tosearch); $i++) {
+        if ($i % 2) { // jedes zweite Wort
+            $whereclause .= " OR body LIKE :p$i ";
+            $paramsarray[":p$i"] = $tosearch[$i];
+        }
+    }
+    $posts = DB::query('SELECT posts.body FROM posts WHERE posts.body LIKE :body '.$whereclause.'', $paramsarray);
+    echo '<pre>';
+    print_r($posts);
+    echo '</pre>';
+
+
+}
+
+
+?>
+
+<br><br><br>
+<form action="index.php" method="post">
+    <input type="text" name="searchbox" value="">
+    <input type="submit" name="search" value="Suchen">
+</form>
+<br><br><br>
+
+<?php
 
 
 $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username FROM list5, posts, followers 
