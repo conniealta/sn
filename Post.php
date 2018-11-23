@@ -1,4 +1,5 @@
 <?php
+include('Notifyclass.php');
 class Post {
 
     public static function createPost($postbody, $loggedIn_userid, $profileUserId) {
@@ -12,8 +13,8 @@ class Post {
             //wenn die eingeloggte Person auf ihrer eigenen Profilseite ist, dann darf sie Einträge posten
 
 
-            if(count(self::notify($postbody)) !=0){
-                foreach(self::notify($postbody) as $key => $n ) {
+            if(count(Notify::createNotify($postbody)) !=0){
+                foreach(Notify::createNotify($postbody) as $key => $n ) {
                     $s = $loggedIn_userid;
                     #s ist der eingeloggte User
 
@@ -40,14 +41,14 @@ class Post {
 
 
 
-    public static function createImgPost($postbody, $loggedInUserId, $profileUserId) {
+    public static function createImgPost($postbody, $loggedIn_userid, $profileUserId) {
         if (strlen($postbody) > 160) {
             die('Incorrect length!');
         }
-        if ($loggedInUserId == $profileUserId) {
-            if (count(self::notify($postbody)) != 0) {
-                foreach (self::notify($postbody) as $key => $n) {
-                    $s = $loggedInUserId;
+        if ($loggedIn_userid == $profileUserId) {
+            if (count(Notify::createNotify($postbody)) != 0) {
+                foreach (Notify::createNotify($postbody) as $key => $n) {
+                    $s = $loggedIn_userid;
                     $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
                     if ($r != 0) {
                         DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"]));
@@ -72,34 +73,18 @@ class Post {
             //wo die Post-"id" in der Datenbank gleich die ":postid" ist, die dem URL übergeben wird, wenn man auf den Like-Button klickt
             DB::query('INSERT INTO post_likes VALUES (\'\',:postid, :userid)', array(':postid' => $postid, ':userid' => $likerId));
             //das zeigt ob die eingeloggte Person (followerid) den Post geliked hat
-        }
-        else {
+
+                Notify::createNotify("", $postid);
+
+        } else {
             DB::query('UPDATE posts SET likes=likes-1 WHERE id=:postid', array(':postid' => $postid));
             DB::query('DELETE FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $postid, ':userid' => $likerId));
         }
     }
 
-    public static function notify($text){
-
-
-        $text = explode(" ", $text);
-        $notify = array();
-
-        foreach ($text as $word){
-            if (substr($word, 0, 1) == "@"){
-                $notify[substr($word,1)] = array("type"=>1, "extra"=> '{"postbody": "'.htmlentities (implode($text, " " )).'""}' );
-
-
-            }
-        }
-
-
-        return $notify;
 
 
 
-
-    }
 
     public static function link_add($text){
 
@@ -122,10 +107,12 @@ class Post {
 
     }
 
+
     public static function displayPosts($userid, $username, $loggedIn_userid) {
 
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
         $posts = "";
+
         foreach($dbposts as $p) {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
@@ -138,6 +125,7 @@ class Post {
                 if ($userid == $loggedIn_userid){
                     $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
                 }
+                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
                 $posts .="
               </form><hr /></br />
@@ -152,6 +140,8 @@ class Post {
                 if ($userid == $loggedIn_userid){
                     $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
                 }
+                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+                #$userid == $loggedIn_userid
 
                 $posts .="
               </form><hr /></br />
