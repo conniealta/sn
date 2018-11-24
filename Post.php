@@ -40,6 +40,37 @@ class Post {
     }
 
 
+    public static function createPost2 ($postbody, $loggedIn_userid) {
+
+
+        if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
+            die('Inkorrekte Länge!');
+        }
+
+        if ($loggedIn_userid) {
+            if (count(Notify::createNotify($postbody)) != 0) {
+                foreach (Notify::createNotify($postbody) as $key => $n) {
+                    $s = $loggedIn_userid;
+                    #s ist der eingeloggte User
+
+                    $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username' => $key))[0]['id'];
+                    #r ist der User der markiert wird oder dessen Post geliked wird
+
+                    if ($r != 0) {
+                        #solange der User existiert, wird eine Benachrichtigung gesendet
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :reciever, :sender, :extra)', array(':type' => $n["type"], ':reciever' => $r, ':sender' => $s, ':extra' => $n["extra"]));
+                    }
+                }
+
+            }
+
+            DB::query('INSERT INTO posts VALUES (\'\', :postbody, NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $loggedIn_userid));
+        } // -> '\'= die erste Spalte in der Datenbanktabelle ("id"); NOW() = das ist eine Funktion, die das aktuelle Datum und Uhrzeit anzeigt; '0'= die Standardanzahl der "Likes"
+        else {
+            die('Falscher Benutzer!');
+        }
+
+    }
 
     public static function createImgPost($postbody, $loggedIn_userid, $profileUserId) {
         if (strlen($postbody) > 160) {
@@ -121,7 +152,15 @@ class Post {
               <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
+                 
+                 <form action='profile.php?postid=".$p['id']." 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>
               ";
+
+
+
                 if ($userid == $loggedIn_userid){
                     $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
                 }
@@ -136,7 +175,16 @@ class Post {
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
+                 
+                
+                  <form action='profile.php?postid=".$p['id']." 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>
+                 
                  ";
+
+
                 if ($userid == $loggedIn_userid){
                     $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
                 }
@@ -157,6 +205,73 @@ class Post {
     }
 
 
+
+
+
+    public static function displayPosts2 ($username, $loggedIn_userid) {
+
+        $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$loggedIn_userid));
+        $posts = "";
+
+        foreach($dbposts as $p) {
+
+            if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
+
+                $posts .= "<img src='".$p['postimg']."'>".(self::link_add($p['body'])) . "
+              <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
+                 <input type='submit' name='like' value='Like'>
+                 <span>".$p['likes']." likes</span>
+                 
+                 <form action='profile.php?postid=".$p['id']." 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>
+              ";
+
+
+
+                if ($loggedIn_userid){
+                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                }
+                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+
+                $posts .="
+              </form><hr /></br />
+                ";
+            }
+            else {
+                $posts .= htmlspecialchars(self::link_add($p['body'])) . "
+              <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+                 <input type='submit' name='unlike' value='Unlike'>
+                 <span>".$p['likes']." likes</span>
+                 
+                
+                  <form action='profile.php?postid=".$p['id']." 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>
+                 
+                 ";
+
+
+                if ($loggedIn_userid){
+                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                }
+                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+                #$userid == $loggedIn_userid
+
+                $posts .="
+              </form><hr /></br />
+                ";
+
+            }
+
+        }
+
+        return $posts;
+
+
+    }
 
 }
 ?>

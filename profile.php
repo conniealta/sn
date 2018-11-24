@@ -81,6 +81,7 @@ else {
 <?php
 include('DB.php');
 include('Post.php');
+include('Comment.php');
 
 $username = "";
 // je nachdem, auf welcher Profilseite wir sind, heißt die Profilseite z.B. "profile2.php?username=conniealta"
@@ -154,7 +155,7 @@ if (isset($_GET['username'])) {
 
     if (isset($_POST['comment'])) {
         if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
-            Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin);
+            Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
             //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
         }
     }
@@ -200,16 +201,36 @@ if (isset($_GET['username'])) {
      "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
     */
 
+  Comment::displayComments($_GET['postid']);
+    Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
 
+  // PROBLEM ! --> Kommentare werden nicht angezeigt ... Die werden nur beim Feed angezeigt. Ich hab auch so probiert:
+    //$comments = Comment::displayComments($_GET['postid']);
+    // $comment = Comment::displayComments($_GET['postid']);
+    //Comment::displayComments($posts['id']);
+
+
+
+    if (isset($_POST['comment'])) {
+        Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+    }
 
 } else {
     die('User not found!');
 }
 
+
+
+
+
 ?>
 
 
+
+
 <h1><?php echo $username; ?>'s Profile</h1>
+
+
 <form action="profile.php?username=<?php echo $username; ?>" method="post">
 
     <?php
@@ -228,10 +249,16 @@ if (isset($_GET['username'])) {
 </form>
 
 
+
+
 <form action="profile.php?username=<?php echo $username; ?>" method="post">
     <textarea name="postbody" rows="8" cols="80"></textarea>
     <input type="submit" name="post" value="Post">
 </form>
+
+
+
+
 
 
     <form action="upload.php" method="post" enctype="multipart/form-data">
