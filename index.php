@@ -319,6 +319,21 @@ if (isset($_POST['post'])) {
     }
 }
 
+$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
+$my_posts = Post::displayPosts2 ($profile_pic2, $username, $user_loggedin);
+
+// --> PROBLEM:  Die eigenen Posts werden im Feed nicht angezeigt (nur die Posts von den anderen Benutzern)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -377,6 +392,8 @@ if(isset($_POST['searchbox'])) {
 
 
 
+
+
 <br><br><br>
 <form action="index.php" method="post">
     <input type="text" name="searchbox" value="">
@@ -401,14 +418,16 @@ if(isset($_POST['searchbox'])) {
 
 
 
-
+<div class="posts">
+    <?php echo $my_posts; ?>
+</div>
 
 <?php
 
 // Anazeigen der Posts mit den Kommentaren:
-$followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username, posts.img_id, list5.profile_pic FROM list5, posts, followers 
-                             WHERE posts.user_id = followers.user_id 
-                             AND list5.id = posts.user_id 
+$followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username, posts.img_id, list5.profile_pic FROM list5, posts, followers
+                             WHERE posts.user_id = followers.user_id
+                             AND list5.id = posts.user_id
                              AND follower_id = :userid
                              ORDER BY posts.id DESC;', array(':userid'=>$user_loggedin));
 
@@ -429,9 +448,9 @@ foreach ($followingposts as $post) {
     }
     echo "<span>" . $post['likes'] . " likes</span>
               </form>
-              
-              
-         
+
+
+
               <form action='index.php?postid=".$post['id']." 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
@@ -439,13 +458,11 @@ foreach ($followingposts as $post) {
               ";
     Comment::displayComments($post['id']);
 
-    echo" 
+    echo"
 
               <hr /></br />";
 
 
-    $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
-    $my_posts = Post::displayPosts($profile_pic2, $userid, $username, $user_loggedin);
 }
 
 /* joints -> WHERE posts.user_id = followers.user_id
@@ -456,9 +473,7 @@ foreach ($followingposts as $post) {
 
 
 
-<div class="posts">
-    <?php echo $my_posts; ?>
-</div>
+
 
 
 

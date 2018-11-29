@@ -240,20 +240,33 @@ class Post {
 
 
 
-    public static function displayPosts2 ($username, $loggedIn_userid) {
+
+
+
+
+
+    public static function displayPosts2 ($profilePic, $username, $loggedIn_userid) { //hier irgendwo profile_pic
 
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$loggedIn_userid));
+        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
+        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
         $posts = "";
+
+
+        //.$id=$pdo->lastInsertId(); !!!!
+        //$my_posts = DB::query('SELECT body FROM posts WHERE user_id=:userid', array(':userid' => $user_loggedin))[0]['body'];
+        // echo $my_posts --> da wird der Post mit id "0" angezeigt und wir wollen dass der letzte angezeigt wird aber wie??? und wie fügen wir noch die Bilder hinzu? (siehe unten "img src ...")
 
         foreach($dbposts as $p) {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='".$p['postimg']."'>".(self::link_add($p['body'])) . "
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])). "
+
               <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
-                 
+
                  <form action='profile.php?postid=".$p['id']." 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
@@ -276,13 +289,13 @@ class Post {
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
-                 
-                
+
+
                   <form action='profile.php?postid=".$p['id']." 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
-                 
+
                  ";
 
 
@@ -304,6 +317,83 @@ class Post {
 
 
     }
+
+
+
+//
+//    public static function displayPosts2 ($profilePic, $username, $loggedIn_userid) { //hier irgendwo profile_pic
+//
+//        $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$loggedIn_userid));
+//        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
+//        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
+//        $posts = "";
+//
+//
+//        //.$id=$pdo->lastInsertId(); !!!!
+//
+//        foreach($dbposts as $p) {
+//
+//            if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
+//
+//                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p->lastInsertId()['body'])). "
+//
+//              <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
+//                 <input type='submit' name='like' value='Like'>
+//                 <span>".$p['likes']." likes</span>
+//
+//                 <form action='profile.php?postid=".$p['id']." 'method='post'>
+//              <textarea name='commentbody' rows='3' cols='50'></textarea>
+//              <input type='submit' name='comment' value='Kommentieren'>
+//              </form>
+//              ";
+//
+//
+//
+//                if ($loggedIn_userid){
+//                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+//                }
+//                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+//
+//                $posts .="
+//              </form><hr /></br />
+//                ";
+//            }
+//            else {
+//                $posts .= htmlspecialchars(self::link_add($p['body'])) . "
+//              <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+//                 <input type='submit' name='unlike' value='Unlike'>
+//                 <span>".$p['likes']." likes</span>
+//
+//
+//                  <form action='profile.php?postid=".$p['id']." 'method='post'>
+//              <textarea name='commentbody' rows='3' cols='50'></textarea>
+//              <input type='submit' name='comment' value='Kommentieren'>
+//              </form>
+//
+//                 ";
+//
+//
+//                if ($loggedIn_userid){
+//                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+//                }
+//                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+//                #$userid == $loggedIn_userid
+//
+//                $posts .="
+//              </form><hr /></br />
+//                ";
+//
+//            }
+//
+//        }
+//
+//        return $posts;
+//
+//
+//    }
+
+
+
 
 }
 ?>
