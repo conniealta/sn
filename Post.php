@@ -64,7 +64,7 @@ class Post {
 
             }
 
-            DB::query('INSERT INTO posts VALUES (\'\', :postbody, NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $loggedIn_userid));
+            DB::query('INSERT INTO posts VALUES (\'\', :postbody, \'\', NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $loggedIn_userid));
         } // -> '\'= die erste Spalte in der Datenbanktabelle ("id"); NOW() = das ist eine Funktion, die das aktuelle Datum und Uhrzeit anzeigt; '0'= die Standardanzahl der "Likes"
         else {
             die('Falscher Benutzer!');
@@ -93,6 +93,33 @@ class Post {
         }
     }
     #funktion für bilder
+
+
+
+    public static function createImgPost2 ($img_id, $loggedIn_userid) {
+
+        if ($loggedIn_userid) {
+            if (count(Notify::createNotify($img_id)) != 0) {
+                foreach (Notify::createNotify($img_id) as $key => $n) {
+                    $s = $loggedIn_userid;
+                    $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
+                    if ($r != 0) {
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"]));
+                    }
+                }
+            }
+            DB::query('INSERT INTO posts VALUES (\'\',\'\', :img_id, NOW(), :userid, 0)', array(':img_id'=>$img_id, ':userid'=>$loggedIn_userid));
+            $postid = DB::query('SELECT id FROM posts WHERE user_id=:userid ORDER BY ID DESC LIMIT 1;', array(':userid'=>$loggedIn_userid))[0]['id'];
+            return $postid;
+        } else {
+            die('Incorrect user!');
+        }
+    }
+    #funktion für bilder
+
+
+
+
 
 
 

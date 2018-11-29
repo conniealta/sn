@@ -607,7 +607,7 @@ if (isset($_GET['username'])) {
                     $statement = $pdo->prepare($sql);
                     $statement->execute(array("$user_id", "$bild_id"));*/
 
-                    Post::createImgPost($bild_id, $userid2, $userid);
+//                    Post::createImgPost($bild_id, $userid2, $userid);
 
                 }else {
                     echo"Deine Datei ist zu groß! (Max Größe 1MB)";
@@ -629,28 +629,30 @@ if (isset($_GET['username'])) {
         if ($_FILES['file']['size'] == 0) {
             Post::createPost($_POST['postbody'], $userid2, $userid);
         } else {
-            $postid = Post::createImgPost($bild_id, $userid2, $userid);
+            $postid = Post::createImgPost($bild_id, $userid2, $userid); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
         }
     }
+    //Das PROBLEM: wenn man einen Text postet, ist alles ok --> wenn man ein Bild postet, wird dieses zweimal angezeigt
 
 
 
 
+//
+//    if (isset($_POST['post'])) { //prüfen, ob  der Post-Button geklickt wurde und wenn ja:
+//
+//        Post::createPost($_POST['postbody'], $userid2, $userid);
+//        /*  in "Post.php" -> '$postbody', 'loggedIn_userid', '$profileUserId'
+//
+//        --> die "$_POST['postbody'], $userid2, $userid" werden dann an die Parameter in "Post.php" übergeben
+//
+//        "$userid2 = $_SESSION['angemeldet'];" (oben definiert) -> das ist die "id" der eingeloggten Person
+//        $userid = die 'id' der Person, auf deren Profilseite die eingeloggte Person ist
+//
+//       --> durch die Übertragung ($userid2 -> $loggedIn_userid etc.)  darf  die eingeloggte Person nur auf ihrer eigenen Profilseite posten
+//        */
+//
+//    }
 
-    if (isset($_POST['post'])) { //prüfen, ob  der Post-Button geklickt wurde und wenn ja:
-
-        Post::createPost($_POST['postbody'], $userid2, $userid);
-        /*  in "Post.php" -> '$postbody', 'loggedIn_userid', '$profileUserId'
-
-        --> die "$_POST['postbody'], $userid2, $userid" werden dann an die Parameter in "Post.php" übergeben
-
-        "$userid2 = $_SESSION['angemeldet'];" (oben definiert) -> das ist die "id" der eingeloggten Person
-        $userid = die 'id' der Person, auf deren Profilseite die eingeloggte Person ist
-
-       --> durch die Übertragung ($userid2 -> $loggedIn_userid etc.)  darf  die eingeloggte Person nur auf ihrer eigenen Profilseite posten
-        */
-
-    }
 
     if (isset($_GET['postid'])) {
         Post::likePost($_GET['postid'], $followerid);
@@ -667,7 +669,6 @@ if (isset($_GET['username'])) {
     $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
     $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
     /*
-
     $profile_pic2 = das ist das Profilbild der Person, auf deren Profilseite wir sind
     $profile_pic = das ist das Profilbild der eingeloggten Person
 
@@ -802,6 +803,9 @@ if (isset($_GET['username'])) {
 </div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
 
 <!--Anzeigen von Posts ($posts = Post::displayPosts...)-->
 <div class="posts">
