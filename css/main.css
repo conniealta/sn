@@ -557,3 +557,8 @@ iframe {
     padding-right: 15px;
   }
 }
+
+
+#second {
+  display: none;
+}

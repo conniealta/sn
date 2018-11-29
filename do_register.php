@@ -4,11 +4,14 @@ session_start();
 
 $pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
 
-if(isset($_POST["email"]) AND isset($_POST["passwort"]) AND isset($_POST["username"]))
+if(isset($_POST["email"]) AND isset($_POST["passwort"]) AND isset($_POST["username"]) AND isset($_POST["fname"]) AND isset($_POST["lname"]) AND isset($_POST["passwort2"]))
 {
     $username=$_POST["username"];
     $email=$_POST["email"];
     $passwort=$_POST["passwort"];
+    $passwort2 = $_POST['passwort2'];
+    $lname = $_POST['lname'];
+    $username = $_POST['username'];
 }
 else
 {
@@ -17,8 +20,10 @@ else
 }
 
 
-if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["username"])) {
+if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["username"]) AND isset($_POST["fname"]) AND isset($_POST["lname"]) AND isset($_POST["passwort2"])) {
     $error = false;
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
@@ -28,10 +33,37 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
         echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
         $error = true;
     }
+
+    if(strlen($fname) == 0) {
+        echo 'Bitte einen Vornamen angeben<br>';
+        $error = true;
+    }
+
+    if(strlen($lname) == 0) {
+        echo 'Bitte einen Nachnamen angeben<br>';
+        $error = true;
+    }
+
+    if(strlen($fname) > 25 || strlen($fname) < 2) {
+        echo "Vorname zwischen 3 and 25 Zeichen!<br>";
+        $error = true;
+    }
+
+    if(strlen($lname) > 25 || strlen($lname) < 2) {
+        echo "Nachname zwischen 3 und 25 Zeichen!<br>";
+        $error = true;
+    }
+
     if(strlen($username) == 0) {
         echo 'Bitte einen Username angeben<br>';
         $error = true;
     }
+
+    if(strlen($lname) > 30 || strlen($lname) < 3) {
+        echo "Nachname zwischen 2 und 25 Zeichen!<br>";
+        $error = true;
+    }
+
     if(strlen($passwort) == 0) {
         echo 'Bitte ein Passwort angeben<br>';
         $error = true;
@@ -39,7 +71,18 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
     if($passwort != $passwort2) {
         echo 'Die Passwörter müssen übereinstimmen<br>';
         $error = true;
+    } else {
+        if(preg_match('/[^A-Za-z0-9]/', $passwort)) {
+            echo "Nur englische Zeichen!<br>";
+            $error = true;
+        }
     }
+
+   /* if(strlen($passwort > 30 || strlen($passwort) < 1)) {
+        echo "Passwort zwischen 3 und 30 Zeichen!<br>";
+        $error = true;
+    }*/
+
 
     //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
     if(!$error) {
@@ -65,14 +108,23 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
         }
     }
 
+    //Profile picture assignment
+    $rand = rand(1, 2); //Random number between 1 and 2
+
+    if($rand == 1)
+        $profile_pic = "images/defaults/head_deep_blue.png";
+    else if($rand == 2)
+        $profile_pic = "images/defaults/head_emerald.png";
+
+
     //Keine Fehler, wir können den Nutzer registrieren
     if(!$error) {
 
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 
-        $statement = $pdo->prepare("INSERT INTO list5 (username, email, passwort) VALUES (:username, :email, :passwort)");
+        $statement = $pdo->prepare("INSERT INTO list5 (first_name, last_name, username, email, passwort, profile_pic) VALUES (:fname, :lname, :username, :email, :passwort, :profilepic)");
 
-        $result = $statement->execute(array(':username' => $username, ':email' => $email, ':passwort'=> hash('sha256', $passwort, false)));
+        $result = $statement->execute(array(':fname' => $fname, ':lname' => $lname, ':username' => $username, ':email' => $email, ':passwort'=> hash('sha256', $passwort, false), ':profilepic' => $profile_pic));
 
         if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.html">Zum Login</a>';

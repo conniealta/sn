@@ -21,11 +21,16 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/register.js"></script>
     <!--===============================================================================================-->
 </head>
 <body>
 
-<div class="limiter">
+
+
+
+
+<div id="first" class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
             <form action="do_login.php" method="post" class="login100-form validate-form">
@@ -67,7 +72,7 @@
 							Not a member?
 						</span>
                     <span>
-                    <a class="hov1" href="register.html">
+                    <a id="signup" class="signup" href="register.html">
                         Sign up now
                     </a>
 </span>
@@ -76,6 +81,45 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div id="second" class="loginBox">
+    <img src="images/user.png" class="user">
+    <h2>Registrierung</h2>
+
+    <form action="do_register.php" method="post">
+
+
+        <p>Vorname:</p>
+        <input type="text" size="40" maxlength="250" name="fname" placeholder="Vorname eingeben"><br><br>
+
+        <p>Nachname:</p>
+        <input type="text" size="40" maxlength="250" name="lname" placeholder="Nachname eingeben"><br><br>
+
+        <p>Username:</p>
+        <input type="text" size="40" maxlength="250" name="username" placeholder="Username eingeben"><br><br>
+
+        <p>Email:</p>
+        <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"><br><br>
+
+        <p>Passwort:</p>
+        <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"><br>
+
+        <p>Passwort bestätigen:</p>
+        <input type="password" name="passwort2" placeholder="••••••"><br><br>
+
+        <input type="submit" value="Registrieren">
+
+        <br><br><br>
+        <a>Schon registriert?</a>
+        <a id="signin" class="signin"  href="login.html">Jetzt einloggen </a></p>
+    </form>
+
+</div>
+
+
 
 
 <!--===============================================================================================-->

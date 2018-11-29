@@ -6,45 +6,74 @@ session_start();
 <html lang="de">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+
+    <link rel="stylesheet" type="text/css" href=" " media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
     <title> Feed </title>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
 
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+        }
 
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #bd4147;
+        }
+    </style>
 
 </head>
 
 <body>
 
 
-<header>
-    <A ID="toc"></A>
+<div class="header">
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
 
-    <nav>
-        <div id="erste">
+</div>
 
-            <ul class="list1">
 
-                <li>
-                    <a  class="active" href="index.php">Feed</a>
-                </li>
-
-                <li>
-                    <a href="profile.php">Profil </a>
-                </li>
-                <li>
-                    <a class="wi" href="messages.html">Messages</a>
-                </li>
-
-                <li class="dropdown">
-                    <a href="notify.php">Benachrichtigungen</a>
-
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<ul>
+    <li><a class="active" href="index.php">Feed</a></li>
+    <li><a href="profile.php">Profil </a></li>
+    <li><a class="wi" href="messages.html">Messages</a></li>
+    <li><a href="notify.php">Benachrichtigungen</a></li>
+</ul>
 
 <br><br><br><br>
 
@@ -70,46 +99,166 @@ else {
     echo "Hallo User: ".$user_loggedin;
     $showTimeline = True;
 }
-
-
-$username = DB::query('SELECT username FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['username'];
 ?>
 
 
 
-<h1> Das Profil von '<?php echo $user_loggedin; ?>'</h1>
 
 
-<h1><?php echo $username; ?>'s Profile</h1>
 
 
-<h1 class="title"> Feed  </h1>
-<div id="zweite">
-<form action="index.php" method="post">
-    <textarea name="postbody" rows="8" cols="80"></textarea>
-    <input type="submit" name="post" value="Post">
-</form>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <?php
 
-if (isset($_POST['post'])) { //prüfen, ob  der Post-Button geklickt wurde und wenn ja:
+$profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
+$lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['last_name'];
+$fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['first_name'];
+$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
 
-    Post::createPost2($_POST['postbody'], $user_loggedin);
-    /*  in "Post.php" -> '$postbody', 'loggedIn_userid'
+//echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>"
 
-    --> die "$_POST['postbody'], $user_loggedin werden dann an die Parameter in "Post.php" übergeben
-   --> Übertragung ($user_loggedin -> $loggedIn_userid etc.)
-    */
+/*
+Das hier ist die längere Variante (ohne Klassen) und führt das gleiche aus:
+$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
 
-    Post::displayPosts2 ($username, $user_loggedin);
+$statement = $pdo->prepare("SELECT * FROM list5 WHERE id=:userid");
+
+if($statement->execute(array(':userid'=>$user_loggedin))) {
+    while ($user = $statement->fetchObject()) {
+        $profile_pic = $user->profile_pic;
+        $fname = $user->first_name;
+        $lname = $user->last_name;
+    }
+}
+echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>"
+*/
+
+?>
+
+
+
+<?php
+
+
+?>
+
+
+<h1> Das Profil von '<?php echo $user_name; ?>'</h1>
+
+
+
+<div class="user_details column">
+
+    <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
+
+    <div class="user_details_left_right">
+        <a href="<?php echo $user_loggedin; ?>">
+            <?php
+            echo $fname . " " . $lname;
+
+            ?>
+        </a>
+    </div>
+
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit" name="submit"> Upload Profile Pic </button>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<h1 class="title"> Feed  </h1>
+
+<div class="main_column column">
+    <form class="post_form" action="upload_pic.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <textarea name="postbody" rows="8" cols="80" placeholder="Got something to say?"></textarea>
+        <input type="submit" name="submit" value="Post">
+        <hr>
+
+    </form>
+
+    <div class="posts_area"></div>
+    <!-- <button id="load_more">Load More Posts</button> -->
+    <img id="loading" src="images/icons/loading.gif">
+</div>
+
+
+<?php
+
+$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
+
+$statement = $pdo->prepare("SELECT * FROM img_upload ");
+
+if($statement->execute()) {
+    while ($user = $statement->fetchObject()) {
+        $img_id = $user->img_id;
+    }
 }
 
+echo "<a href='img_upload/post_pics/$img_id'></a>      <img src='img_upload/post_pics/$img_id'>";
 
 
 
+
+
+
+if (isset($_POST['submit'])) {
+    if ($_FILES['file']['size'] == 0) {
+        Post::createPost($_POST['postbody'], $user_loggedin, $userid);
+       $posts= Post::displayPosts2 ($username, $user_loggedin);
+    } else {
+        $postid = Post::createImgPost($_POST['postbody'], $user_loggedin, $userid);
+    }
+}
+?>
+
+
+
+<div class="posts">
+    <?php echo $posts; //$posts = Post::displayPosts2 ?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<?php
 
 if (isset($_GET['postid'])) {
     Post::likePost($_GET['postid'], $user_loggedin); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
@@ -160,10 +309,12 @@ if(isset($_POST['searchbox'])) {
 </form>
 <br><br><br>
 
+
+
 <?php
 
 
-$followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username FROM list5, posts, followers 
+$followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username, posts.img_id, list5.profile_pic FROM list5, posts, followers 
                              WHERE posts.user_id = followers.user_id 
                              AND list5.id = posts.user_id 
                              AND follower_id = :userid
@@ -172,7 +323,7 @@ $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.use
 
 foreach ($followingposts as $post) {
 
-    echo $post['body'] . "~ " . $post['username'];
+    echo "<img src='img_upload/profile_pics/".$post['profile_pic']."'>".$post['username'].$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
@@ -207,7 +358,6 @@ foreach ($followingposts as $post) {
 */
 
 ?>
-
 
 
 

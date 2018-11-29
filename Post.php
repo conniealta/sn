@@ -31,7 +31,7 @@ class Post {
 
 
 
-            DB::query('INSERT INTO posts VALUES (\'\', :postbody, NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $profileUserId));
+            DB::query('INSERT INTO posts VALUES (\'\', :postbody, \'\', NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $profileUserId));
         } // -> '\'= die erste Spalte in der Datenbanktabelle ("id"); NOW() = das ist eine Funktion, die das aktuelle Datum und Uhrzeit anzeigt; '0'= die Standardanzahl der "Likes"
         else {
             die('Falscher Benutzer!');
@@ -72,13 +72,12 @@ class Post {
 
     }
 
-    public static function createImgPost($postbody, $loggedIn_userid, $profileUserId) {
-        if (strlen($postbody) > 160) {
-            die('Incorrect length!');
-        }
+
+    public static function createImgPost($img_id, $loggedIn_userid, $profileUserId) {
+
         if ($loggedIn_userid == $profileUserId) {
-            if (count(Notify::createNotify($postbody)) != 0) {
-                foreach (Notify::createNotify($postbody) as $key => $n) {
+            if (count(Notify::createNotify($img_id)) != 0) {
+                foreach (Notify::createNotify($img_id) as $key => $n) {
                     $s = $loggedIn_userid;
                     $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
                     if ($r != 0) {
@@ -86,14 +85,17 @@ class Post {
                     }
                 }
             }
-            DB::query('INSERT INTO posts VALUES (\'\', :postbody, NOW(), :userid, 0, \'\', \'\')', array(':postbody'=>$postbody, ':userid'=>$profileUserId));
-            $postid = DB::query('SELECT id FROM posts WHERE user_id=:userid ORDER BY ID DESC LIMIT 1;', array(':userid'=>$loggedInUserId))[0]['id'];
+            DB::query('INSERT INTO posts VALUES (\'\',\'\', :img_id, NOW(), :userid, 0)', array(':img_id'=>$img_id, ':userid'=>$profileUserId));
+            $postid = DB::query('SELECT id FROM posts WHERE user_id=:userid ORDER BY ID DESC LIMIT 1;', array(':userid'=>$loggedIn_userid))[0]['id'];
             return $postid;
         } else {
             die('Incorrect user!');
         }
     }
     #funktion für bilder
+
+
+
 
 
     public static function likePost($postid, $likerId) {
@@ -139,16 +141,19 @@ class Post {
     }
 
 
-    public static function displayPosts($userid, $username, $loggedIn_userid) {
+    public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
 
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
+        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
+        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
         $posts = "";
 
         foreach($dbposts as $p) {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='".$p['postimg']."'>".(self::link_add($p['body'])) . "
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])) . " 
+                
               <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
