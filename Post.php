@@ -175,6 +175,8 @@ class Post {
 
 //$posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) . "
 
+
+
     public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
 
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
@@ -186,14 +188,14 @@ class Post {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'><img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
 
                     // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
                     //Comment::displayComments($p['id']).
 
                     "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
-                 <span>".$p['likes']." likes</span> 
+                 <span>".$p['likes']." likes</span>
                  ";
 
 
@@ -227,7 +229,7 @@ class Post {
                     "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
-              
+
 
                 ";
 
@@ -243,7 +245,7 @@ class Post {
               </form>";
 
 
-               $posts .= Comment::displayComments2($p['id']);
+                $posts .= Comment::displayComments2($p['id']);
 
                 $posts .="
               </form><hr /></br />
@@ -258,6 +260,8 @@ class Post {
 
 
     }
+
+
 
 
 
@@ -359,7 +363,11 @@ class Post {
 
 
 
-//    public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
+
+
+//Damit hab ich versucht diese "Fragezeichen" abzuschaffen: (aber es ging nicht):
+
+//    public static function displayImgPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
 //
 //        $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
 //        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
@@ -370,19 +378,15 @@ class Post {
 //
 //            if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 //
-//                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])) . "
+//                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
 //
-//              <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
+//                    // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
+//                    //Comment::displayComments($p['id']).
+//
+//                    "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
 //                 <input type='submit' name='like' value='Like'>
 //                 <span>".$p['likes']." likes</span>
-//
-//                 <form action='profile.php?postid=".$p['id']." 'method='post'>
-//              <textarea name='commentbody' rows='3' cols='50'></textarea>
-//              <input type='submit' name='comment' value='Kommentieren'>
-//              </form>
-//              ";
-//                // Das Formular für die Kommentare muss weg, damit die Löschfunktion funktioniert?? --> aber wo soll es hin? (siehe Part 50 - da fehlt es)
-//                // siehe Video 18
+//                 ";
 //
 //
 //
@@ -391,24 +395,33 @@ class Post {
 //                }
 //                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 //
-//                $posts .="
-//              </form><hr /></br />
+//                $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
+//              <textarea name='commentbody' rows='3' cols='50'></textarea>
+//              <input type='submit' name='comment' value='Kommentieren'>
+//              </form>";
+//
+//
+//                $posts .= Comment::displayComments2($p['id']);
+//
+//                $posts .= "</form><hr /></br />
 //                ";
+//
+//
+//
 //            }
 //            else {
-//                $posts .= htmlspecialchars(self::link_add($p['body'])) . "
-//              <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+//                //$posts .= (self::link_add($p['body'])) . "
+//
+//                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) .
+//
+//                    //Comment::displayComments($p['id']).
+//
+//                    "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
 //                 <input type='submit' name='unlike' value='Unlike'>
 //                 <span>".$p['likes']." likes</span>
 //
 //
-//                  <form action='profile.php?postid=".$p['id']." 'method='post'>
-//              <textarea name='commentbody' rows='3' cols='50'></textarea>
-//              <input type='submit' name='comment' value='Kommentieren'>
-//              </form>
-//
 //                ";
-//
 //
 //                if ($userid == $loggedIn_userid){
 //                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
@@ -416,9 +429,18 @@ class Post {
 //                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 //                #$userid == $loggedIn_userid
 //
+//                $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
+//              <textarea name='commentbody' rows='3' cols='50'></textarea>
+//              <input type='submit' name='comment' value='Kommentieren'>
+//              </form>";
+//
+//
+//                $posts .= Comment::displayComments2($p['id']);
+//
 //                $posts .="
 //              </form><hr /></br />
 //                ";
+//
 //
 //            }
 //
@@ -428,6 +450,7 @@ class Post {
 //
 //
 //    }
+
 
 
 

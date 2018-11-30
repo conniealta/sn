@@ -679,6 +679,10 @@ if (isset($_GET['username'])) {
 
     $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
     $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
+
+    //$img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
+
+
     /*
     $profile_pic2 = das ist das Profilbild der Person, auf deren Profilseite wir sind
     $profile_pic = das ist das Profilbild der eingeloggten Person
@@ -827,7 +831,8 @@ if (isset($_GET['username'])) {
 
 <!--Anzeigen von Posts ($posts = Post::displayPosts...)-->
 <div class="posts">
-    <?php echo $posts; ?>
+    <?php echo $posts;
+    echo $img_posts; ?>
 </div>
 
 
