@@ -62,7 +62,10 @@ session_start();
 <div class="header">
     <h2>Scroll Down</h2>
     <p>Scroll down to see the sticky effect.</p>
-
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
 
 </div>
 
@@ -70,7 +73,7 @@ session_start();
 <ul>
     <li><a class="active" href="index.php">Feed</a></li>
     <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="my-messages.php">Messages</a></li>
+    <li><a class="wi" href="messages.html">Messages</a></li>
     <li><a href="notify.php">Benachrichtigungen</a></li>
 </ul>
 
@@ -88,7 +91,8 @@ session_start();
 
 <?php
 include('DB.php');
-
+include('Post.php');
+include('Comment.php');
 
 $showTimeline = False;
 
@@ -482,8 +486,6 @@ echo "<a href='img_upload/post_pics/$img_id'></a>      <img src='img_upload/post
 
 
 <?php
-include('Post.php');
-include('Comment.php');
 
 $profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['profile_pic'];
 $lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['last_name'];
@@ -534,7 +536,7 @@ if (isset($_GET['username'])) {
                     DB::query('INSERT INTO followers VALUES (\'\', :userid, :followerid)', array(':userid'=>$userid, ':followerid'=>$followerid));
                 }
                 else {
-                    echo 'Du folgst diesem Nutzer bereits!';
+                    echo 'Already following!';
                 }
                 /* wenn user_id=3 neben follower_id=1 steht, dann folgt die eingeloggte Person schon der Person, auf deren Profilseite wir sind  */
 
@@ -693,7 +695,7 @@ if (isset($_GET['username'])) {
     }
 
 } else {
-    die('Nutzer konnte nicht gefunden werden!');
+    die('User not found!');
 }
 
 
@@ -785,8 +787,6 @@ if (isset($_GET['username'])) {
 <!--</form>-->
 
 <br><br>
-
-<a href="messages.php">Schreibe eine Nachricht!</a>
 
 <div class="main_column column">
     <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
