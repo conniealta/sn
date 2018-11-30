@@ -9,7 +9,7 @@ class Post {
             die('Inkorrekte Länge!');
         }
 
-        if ($loggedIn_userid == $profileUserId) {
+        if ($loggedIn_userid == $profileUserId) { //wenn die eingeloggte Person auf ihrer eigenen Profilseite ist, dann darf sie Einträge posten
             if (count(self::notify($postbody)) != 0) {
 
                 foreach (self::notify($postbody) as $key => $n) {
@@ -84,7 +84,7 @@ class Post {
             die('Incorrect user!');
         }
     }
-    #funktion für bilder
+    //funktion für bilder
 
 
 
@@ -107,7 +107,7 @@ class Post {
             die('Incorrect user!');
         }
     }
-    #funktion für bilder
+    //funktion für bilder
 
 
 
@@ -173,6 +173,7 @@ class Post {
 
     }
 
+//$posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])) . "
 
     public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
 
@@ -185,8 +186,8 @@ class Post {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])) . " 
-                
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) . " 
+              
               <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
@@ -207,7 +208,9 @@ class Post {
                 ";
             }
             else {
-                $posts .= htmlspecialchars(self::link_add($p['body'])) . "
+                //$posts .= (self::link_add($p['body'])) . "
+
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) . "
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
@@ -318,6 +321,20 @@ class Post {
 
 
     }
+
+//mit "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
+
+    /* $p = ein Array mit den Datenbankeinträgen: z.B. --> Array ([id]=>1 [0]=>1 [body]=>Hello [1]=>Hello [posted_at]=>2018-11-08 17:37:23 ...)
+    $p[body] = unser Post wird bei "body" in der Datenbanktabelle gespeichert --> mit dieser Funktion sehen wir nur den Inhalt des Posts (nicht id, Datum, etc.)
+    $posts = "" -> zunächst leer Array
+    "<hr />" = horizontale Linie
+    ".=" (->  $txt1 = "Hello"; $txt2 = " world!"; $txt1 .= $txt2; --> Hello world)
+    htmlspecialchars = wandelt Sonderzeichen in HTML-Codes um
+    postid = das ist die "id" des jeweiligen Posteintrag
+    if (isset($_GET['postid']) -> prüfen, ob der Like-Button geklickt wurde, wenn ja
+    */
+
+
 
 
 
