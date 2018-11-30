@@ -831,7 +831,7 @@ if (isset($_GET['username'])) {
 <!--Anzeigen von Posts ($posts = Post::displayPosts...)-->
 <div class="posts">
     <?php echo $posts;
-    echo $img_posts; ?>
+    //echo $img_posts; ?>
 </div>
 
 
