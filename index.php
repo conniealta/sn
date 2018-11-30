@@ -68,7 +68,7 @@ session_start();
 <ul>
     <li><a class="active" href="index.php">Feed</a></li>
     <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="messages.php">Messages</a></li>
+    <li><a class="wi" href="my-messages.php">Messages</a></li>
     <li><a href="notify.php">Benachrichtigungen</a></li>
 </ul>
 

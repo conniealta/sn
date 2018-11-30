@@ -87,8 +87,15 @@ if (isset($_GET['mid'])) {
     ?>
     <h1>Meine Nachrichten</h1>
     <?php
-    $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE  list5.id = messages.sender', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
+    $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE (receiver=:receiver OR sender=:sender) AND list5.id = messages.sender', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
     foreach ($messages as $message) {
+
+        if ($message['sender'] == $user_loggedin) {
+            $id = $message['receiver'];
+        } else {
+            $id = $message['sender'];
+        }
+
         if (strlen($message['body']) > 10) {
             $m = substr($message['body'], 0, 10)." ...";
         } else {

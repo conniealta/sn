@@ -807,6 +807,8 @@ if (isset($_GET['username'])) {
 
 <br><br>
 
+<a href="messages.php">Schreibe eine Nachricht!</a>
+
 <div class="main_column column">
     <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
         <input type="file" name="file">
@@ -826,16 +828,11 @@ if (isset($_GET['username'])) {
 
 
 
-
-
-
 <!--Anzeigen von Posts ($posts = Post::displayPosts...)-->
 <div class="posts">
     <?php echo $posts;
     echo $img_posts; ?>
 </div>
-
-
 
 
 </body>
