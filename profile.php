@@ -73,7 +73,7 @@ session_start();
 <ul>
     <li><a class="active" href="index.php">Feed</a></li>
     <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="my-messages.php">Messages</a></li>
+    <li><a class="wi" href="messages.html">Messages</a></li>
     <li><a href="notify.php">Benachrichtigungen</a></li>
 </ul>
 
@@ -654,9 +654,20 @@ if (isset($_GET['username'])) {
 //    }
 
 
-    if (isset($_GET['postid'])) {
+
+    if (isset($_POST['like'])) {
         Post::likePost($_GET['postid'], $followerid);
     }
+
+    if (isset($_POST['unlike'])) {
+        Post::likePost($_GET['postid'], $followerid);
+    }
+
+
+
+    /*if (isset($_GET['postid'])) {
+        Post::likePost($_GET['postid'], $followerid);
+    }*/
     /*  in "Post.php" -> '$postid', '$likerId'
      --> die "$_GET['postid'], $followerid" werden dann an die Parameter in "Post.php" übergeben
 
@@ -680,8 +691,12 @@ if (isset($_GET['username'])) {
      "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
     */
 
-  Comment::displayComments($_GET['postid']);
-    Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
+
+
+  //Comment::displayComments2($_GET['postid']);
+
+
+    //Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
 
   // PROBLEM ! --> Kommentare werden nicht angezeigt ... Die werden nur beim Feed angezeigt. Ich hab auch so probiert:
     //$comments = Comment::displayComments($_GET['postid']);
@@ -805,6 +820,7 @@ if (isset($_GET['username'])) {
 </div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
 
 

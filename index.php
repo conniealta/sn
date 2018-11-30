@@ -212,6 +212,8 @@ echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upl
 
 <?php
 /*
+
+Die Variante mit PDO:
 $pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
 
 $statement = $pdo->prepare("SELECT * FROM img_upload ");
@@ -223,8 +225,6 @@ if($statement->execute()) {
 }
 
 echo "<a href='img_upload/post_pics/$img_id'></a>      <img src='img_upload/post_pics/$img_id'>";
-
-
 
 
 
