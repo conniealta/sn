@@ -188,13 +188,14 @@ class Post {
 
                 $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
 
+                    // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
+                    //Comment::displayComments($p['id']).
+
                     "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span> 
                  ";
 
-                // Das Formular für die Kommentare muss weg, damit die Löschfunktion funktioniert?? --> aber wo soll es hin? (siehe Part 50 - da fehlt es)
-                // siehe Video 18
 
 
                 if ($userid == $loggedIn_userid){
@@ -207,6 +208,9 @@ class Post {
               <input type='submit' name='comment' value='Kommentieren'>
               </form>";
 
+
+                $posts .= Comment::displayComments2($p['id']);
+
                 $posts .= "</form><hr /></br />
                 ";
 
@@ -216,16 +220,16 @@ class Post {
             else {
                 //$posts .= (self::link_add($p['body'])) . "
 
-                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) . "
-              <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) .
+
+                    //Comment::displayComments($p['id']).
+
+                    "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
               
 
                 ";
-
-
-
 
                 if ($userid == $loggedIn_userid){
                     $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
@@ -238,9 +242,13 @@ class Post {
               <input type='submit' name='comment' value='Kommentieren'>
               </form>";
 
+
+               $posts .= Comment::displayComments2($p['id']);
+
                 $posts .="
               </form><hr /></br />
                 ";
+
 
             }
 

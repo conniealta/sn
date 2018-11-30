@@ -691,7 +691,11 @@ if (isset($_GET['username'])) {
      "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
     */
 
-  Comment::displayComments($_GET['postid']);
+
+
+  //Comment::displayComments2($_GET['postid']);
+
+
     //Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
 
   // PROBLEM ! --> Kommentare werden nicht angezeigt ... Die werden nur beim Feed angezeigt. Ich hab auch so probiert:
@@ -818,10 +822,15 @@ if (isset($_GET['username'])) {
 
 
 
+
+
+
 <!--Anzeigen von Posts ($posts = Post::displayPosts...)-->
 <div class="posts">
     <?php echo $posts; ?>
 </div>
+
+
 
 
 </body>
