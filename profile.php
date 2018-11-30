@@ -654,9 +654,20 @@ if (isset($_GET['username'])) {
 //    }
 
 
-    if (isset($_GET['postid'])) {
+
+    if (isset($_POST['like'])) {
         Post::likePost($_GET['postid'], $followerid);
     }
+
+    if (isset($_POST['unlike'])) {
+        Post::likePost($_GET['postid'], $followerid);
+    }
+
+
+
+    /*if (isset($_GET['postid'])) {
+        Post::likePost($_GET['postid'], $followerid);
+    }*/
     /*  in "Post.php" -> '$postid', '$likerId'
      --> die "$_GET['postid'], $followerid" werden dann an die Parameter in "Post.php" übergeben
 
