@@ -60,10 +60,7 @@ session_start();
 <div class="header">
     <h2>Scroll Down</h2>
     <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
+
 
 </div>
 
@@ -71,7 +68,7 @@ session_start();
 <ul>
     <li><a class="active" href="index.php">Feed</a></li>
     <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="messages.html">Messages</a></li>
+    <li><a class="wi" href="my-messages.php">Messages</a></li>
     <li><a href="notify.php">Benachrichtigungen</a></li>
 </ul>
 

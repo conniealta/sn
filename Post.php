@@ -1,5 +1,5 @@
 <?php
-include('Notifyclass.php');
+
 class Post {
 
     public static function createPost($postbody, $loggedIn_userid, $profileUserId) {
@@ -13,8 +13,9 @@ class Post {
             //wenn die eingeloggte Person auf ihrer eigenen Profilseite ist, dann darf sie Einträge posten
 
 
-            if(count(Notify::createNotify($postbody)) !=0){
-                foreach(Notify::createNotify($postbody) as $key => $n ) {
+            if(count(self::notify($postbody)) !=0){
+
+                foreach(self::notify($postbody) as $key => $n ) {
                     $s = $loggedIn_userid;
                     #s ist der eingeloggte User
 
@@ -39,45 +40,39 @@ class Post {
 
     }
 
-
     public static function createPost2 ($postbody, $loggedIn_userid) {
-
-
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
             die('Inkorrekte Länge!');
         }
-
         if ($loggedIn_userid) {
             if (count(Notify::createNotify($postbody)) != 0) {
                 foreach (Notify::createNotify($postbody) as $key => $n) {
                     $s = $loggedIn_userid;
                     #s ist der eingeloggte User
-
                     $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username' => $key))[0]['id'];
                     #r ist der User der markiert wird oder dessen Post geliked wird
-
                     if ($r != 0) {
                         #solange der User existiert, wird eine Benachrichtigung gesendet
                         DB::query('INSERT INTO notifications VALUES (\'\', :type, :reciever, :sender, :extra)', array(':type' => $n["type"], ':reciever' => $r, ':sender' => $s, ':extra' => $n["extra"]));
                     }
                 }
-
             }
-
-            DB::query('INSERT INTO posts VALUES (\'\', :postbody, NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $loggedIn_userid));
+            DB::query('INSERT INTO posts VALUES (\'\', :postbody, \'\', NOW(), :userid, 0)', array(':postbody' => $postbody, ':userid' => $loggedIn_userid));
         } // -> '\'= die erste Spalte in der Datenbanktabelle ("id"); NOW() = das ist eine Funktion, die das aktuelle Datum und Uhrzeit anzeigt; '0'= die Standardanzahl der "Likes"
         else {
             die('Falscher Benutzer!');
         }
-
     }
+
+
+
 
 
     public static function createImgPost($img_id, $loggedIn_userid, $profileUserId) {
 
         if ($loggedIn_userid == $profileUserId) {
-            if (count(Notify::createNotify($img_id)) != 0) {
-                foreach (Notify::createNotify($img_id) as $key => $n) {
+            if (count(self::notify($img_id)) != 0) {
+                foreach (self::notify($img_id) as $key => $n) {
                     $s = $loggedIn_userid;
                     $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
                     if ($r != 0) {
@@ -107,7 +102,7 @@ class Post {
             DB::query('INSERT INTO post_likes VALUES (\'\',:postid, :userid)', array(':postid' => $postid, ':userid' => $likerId));
             //das zeigt ob die eingeloggte Person (followerid) den Post geliked hat
 
-                Notify::createNotify("", $postid);
+
 
         } else {
             DB::query('UPDATE posts SET likes=likes-1 WHERE id=:postid', array(':postid' => $postid));
@@ -116,7 +111,19 @@ class Post {
     }
 
 
+    public static function notify($text) {
+        $text = explode(" ", $text);
+        $notify = array();
 
+        foreach ($text as $word) {
+
+            if (substr($word, 0, 1) == "@") {
+                $notify[substr($word, 1)] = array("type"=>1, "extra"=>' { "postbody": "'.htmlentities(implode($text, " ")).'" } ');
+            }
+        }
+
+        return $notify;
+    }
 
 
     public static function link_add($text){
@@ -148,6 +155,7 @@ class Post {
         // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
         $posts = "";
 
+
         foreach($dbposts as $p) {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
@@ -165,9 +173,8 @@ class Post {
               ";
 
 
-
                 if ($userid == $loggedIn_userid){
-                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                    $posts .="<input type='submit' name='deletepost' value='Löschen'/> ";
                 }
                 #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
@@ -191,7 +198,7 @@ class Post {
 
 
                 if ($userid == $loggedIn_userid){
-                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                    $posts .="<input type='submit' name='deletepost' value='Löschen' /> ";
                 }
                 #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
                 #$userid == $loggedIn_userid
@@ -209,24 +216,30 @@ class Post {
 
     }
 
-
-
-
-
-    public static function displayPosts2 ($username, $loggedIn_userid) {
+    public static function displayPosts2 ($profilePic, $username, $loggedIn_userid) { //hier irgendwo profile_pic
 
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$loggedIn_userid));
+        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
+        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
         $posts = "";
+
+
+        /* .$id=$pdo->lastInsertId(); !!!!
+
+        ohne foreach, sondern:
+        $my_posts = DB::query('SELECT body FROM posts WHERE user_id=:userid', array(':userid' => $user_loggedin))[0]['body'];
+        echo $my_posts --> da wird der Post mit id "0" angezeigt und wir wollen dass der letzte angezeigt wird aber wie??? und wie fügen wir noch die Bilder hinzu? (siehe unten "img src ...")*/
 
         foreach($dbposts as $p) {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='".$p['postimg']."'>".(self::link_add($p['body'])) . "
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])). "
+
               <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
-                 
+
                  <form action='profile.php?postid=".$p['id']." 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
@@ -249,13 +262,13 @@ class Post {
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
-                 
-                
+
+
                   <form action='profile.php?postid=".$p['id']." 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
-                 
+
                  ";
 
 
@@ -277,6 +290,10 @@ class Post {
 
 
     }
+
+
+
+
 
 }
 ?>

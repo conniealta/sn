@@ -34,7 +34,7 @@ session_start();
                         <a href="profile.php">Profil </a>
                     </li>
                     <li>
-                        <a class="wi" href="messages.html">Messages</a>
+                        <a class="wi" href="my-messages.php">Messages</a>
                     </li>
 
                     <li class="dropdown">
@@ -57,6 +57,7 @@ session_start();
 <?php
 
 include('DB.php');
+include('Post.php');
 
 if(!isset($_SESSION["angemeldet"]))
 {
@@ -80,11 +81,11 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
                 echo "Du hast eine neue Benachrichtigung!<hr />";
             } else {
                 $extra = json_decode($n['extra']);
-                echo $senderName." hat dich in einem Post markiert! - ".$extra->postbody."<hr />";
+                echo "@".$senderName." hat dich in einem Post markiert! - ".$extra->postbody."<hr />";
             }
         } else if ($n['type'] == 2) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid'=>$n['sender']))[0]['username'];
-            echo $senderName." hat deinen Post geliked!<hr />";
+            echo "@".$senderName." hat deinen Post geliked!<hr />";
         }
     }
 }
