@@ -34,7 +34,7 @@ session_start();
                         <a href="profile.php">Profil </a>
                     </li>
                     <li>
-                        <a class="wi" href="messages.html">Messages</a>
+                        <a class="wi" href="my-messages.php">Messages</a>
                     </li>
 
                     <li class="dropdown">
