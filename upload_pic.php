@@ -79,7 +79,7 @@ if(isset($_POST['submit'])){
 
 
 <?php
-    if (isset($_POST['post'])) {
+/*    if (isset($_POST['post'])) {
     if ($_FILES['file']['size'] == 0) {
     Post::createPost($_POST['postbody'], Login::isLoggedIn(), $userid);
     } else {
@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
     Image::uploadImage('postimg', "UPDATE posts SET postimg=:postimg WHERE id=:postid", array(':postid'=>$postid));
     }
     }
-?>
+*/?>
 
 
 

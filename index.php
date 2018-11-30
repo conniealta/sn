@@ -60,7 +60,10 @@ session_start();
 <div class="header">
     <h2>Scroll Down</h2>
     <p>Scroll down to see the sticky effect.</p>
-
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
 
 </div>
 
@@ -68,7 +71,7 @@ session_start();
 <ul>
     <li><a class="active" href="index.php">Feed</a></li>
     <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="my-messages.php">Messages</a></li>
+    <li><a class="wi" href="messages.php">Messages</a></li>
     <li><a href="notify.php">Benachrichtigungen</a></li>
 </ul>
 
@@ -175,12 +178,12 @@ echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upl
 </div>
 
 
-<br><br><br><br><br><br><br><br><br><br>
-<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <button type="submit" name="submit"> Upload Profile Pic </button>
-
-</form>
+<!--<br><br><br><br><br><br><br><br><br><br>-->
+<!--<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">-->
+<!--    <input type="file" name="file">-->
+<!--    <button type="submit" name="submit"> Upload Profile Pic </button>-->
+<!---->
+<!--</form>-->
 
 
 
@@ -240,10 +243,10 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-
-<div class="posts">
-    <?php echo $posts; //$posts = Post::displayPosts2 ?>
-</div>
+<!--<div class="posts">-->
+<!--    --><?php //echo $posts; //$posts = Post::displayPosts2 ?>
+<!--</div>-->
+<!---->
 
 
 
