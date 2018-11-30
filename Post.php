@@ -253,9 +253,11 @@ class Post {
         $posts = "";
 
 
-        //.$id=$pdo->lastInsertId(); !!!!
-        //$my_posts = DB::query('SELECT body FROM posts WHERE user_id=:userid', array(':userid' => $user_loggedin))[0]['body'];
-        // echo $my_posts --> da wird der Post mit id "0" angezeigt und wir wollen dass der letzte angezeigt wird aber wie??? und wie fügen wir noch die Bilder hinzu? (siehe unten "img src ...")
+       /* .$id=$pdo->lastInsertId(); !!!!
+
+       ohne foreach, sondern:
+       $my_posts = DB::query('SELECT body FROM posts WHERE user_id=:userid', array(':userid' => $user_loggedin))[0]['body'];
+       echo $my_posts --> da wird der Post mit id "0" angezeigt und wir wollen dass der letzte angezeigt wird aber wie??? und wie fügen wir noch die Bilder hinzu? (siehe unten "img src ...")*/
 
         foreach($dbposts as $p) {
 
