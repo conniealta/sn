@@ -681,7 +681,7 @@ if (isset($_GET['username'])) {
     */
 
   Comment::displayComments($_GET['postid']);
-    Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
+    //Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
 
   // PROBLEM ! --> Kommentare werden nicht angezeigt ... Die werden nur beim Feed angezeigt. Ich hab auch so probiert:
     //$comments = Comment::displayComments($_GET['postid']);
