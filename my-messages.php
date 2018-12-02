@@ -102,11 +102,24 @@ if (isset($_GET['mid'])) {
             $m = $message['body'];
         }
         if ($message['read'] == 0) {
-            echo "<a href='my-messages.php?mid=".$message['id']."'><strong>".$m."</strong></a> wurde gesendet von ".$message['username'].'<hr />';
-        } else {
-            echo "<a href='my-messages.php?mid=".$message['id']."'>".$m."</a> wurde gesendet von ".$message['username'].'<hr />';
-            #mid = messageid
+
+            if ($message['username'] != $message['receiver']){
+                echo $message['username']. " hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=".$message['id']."'><strong>".$m."</strong></a> <hr />";
+
+            } else {
+
+                echo $message['username']. " hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=".$message['id']."'>".$m."</a> <hr />";
+            }
+        }else if ($message['username'] == $message['receiver']){
+
+            echo "Du hast ". $message['username']. " eine Nachricht geschickt: <a href='my-messages.php?mid=".$message['id']."'><strong>".$m."</strong></a> <hr />";
+
+        }else{
+            echo "Du hast ".$message['username']. " eine Nachricht geschickt: <a href='my-messages.php?mid=".$message['id']."'>".$m."</a> <hr />";
+
+            #mid = message id
         }
     }
+
 }
 ?>

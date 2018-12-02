@@ -62,10 +62,7 @@ session_start();
 <div class="header">
     <h2>Scroll Down</h2>
     <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
+
 
 </div>
 
@@ -73,7 +70,7 @@ session_start();
 <ul>
     <li><a class="active" href="index.php">Feed</a></li>
     <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="messages.html">Messages</a></li>
+    <li><a class="wi" href="my-messages.php">Nachrichten</a></li>
     <li><a href="notify.php">Benachrichtigungen</a></li>
 </ul>
 
@@ -746,6 +743,8 @@ if (isset($_GET['username'])) {
     }
     //wenn "$isFollowing = True" wird der Unfollow-Button gezeigt
     //wenn "$isFollowing = False" wird der Follow-Button gezeigt
+
+    echo"<a href='messages.php?receiver=".$userid."'> Schreibe eine Nachricht</a> ";
     ?>
 
     <div class="user_details column">
@@ -797,7 +796,7 @@ if (isset($_GET['username'])) {
 </form>
 
 
-
+echo"<a href='messages.php?receiver=".$userid."'> Schreibe eine Nachricht</a> ";
 
 
 <!--<form action="profile.php?username=--><?php ///*echo $username; */?><!--" method="post">-->
@@ -807,7 +806,6 @@ if (isset($_GET['username'])) {
 
 <br><br>
 
-<a href="messages.php">Schreibe eine Nachricht!</a>
 
 <div class="main_column column">
     <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">

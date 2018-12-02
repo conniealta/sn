@@ -34,7 +34,7 @@ session_start();
                         <a href="profile.php">Profil </a>
                     </li>
                     <li>
-                        <a class="wi" href="my-messages.php">Messages</a>
+                        <a class="wi" href="my-messages.php">Nachrichten</a>
                     </li>
 
                     <li class="dropdown">
@@ -57,6 +57,7 @@ session_start();
 <?php
 
 include('DB.php');
+include('Post.php');
 
 if(!isset($_SESSION["angemeldet"]))
 {
@@ -68,23 +69,27 @@ else {
     echo "Hallo User: " . $user_loggedin;
 }
 
-echo "<h1>Benachrichtigungen</h1>";
+echo "<h1>Notifcations</h1>";
 
-if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin))) {
-    $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid ORDER BY id DESC', array(':userid'=>$user_loggedin));
+if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$userid))) {
+    $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid ORDER BY id DESC', array(':userid'=>$userid));
+
     foreach($notifications as $n) {
+
         if ($n['type'] == 1) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid'=>$n['sender']))[0]['username'];
-            #hier wird der name des users ermittelt der die Benachrichtigung auslöst
+
             if ($n['extra'] == "") {
-                echo "Du hast eine neue Benachrichtigung!<hr />";
+                echo "You got a notification!<hr />";
+
             } else {
                 $extra = json_decode($n['extra']);
-                echo $senderName." hat dich in einem Post markiert! - ".$extra->postbody."<hr />";
+                echo $senderName." mentioned you in a post! - ".$extra->postbody."<hr />";
             }
+
         } else if ($n['type'] == 2) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid'=>$n['sender']))[0]['username'];
-            echo $senderName." hat deinen Post geliked!<hr />";
+            echo $senderName." liked your post!<hr />";
         }
     }
 }
