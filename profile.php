@@ -796,7 +796,7 @@ if (isset($_GET['username'])) {
 </form>
 
 
-echo"<a href='messages.php?receiver=".$userid."'> Schreibe eine Nachricht</a> ";
+
 
 
 <!--<form action="profile.php?username=--><?php ///*echo $username; */?><!--" method="post">-->

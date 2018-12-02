@@ -1,4 +1,5 @@
 <?php
+include('Notify2.php');
 class Post {
 
     public static function createPost($postbody, $loggedIn_userid, $profileUserId) {
@@ -129,7 +130,7 @@ class Post {
             DB::query('INSERT INTO post_likes VALUES (\'\',:postid, :userid)', array(':postid' => $postid, ':userid' => $likerId));
             //das zeigt ob die eingeloggte Person (followerid) den Post geliked hat
 
-            Notify2::createNotify("", $postid);
+            Notify2::createNotify(" ", $postid);
 
         } else {
 
