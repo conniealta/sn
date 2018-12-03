@@ -25,7 +25,7 @@ class Comment {
         }
         // ['comment'] = die Spalte in der Datenbank
     }
-//ss
+
 
 
     public static function displayComments2 ($postId) {
@@ -34,7 +34,7 @@ class Comment {
         $com = "";
         foreach ($comments as $comment) {
             $profile_pic = $comment['profile_pic'];
-            $com = $comment['username'].' '."<img src='img_upload/profile_pics/$profile_pic'>".$comment['comment']."<hr />";
+            $com = $comment['username'].' '."<img style='width: 45px; height: 45px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '.$comment['comment']."<hr />";
         }
         // ['comment'] = die Spalte in der Datenbank
         return $com;
