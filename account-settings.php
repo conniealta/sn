@@ -9,10 +9,22 @@ if(!isset($_SESSION["angemeldet"]))
 }
 else {
     $userid2 = $_SESSION['angemeldet'];
-    echo "Hallo User: ".$userid2;
     $showTimeline = True;
 }
 ?>
+
+
+<?php
+if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
+    echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit" name="submit"> Upload Profile Pic </button>
+
+</form>';
+}
+?>
+
+
 
 
 <!DOCTYPE html>
@@ -24,10 +36,35 @@ else {
 </head>
 <body>
 
+<div class="user_details column">
+
+    <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>
+
+    <div class="user_details_left_right">
+        <a href="<?php echo $userid; ?>">
+            <?php
+            echo $fname2 . " " . $lname2;
+
+            ?>
+        </a>
+    </div>
+
+</div>
 
 
     <form action="do-account-settings.php" method="post">
 
+
+        <p>Username:
+            <input type="text" size="40" maxlength="250" name="username" placeholder="Username eingeben"></p>
+
+        <p>Email:
+            <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"></p>
+
+        <p>Passwort:
+            <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
+
+        <br><br>
 
         <p>Vorname:
         <input type="text" size="40" maxlength="250" name="fname" placeholder="Vorname eingeben"></p>
@@ -35,10 +72,9 @@ else {
         <p>Nachname:
         <input type="text" size="40" maxlength="250" name="lname" placeholder="Nachname eingeben"></p>
 
-        <p>Username:
-        <input type="text" size="40" maxlength="250" name="username" placeholder="Username eingeben"></p>
 
-        <p>Alter:<input type="text" size="40" maxlength="250" name="alter" placeholder="E-Mail eingeben"></p>
+        <p>Alter:
+            <input type="text" size="40" maxlength="10" name="alter" placeholder="Alter eingeben"></p>
 
         <p>Studiengang:
         <select name="studiengang">
@@ -63,18 +99,13 @@ else {
         </p>
 
         <p>Aktuelles Semester:
-        <input type="text" size="40" maxlength="250" name="semester" placeholder="E-Mail eingeben"></p>
+        <input type="text" size="40" maxlength="250" name="semester" placeholder="Semester eingeben"></p>
 
         <p>Interessen:
-        <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"></p>
+        <input type="text" size="40" maxlength="1000" name="interessen" placeholder="Interessen eingeben"></p>
 
 
-        <p>Email:
-        <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"></p>
-
-        <p>Passwort:
-        <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
-
+        <br><br>
         <input type="submit" name="update" value="Ändere deine Angaben">
 
 
