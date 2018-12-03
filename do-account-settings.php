@@ -27,7 +27,7 @@ if(isset($_POST["update"]))
 
     $vorname=$_POST["fname"];
     $nachname = $_POST["lname"];
-    $alter=$_POST["alter"];
+    $age=$_POST["age"];
     $heimat = $_POST ["heimat"];
     $sprachen=$_POST["sprachen"];
     $studiengang = $_POST ["studiengang"];
@@ -44,6 +44,17 @@ if(isset($_POST["update"]))
 //        $error = true;
 //    }
 
+    //studiengang=:studiengang, age=:age, semester=:semester
+
+    $result = DB::query('UPDATE list5 SET studiengang=:studiengang, age=:age, semester=:semester, username=:username, email:email, passwort=:passwort, first_name=:fname, last_name=:lname, heimat=:heimat, sprachen=:sprachen, job=:job, interessen=:interessen, zitat=:zitat, website=:website, kontaknummer=:handy WHERE id=:userid', array(':studiengang'=>$studiengang, ':age'=>$age, ':semester'=>$semester, ':username'=>$username, ':email'=>$email, ':passwort'=>$passwort, ':fname'=>$vorname, ':lname'=>$nachname, ':heimat'=>$heimat, ':sprachen'=>$sprachen ':userid' => $user_loggedin));
+
+    if ($result) {
+        echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
+    }
+    else {
+        echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+    }
+
 }
 else
 {
@@ -52,18 +63,7 @@ else
 }
 
 
-$result = DB::query('UPDATE list5 SET * WHERE id=:userid', array(':userid' => $user_loggedin));
 
-if ($result) {
-    echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
-}
-else {
-    echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
-    echo "Datenbank-Fehler:";
-    echo $statement->errorInfo()[2];
-    echo $statement->queryString;
-    die();
-}
 
 
 /*$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));

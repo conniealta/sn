@@ -91,7 +91,7 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 
         <p>Alter:
-            <input type="text" size="40" maxlength="10" name="alter" placeholder="Alter eingeben"></p>
+            <input type="text" size="40" maxlength="10" name="age" placeholder="Alter eingeben"></p>
 
         <p>Heimatstadt/-land:
             <input type="text" size="40" maxlength="1000" name="heimat" placeholder="Heimatstadt/-land eingeben"></p>
@@ -122,7 +122,15 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
         </p>
 
         <p>Aktuelles Semester:
-        <input type="text" size="40" maxlength="250" name="semester" placeholder="Semester eingeben"></p>
+            <select name="semester">
+                <option value="1">1. Semester</option>
+                <option value="2">2. Semester</option>
+                <option value="3">3. Semester</option>
+                <option value="4">4. Semester</option>
+                <option value="5">5. Semester</option>
+                <option value="6">6. Semester</option>
+                <option value="7">7. Semester</option>
+            </select>
 
         <p>Job:
             <input type="text" size="40" maxlength="1000" name="job" placeholder="Job eingeben"></p>
