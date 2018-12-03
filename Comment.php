@@ -12,24 +12,36 @@ class Comment {
             DB::query('INSERT INTO comments VALUES (\'\', :comment, :userid, NOW(), :postid)', array(':comment'=>$commentBody, ':userid'=>$userId, ':postid'=>$postId));
         }
     }
+
+
+
     public static function displayComments($postId) {
-        $comments = DB::query('SELECT comments.comment, list5.username FROM comments, list5 WHERE post_id = :postid AND comments.user_id = list5.id', array(':postid'=>$postId));
+        $comments = DB::query('SELECT comments.comment, list5.username, list5.profile_pic FROM comments, list5 WHERE post_id = :postid AND comments.user_id = list5.id', array(':postid'=>$postId));
         // Join machen --> Fremdschlüssel mit den Primärschlüsseln zusammenfügen, sodass nur der Kommentar und der Name des Nutzers, der ihn geschrieben hat, angezeigt werden
         foreach ($comments as $comment) {
-            echo $comment['comment']." ~ ".$comment['username']."<hr />";
+            $profile_pic = $comment['profile_pic'];
+            echo $comment['username'].' '."<img style='width: 45px; height: 45px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '.$comment['comment']."<hr />";
+
         }
         // ['comment'] = die Spalte in der Datenbank
     }
+
+
+
     public static function displayComments2 ($postId) {
         $comments = DB::query('SELECT comments.comment, list5.username FROM comments, list5 WHERE post_id = :postid AND comments.user_id = list5.id', array(':postid'=>$postId));
         // Join machen --> Fremdschlüssel mit den Primärschlüsseln zusammenfügen, sodass nur der Kommentar und der Name des Nutzers, der ihn geschrieben hat, angezeigt werden
         $com = "";
         foreach ($comments as $comment) {
-            $com = $comment['comment']." ~ ".$comment['username']."<hr />";
+            $profile_pic = $comment['profile_pic'];
+            $com = $comment['username'].' '."<img src='img_upload/profile_pics/$profile_pic'>".$comment['comment']."<hr />";
         }
         // ['comment'] = die Spalte in der Datenbank
         return $com;
     }
+
+
+
 //Bei "$com" --> das hinzufügen:
 //$posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) . "
 //              <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>

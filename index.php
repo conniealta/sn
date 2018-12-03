@@ -321,26 +321,25 @@ if (isset($_POST['post'])) {
     }
 }
 
-$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
-$my_posts = Post::displayPosts2 ($profile_pic2, $username, $user_loggedin);
+// Anzeigen von allen Posts der eingeloggten Person:
+//$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
+//$my_posts = Post::displayPosts2 ($profile_pic2, $username, $user_loggedin);
 
 // --> PROBLEM:  Die eigenen Posts werden im Feed nicht angezeigt (nur die Posts von den anderen Benutzern) --> jetzt werden sie angezeigt, aber alle auf einmal und nicht der letzte
 
 
-$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
-
-$statement = $pdo->prepare("SELECT * FROM posts WHERE id=:userid");
-
-if($statement->execute(array(':userid'=>$user_loggedin))) {
-    while ($user = $statement->fetchObject()) {
-        $profile_pic = $user->profile_pic;
-        $fname = $user->first_name;
-        $lname = $user->last_name;
-    }
-}
-echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>";
 
 
+
+
+
+
+
+
+
+
+
+//echo $username.' '.' '."<img src='img_upload/profile_pics/".$profile_pic."'>.<img src='img_upload/post_pics/".$img."'>".(self::link_add($body));
 
 
 
@@ -432,11 +431,65 @@ if(isset($_POST['searchbox'])) {
 
 
 
-<div class="posts">
-    <?php echo $my_posts; ?>
-</div>
+<!--  Anzeigen von allen Posts der eingeloggten Person:
+<div class="posts">-->
+<!--    --><?php //echo $my_posts; ?>
+<!--</div>-->
+
+
+
 
 <?php
+
+//Anzeigen des letzten Posts der eingeloggten Person:
+
+
+$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
+
+$statement = $pdo->prepare('SELECT * FROM posts WHERE user_id=:userid ORDER BY id ASC');
+
+if($statement->execute(array(':userid'=>$user_loggedin))) {
+    while ($user = $statement->fetchObject()) {
+        $body = $user->body;
+        $img = $user->img_id;
+        $post_id = $user->id;
+        $post_likes = $user->likes;
+    }
+}
+echo $user_name."<img src='img_upload/profile_pics/$profile_pic'>     <img src='img_upload/post_pics/$img'>".$body;
+
+
+echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
+
+if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
+    /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
+      wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
+
+    echo "<input type='submit' name='like' value='Like'>";
+}else {
+    echo "<input type='submit' name='unlike' value='Unlike'>";
+
+}
+echo "<span>" . $post_likes . " likes</span>
+              </form>
+
+
+
+              <form action='index.php?postid=".$post_id." 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>
+              ";
+Comment::displayComments($post_id);
+
+echo"
+
+              <hr /></br />";
+
+
+
+
+
 
 // Anazeigen der Posts mit den Kommentaren:
 $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username, posts.img_id, list5.profile_pic FROM list5, posts, followers
@@ -448,7 +501,7 @@ $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.use
 
 foreach ($followingposts as $post) {
 
-    echo "<img src='img_upload/profile_pics/".$post['profile_pic']."'>".$post['username'].' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
+    echo $post['username'].' '.' '."<img src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
@@ -482,6 +535,16 @@ foreach ($followingposts as $post) {
 /* joints -> WHERE posts.user_id = followers.user_id
 = zusammenfügen, wo die "id" der Person, deren Post angezeigt werden soll, mit der "id" der Person übereinstimmt, der von der eingeloggten Person gefolgt ist
 */
+
+
+
+
+
+
+
+
+
+
 
 ?>
 

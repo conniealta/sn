@@ -1,5 +1,6 @@
 <?php
 include('Notify2.php');
+
 class Post {
 
     public static function createPost($postbody, $loggedIn_userid, $profileUserId) {
