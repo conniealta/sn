@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 $showTimeline = False;
 
 if(!isset($_SESSION["angemeldet"]))
@@ -11,18 +13,20 @@ else {
     $userid2 = $_SESSION['angemeldet'];
     $showTimeline = True;
 }
+
+include('DB.php');
+//$userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
+
+$userid = DB::query('SELECT id FROM list5 WHERE id=:userid', array(':userid'=>$userid2))[0]['id'];
+$lname2 = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
+$fname2 = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
+$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
+$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['username'];
+$followerid = $userid2;
 ?>
 
 
-<?php
-if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
-    echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <button type="submit" name="submit"> Upload Profile Pic </button>
 
-</form>';
-}
-?>
 
 
 
@@ -51,6 +55,19 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 </div>
 
+
+
+<?php
+if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
+    echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit" name="submit"> Upload Profile Pic </button>
+
+</form>';
+}
+?>
+
+<br><br>
 
     <form action="do-account-settings.php" method="post">
 
