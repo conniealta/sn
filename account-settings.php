@@ -1,6 +1,5 @@
-
-
 <?php
+session_start();
 $showTimeline = False;
 
 if(!isset($_SESSION["angemeldet"]))
@@ -30,38 +29,51 @@ else {
     <form action="do-account-settings.php" method="post">
 
 
-        <p>Vorname:</p>
-        <input type="text" size="40" maxlength="250" name="fname" placeholder="Vorname eingeben"><br><br>
+        <p>Vorname:
+        <input type="text" size="40" maxlength="250" name="fname" placeholder="Vorname eingeben"></p>
 
-        <p>Nachname:</p>
-        <input type="text" size="40" maxlength="250" name="lname" placeholder="Nachname eingeben"><br><br>
+        <p>Nachname:
+        <input type="text" size="40" maxlength="250" name="lname" placeholder="Nachname eingeben"></p>
 
-        <p>Username:</p>
-        <input type="text" size="40" maxlength="250" name="username" placeholder="Username eingeben"><br><br>
+        <p>Username:
+        <input type="text" size="40" maxlength="250" name="username" placeholder="Username eingeben"></p>
 
-        <p>Alter:</p>
-        <input type="text" size="40" maxlength="250" name="alter" placeholder="E-Mail eingeben"><br><br>
+        <p>Alter:<input type="text" size="40" maxlength="250" name="alter" placeholder="E-Mail eingeben"></p>
 
-        <p>Studiengang:</p>
+        <p>Studiengang:
         <select name="studiengang">
-            <option value="omm">OMM</option>
-            <option value="wi">WI</option>
-            <option value="id">ID</option>
-            <option value="bm">BM</option>
+            <option value="omm">Online-Medien-Management</option>
+            <option value="wi">Wirtschaftsinformatik und digitale Medien</option>
+            <option value="id">Informationsdesign</option>
+            <option value="bm">Bibliotheksmanagement</option>
+            <option value="am">Audiovisuelle Medien</option>
+            <option value="cr">Crossmedia Redaktion/Public Relations</option>
+            <option value="mt">Deutsch-chinseischer Studiengang Medien und Technologie</option>
+            <option value="iw">Informationswissenschaften</option>
+            <option value="ip">Integriertes Produktdesign</option>
+            <option value="mp">Mediapublishing</option>
+            <option value="mi">Medieninformatik</option>
+            <option value="mw">Medienwirtschaft</option>
+            <option value="mm">Mobile Medien</option>
+            <option value="pmt">Print Media Technologies</option>
+            <option value="vt">Verpackungstechnik</option>
+            <option value="wm">Werbung und Marktkommunikation</option>
+            <option value="wim">Wirtschaftsingenieurwesen Medien</option>
         </select>
+        </p>
 
-        <p>Aktuelles Semester:</p>
-        <input type="text" size="40" maxlength="250" name="semester" placeholder="E-Mail eingeben"><br><br>
+        <p>Aktuelles Semester:
+        <input type="text" size="40" maxlength="250" name="semester" placeholder="E-Mail eingeben"></p>
 
-        <p>Interessen:</p>
-        <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"><br><br>
+        <p>Interessen:
+        <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"></p>
 
 
-        <p>Email:</p>
-        <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"><br><br>
+        <p>Email:
+        <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"></p>
 
-        <p>Passwort:</p>
-        <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"><br>
+        <p>Passwort:
+        <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
 
         <input type="submit" name="update" value="Ändere deine Angaben">
 

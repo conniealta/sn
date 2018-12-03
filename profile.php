@@ -768,6 +768,9 @@ if (isset($_GET['username'])) {
 
 </form>
 
+<br><br><br>
+<a href="account-settings.php">Profil bearbeiten</a>
+
 
 <!--<br><br><br><br><br><br><br><br>-->
 <!---->
