@@ -16,7 +16,7 @@ class Comment {
         $comments = DB::query('SELECT comments.comment, list5.username FROM comments, list5 WHERE post_id = :postid AND comments.user_id = list5.id', array(':postid'=>$postId));
         // Join machen --> Fremdschlüssel mit den Primärschlüsseln zusammenfügen, sodass nur der Kommentar und der Name des Nutzers, der ihn geschrieben hat, angezeigt werden
         foreach ($comments as $comment) {
-            echo $comment['comment']." ~ ".$comment['username']."<hr />";
+            echo $comment['comment']." ~ "."<a href='profile.php?username=" .$comment['username'] . "'>" . Post::link_add($comment['username'])."</a>"."<hr />";
         }
         // ['comment'] = die Spalte in der Datenbank
     }
@@ -25,7 +25,8 @@ class Comment {
         // Join machen --> Fremdschlüssel mit den Primärschlüsseln zusammenfügen, sodass nur der Kommentar und der Name des Nutzers, der ihn geschrieben hat, angezeigt werden
         $com = "";
         foreach ($comments as $comment) {
-            $com = $comment['comment']." ~ ".$comment['username']."<hr />";
+            $com = $comment['comment']." ~ ". "<a href='profile.php?username=" .$comment['username'] . "'>" . Post::link_add($comment['username'])."</a>"."<hr />";
+
         }
         // ['comment'] = die Spalte in der Datenbank
         return $com;

@@ -155,7 +155,7 @@ echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upl
 ?>
 
 
-<h1> Das Profil von '<?php echo $user_name; ?>'</h1>
+<h1> Das Profil von  '<?php echo $user_name; ?>'</h1>
 
 
 
@@ -432,6 +432,8 @@ $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.use
 foreach ($followingposts as $post) {
 
     echo "<img src='img_upload/profile_pics/".$post['profile_pic']."'>".$post['username'].$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
+    //echo $posts . "~ " ."<a href='profile.php?username=" .$post['username'] . "'>" . Post::link_add($post['username'])."</a>";
+
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
