@@ -25,7 +25,7 @@ class Comment {
         }
         // ['comment'] = die Spalte in der Datenbank
     }
-
+//ss
 
 
     public static function displayComments2 ($postId) {
