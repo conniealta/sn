@@ -736,6 +736,8 @@ if (isset($_GET['username'])) {
     $lname2 = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
     $fname2 = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
     $user_name2 = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['username'];
+    $studiengang = DB::query('SELECT studiengang FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['studiengang'];
+    $age = DB::query('SELECT age FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['age'];
 
     if ($userid != $followerid) { //nur wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist, wird der Button angezeigt
         if ($isFollowing) {
@@ -757,7 +759,9 @@ if (isset($_GET['username'])) {
         <div class="user_details_left_right">
             <a href="<?php echo $userid; ?>">
                 <?php
-                echo $fname2 . " " . $lname2;
+                echo $fname2 . " " . $lname2."<br>"."<br>";
+                echo $age. " ". 'Jahre alt'."<br>";
+                echo $studiengang;
 
                 ?>
             </a>
