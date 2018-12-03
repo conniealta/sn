@@ -93,6 +93,12 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
         <p>Alter:
             <input type="text" size="40" maxlength="10" name="alter" placeholder="Alter eingeben"></p>
 
+        <p>Heimatstadt/-land:
+            <input type="text" size="40" maxlength="1000" name="heimat" placeholder="Heimatstadt/-land eingeben"></p>
+
+        <p>Sprachkenntnisse:
+            <input type="text" size="40" maxlength="1000" name="sprachen" placeholder="Sprachen eingeben"></p>
+
         <p>Studiengang:
         <select name="studiengang">
             <option value="omm">Online-Medien-Management</option>
@@ -118,9 +124,20 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
         <p>Aktuelles Semester:
         <input type="text" size="40" maxlength="250" name="semester" placeholder="Semester eingeben"></p>
 
+        <p>Job:
+            <input type="text" size="40" maxlength="1000" name="job" placeholder="Job eingeben"></p>
+
         <p>Interessen:
         <input type="text" size="40" maxlength="1000" name="interessen" placeholder="Interessen eingeben"></p>
 
+        <p>Lieblingszitat:
+            <input type="text" size="40" maxlength="1000" name="zitat" placeholder="Zitat eingeben"></p>
+
+        <p>Website:
+            <input type="text" size="40" maxlength="1000" name="website" placeholder="Website eingeben"></p>
+
+        <p>Handynummer:
+            <input type="text" size="40" maxlength="1000" name="handy" placeholder="Handynummer eingeben"></p>
 
         <br><br>
         <input type="submit" name="update" value="Ändere deine Angaben">

@@ -9,7 +9,6 @@ if(!isset($_SESSION["angemeldet"]))
 }
 else {
     $user_loggedin = $_SESSION['angemeldet'];
-    echo "Hallo User: ".$user_loggedin;
     $showTimeline = True;
 }
 ?>
@@ -20,10 +19,22 @@ else {
 
 if(isset($_POST["update"]))
 {
+    $username = $_POST["username"];
     $email=$_POST["email"];
     $passwort=$_POST["passwort"];
-    $username = $_POST["username"];
+
+    $vorname=$_POST["fname"];
+    $nachname = $_POST["lname"];
+    $alter=$_POST["alter"];
+    $heimat = $_POST ["heimat"];
+    $sprachen=$_POST["sprachen"];
     $studiengang = $_POST ["studiengang"];
+    $semester=$_POST["semester"];
+    $job=$_POST["job"];
+    $interessen = $_POST["interessen"];
+    $zitat = $_POST ["zitat"];
+    $website=$_POST["website"];
+    $handy=$_POST["handy"];
 
 //hier brauchst du wahrscheinlich auch so was:
 // if(strlen($lname) > 30 || strlen($lname) < 3) {
