@@ -32,6 +32,8 @@ class Post {
     }
 
 
+
+
     public static function createPost2 ($postbody, $loggedIn_userid) {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
 
@@ -64,6 +66,9 @@ class Post {
     }
 
 
+
+
+
     public static function createImgPost($img_id, $loggedIn_userid, $profileUserId) {
         if ($loggedIn_userid == $profileUserId) {
 
@@ -92,6 +97,9 @@ class Post {
     //funktion für bilder
 
 
+
+
+
     public static function createImgPost2 ($img_id, $loggedIn_userid) {
         if ($loggedIn_userid) {
 
@@ -118,6 +126,9 @@ class Post {
         }
     }
     //funktion für bilder
+
+
+
 
 
     public static function likePost($postid, $likerId) {
@@ -161,6 +172,11 @@ class Post {
 //$posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) . "
 
 
+
+
+
+
+
     public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
         //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
@@ -171,7 +187,7 @@ class Post {
         foreach($dbposts as $p) {
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'><img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+                $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
                     // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
                     //Comment::displayComments($p['id']).
 
@@ -203,7 +219,7 @@ class Post {
                 //$posts .= (self::link_add($p['body'])) . "
 
 
-               $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) .
+               $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
                     //Comment::displayComments($p['id']).
 
                     "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
@@ -235,6 +251,9 @@ class Post {
     }
 
 
+
+
+
     public static function displayPosts2 ($profilePic, $username, $loggedIn_userid) { //hier irgendwo profile_pic
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$loggedIn_userid));
         //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
@@ -250,7 +269,7 @@ class Post {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])). "
+                $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])). "
               <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
@@ -269,8 +288,7 @@ class Post {
                 ";
             }
             else {
-
-                $posts .= htmlspecialchars(self::link_add($p['body'])) . "
+                $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])). "
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>

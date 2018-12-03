@@ -134,7 +134,8 @@ $user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':us
 //echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>"
 
 /*
-Das hier ist die längere Variante (ohne Klassen) und führt das gleiche aus:
+Das hier ist die PDO-Variante (ohne Klassen) und führt das gleiche aus:
+
 $pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
 
 $statement = $pdo->prepare("SELECT * FROM list5 WHERE id=:userid");
@@ -323,9 +324,21 @@ if (isset($_POST['post'])) {
 $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
 $my_posts = Post::displayPosts2 ($profile_pic2, $username, $user_loggedin);
 
-// --> PROBLEM:  Die eigenen Posts werden im Feed nicht angezeigt (nur die Posts von den anderen Benutzern)
+// --> PROBLEM:  Die eigenen Posts werden im Feed nicht angezeigt (nur die Posts von den anderen Benutzern) --> jetzt werden sie angezeigt, aber alle auf einmal und nicht der letzte
 
 
+$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
+
+$statement = $pdo->prepare("SELECT * FROM posts WHERE id=:userid");
+
+if($statement->execute(array(':userid'=>$user_loggedin))) {
+    while ($user = $statement->fetchObject()) {
+        $profile_pic = $user->profile_pic;
+        $fname = $user->first_name;
+        $lname = $user->last_name;
+    }
+}
+echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>";
 
 
 
@@ -435,7 +448,7 @@ $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.use
 
 foreach ($followingposts as $post) {
 
-    echo "<img src='img_upload/profile_pics/".$post['profile_pic']."'>".$post['username'].$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
+    echo "<img src='img_upload/profile_pics/".$post['profile_pic']."'>".$post['username'].' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
