@@ -60,10 +60,6 @@ session_start();
 <div class="header">
     <h2>Scroll Down</h2>
     <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
 
 
 </div>
@@ -134,8 +130,7 @@ $user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':us
 //echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>"
 
 /*
-Das hier ist die PDO-Variante (ohne Klassen) und führt das gleiche aus:
-
+Das hier ist die längere Variante (ohne Klassen) und führt das gleiche aus:
 $pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
 
 $statement = $pdo->prepare("SELECT * FROM list5 WHERE id=:userid");
@@ -325,8 +320,7 @@ if (isset($_POST['post'])) {
 //$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
 //$my_posts = Post::displayPosts2 ($profile_pic2, $username, $user_loggedin);
 
-// --> PROBLEM:  Die eigenen Posts werden im Feed nicht angezeigt (nur die Posts von den anderen Benutzern) --> jetzt werden sie angezeigt, aber alle auf einmal und nicht der letzte
-
+// --> PROBLEM:  Die eigenen Posts werden im Feed nicht angezeigt (nur die Posts von den anderen Benutzern)
 
 
 
