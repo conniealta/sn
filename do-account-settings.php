@@ -19,7 +19,7 @@ else {
 include('DB.php');
 
 
-if(isset($_POST["update"]))
+if(isset($_POST["username"]) AND isset ($_POST["email"]) AND isset ($_POST["passwort"]) AND isset ($_POST["fname"]) AND isset ($_POST["lname"]) AND isset ($_POST["age"]) AND isset ($_POST["heimat"]) AND isset ($_POST["sprachen"]) AND isset ($_POST["studiengang"]) AND isset ($_POST["semester"]) AND isset ($_POST["job"]) AND isset ($_POST["interessen"]) AND isset ($_POST["zitat"]) AND isset ($_POST["website"]) AND isset ($_POST["handy"]) )
 {
     $username = $_POST["username"];
     $email=$_POST["email"];
@@ -44,9 +44,8 @@ if(isset($_POST["update"]))
 //        $error = true;
 //    }
 
-    //studiengang=:studiengang, age=:age, semester=:semester
 
-    $result = DB::query('UPDATE list5 SET studiengang=:studiengang, age=:age, semester=:semester, username=:username, email:email, passwort=:passwort, first_name=:fname, last_name=:lname, heimat=:heimat, sprachen=:sprachen, job=:job, interessen=:interessen, zitat=:zitat, website=:website, kontaknummer=:handy WHERE id=:userid', array(':studiengang'=>$studiengang, ':age'=>$age, ':semester'=>$semester, ':username'=>$username, ':email'=>$email, ':passwort'=>$passwort, ':fname'=>$vorname, ':lname'=>$nachname, ':heimat'=>$heimat, ':sprachen'=>$sprachen ':userid' => $user_loggedin));
+    $result = DB::query('UPDATE list5 SET studiengang=:studiengang, age=:age, semester=:semester, username=:username, email=:email, passwort=:passwort, first_name=:fname, last_name=:lname, heimat=:heimat, sprachen=:sprachen, job=:job, interessen=:interessen, zitat=:zitat, website=:website, kontaktnummer=:handy WHERE id=:userid', array(':studiengang'=>$studiengang, ':age'=>$age, ':semester'=>$semester, ':username'=>$username, ':email'=>$email, ':passwort'=> hash('sha256', $passwort, false), ':fname'=>$vorname, ':lname'=>$nachname, ':heimat'=>$heimat, ':sprachen'=>$sprachen, ':job'=>$job, ':interessen'=>$interessen, ':zitat'=>$zitat, ':website'=>$website, ':handy'=>$handy, ':userid' => $user_loggedin));
 
     if ($result) {
         echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
