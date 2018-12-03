@@ -27,7 +27,7 @@ else {
 
 
 
-    <form action="do_register.php" method="post">
+    <form action="do-account-settings.php" method="post">
 
 
         <p>Vorname:</p>
@@ -43,7 +43,12 @@ else {
         <input type="text" size="40" maxlength="250" name="alter" placeholder="E-Mail eingeben"><br><br>
 
         <p>Studiengang:</p>
-        <input type="text" size="40" maxlength="250" name="studiengang" placeholder="E-Mail eingeben"><br><br>
+        <select name="studiengang">
+            <option value="omm">OMM</option>
+            <option value="wi">WI</option>
+            <option value="id">ID</option>
+            <option value="bm">BM</option>
+        </select>
 
         <p>Aktuelles Semester:</p>
         <input type="text" size="40" maxlength="250" name="semester" placeholder="E-Mail eingeben"><br><br>
