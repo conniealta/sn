@@ -73,20 +73,24 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 <form action="do-account-settings.php" method="post">
     <p>Alter:
-        <input type="text" size="40" maxlength="10" name="age" placeholder="Alter eingeben"></p>
-<br>
-    <input type="submit" name="update" value="Ändere deine Angaben">
+        <input type="text" size="40" maxlength="10" name="age" placeholder="Alter eingeben">
+    <input type="submit" name="update" value="Ändere deine Angaben"></p>
 </form>
 
 
 <form action="do-account-settings.php" method="post">
     <p>Interessen:
-        <input type="text" size="40" maxlength="10" name="interessen" placeholder="Interessen eingeben"></p>
-    <br>
-    <input type="submit" name="update" value="Ändere deine Angaben">
+        <input type="text" size="40" maxlength="10" name="interessen" placeholder="Interessen eingeben">
+    <input type="submit" name="update" value="Ändere deine Angaben"></p>
 </form>
 
 
+
+
+
+
+
+<!-- Das ganze Formular: -->
 
 <!--    <form action="do-account-settings.php" method="post">-->
 <!---->

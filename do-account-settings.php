@@ -30,19 +30,16 @@ if(isset($_POST['age'])) {
     $age=$_POST["age"];
     $result = DB::query('UPDATE list5 SET age=:age WHERE id=:userid', array(':age'=>$age, ':userid' => $user_loggedin));
 
-    if ($result) {
-        echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
-    }
-}
-else
-{
-    echo"Keine Daten";
-    die();
+    //echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
+    header('Location: account-settings.php');
+
 }
 
 
 
 
+
+//Das ganze Formular:
 
 /*if(isset($_POST["username"]) AND isset ($_POST["email"]) AND isset ($_POST["passwort"]) AND isset ($_POST["fname"]) AND isset ($_POST["lname"]) AND isset ($_POST["age"]) AND isset ($_POST["heimat"]) AND isset ($_POST["sprachen"]) AND isset ($_POST["studiengang"]) AND isset ($_POST["semester"]) AND isset ($_POST["job"]) AND isset ($_POST["interessen"]) AND isset ($_POST["zitat"]) AND isset ($_POST["website"]) AND isset ($_POST["handy"]) )
 {
