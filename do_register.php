@@ -6,7 +6,7 @@ $pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', '
 
 if(isset($_POST["email"]) AND isset($_POST["passwort"]) AND isset($_POST["username"]) AND isset($_POST["fname"]) AND isset($_POST["lname"]) AND isset($_POST["passwort2"]))
 {
-    $username=$_POST["username"];
+    $username= $_POST["username"];
     $email=$_POST["email"];
     $passwort=$_POST["passwort"];
     $passwort2 = $_POST['passwort2'];
@@ -77,6 +77,8 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
             $error = true;
         }
     }
+
+    // !!!!!!!!
 
    /* if(strlen($passwort > 30 || strlen($passwort) < 1)) {
         echo "Passwort zwischen 3 und 30 Zeichen!<br>";
