@@ -14,19 +14,11 @@ else {
     $showTimeline = True;
 }
 
-include('DB.php');
-//$userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
 
-$userid = DB::query('SELECT id FROM list5 WHERE id=:userid', array(':userid'=>$userid2))[0]['id'];
-$lname2 = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
-$fname2 = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
-$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
-$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['username'];
-$followerid = $userid2;
+include('user_data.php'); // Fetch von allen Variablen in unserer User-Datenbanktabelle  --> include('DB.php') ist drin
+
+
 ?>
-
-
-
 
 
 
@@ -42,12 +34,12 @@ $followerid = $userid2;
 
 <div class="user_details column">
 
-    <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>
+    <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
 
     <div class="user_details_left_right">
         <a href="<?php echo $userid; ?>">
             <?php
-            echo $fname2 . " " . $lname2;
+            echo $fname . " " . $lname;
 
             ?>
         </a>
@@ -71,18 +63,18 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 
 
-<form action="do-account-settings.php" method="post">
-    <p>Alter:
-        <input type="text" size="40" maxlength="10" name="age" placeholder="Alter eingeben">
-    <input type="submit" name="update" value="Ändere deine Angaben"></p>
-</form>
-
-
-<form action="do-account-settings.php" method="post">
-    <p>Interessen:
-        <input type="text" size="40" maxlength="10" name="interessen" placeholder="Interessen eingeben">
-    <input type="submit" name="update" value="Ändere deine Angaben"></p>
-</form>
+<!--<form action="do-account-settings.php" method="post">-->
+<!--    <p>Alter:-->
+<!--        <input type="text" size="40" maxlength="10" name="age" placeholder="Alter eingeben">-->
+<!--    <input type="submit" name="update" value="Ändere deine Angaben"></p>-->
+<!--</form>-->
+<!---->
+<!---->
+<!--<form action="do-account-settings.php" method="post">-->
+<!--    <p>Interessen:-->
+<!--        <input type="text" size="40" maxlength="10" name="interessen" placeholder="Interessen eingeben">-->
+<!--    <input type="submit" name="update" value="Ändere deine Angaben"></p>-->
+<!--</form>-->
 
 
 

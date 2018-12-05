@@ -17,6 +17,8 @@ else {
 
 include('DB.php');
 
+// Fetch von allen Variablen in unserer User-Datenbanktabelle:
+
 $userid = DB::query('SELECT id FROM list5 WHERE id=:userid', array(':userid'=>$user_loggedin))[0]['id'];
 $lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
 $fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
