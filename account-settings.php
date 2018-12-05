@@ -111,61 +111,61 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 
         <p>Alter:
-            <input type="text" size="40" maxlength="10" name="age" placeholder="Alter eingeben"></p>
+            <input type="text" size="40" maxlength="10" name="age" value="<?php echo $age; ?>"</p>
 
         <p>Heimatstadt/-land:
-            <input type="text" size="40" maxlength="1000" name="heimat" placeholder="Heimatstadt/-land eingeben"></p>
+            <input type="text" size="40" maxlength="1000" name="heimat" value="<?php echo $heimat; ?>"></p>
 
         <p>Sprachkenntnisse:
-            <input type="text" size="40" maxlength="1000" name="sprachen" placeholder="Sprachen eingeben"></p>
+            <input type="text" size="40" maxlength="1000" name="sprachen" value="<?php echo $sprachen; ?>"></p>
 
         <p>Studiengang:
-        <select name="studiengang">
-            <option value="omm">Online-Medien-Management</option>
-            <option value="wi">Wirtschaftsinformatik und digitale Medien</option>
-            <option value="id">Informationsdesign</option>
-            <option value="bm">Bibliotheksmanagement</option>
-            <option value="am">Audiovisuelle Medien</option>
-            <option value="cr">Crossmedia Redaktion/Public Relations</option>
-            <option value="mt">Deutsch-chinseischer Studiengang Medien und Technologie</option>
-            <option value="iw">Informationswissenschaften</option>
-            <option value="ip">Integriertes Produktdesign</option>
-            <option value="mp">Mediapublishing</option>
-            <option value="mi">Medieninformatik</option>
-            <option value="mw">Medienwirtschaft</option>
-            <option value="mm">Mobile Medien</option>
-            <option value="pmt">Print Media Technologies</option>
-            <option value="vt">Verpackungstechnik</option>
-            <option value="wm">Werbung und Marktkommunikation</option>
-            <option value="wim">Wirtschaftsingenieurwesen Medien</option>
+        <select name="studiengang" value="<?php echo $studiengang; ?>">
+            <option "<?php echo $studiengang;?>">Online-Medien-Management</option>
+            <option "<?php echo $studiengang;?>">Wirtschaftsinformatik und digitale Medien</option>
+            <option value="Informationsdesign">Informationsdesign</option>
+            <option value="Bibliotheksmanagement">Bibliotheksmanagement</option>
+            <option value="Audiovisuelle Medien">Audiovisuelle Medien</option>
+            <option value="Crossmedia Redaktion/Public Relations">Crossmedia Redaktion/Public Relations</option>
+            <option value="Deutsch-chinseischer Studiengang Medien und Technologie">Deutsch-chinseischer Studiengang Medien und Technologie</option>
+            <option value="Informationswissenschaften">Informationswissenschaften</option>
+            <option value="Integriertes Produktdesign">Integriertes Produktdesign</option>
+            <option value="Mediapublishing">Mediapublishing</option>
+            <option value="Medieninformatik">Medieninformatik</option>
+            <option value="Medienwirtschaft">Medienwirtschaft</option>
+            <option value="Mobile Medien">Mobile Medien</option>
+            <option value="Print Media Technologies">Print Media Technologies</option>
+            <option value="Verpackungstechnik">Verpackungstechnik</option>
+            <option value="Werbung und Marktkommunikation">Werbung und Marktkommunikation</option>
+            <option value="Wirtschaftsingenieurwesen Medien">Wirtschaftsingenieurwesen Medien</option>
         </select>
         </p>
 
         <p>Aktuelles Semester:
-            <select name="semester">
-                <option value="1">1. Semester</option>
-                <option value="2">2. Semester</option>
-                <option value="3">3. Semester</option>
-                <option value="4">4. Semester</option>
-                <option value="5">5. Semester</option>
-                <option value="6">6. Semester</option>
-                <option value="7">7. Semester</option>
+            <select name="semester" value="<?php echo $semester;?>">
+                <option value="<?php echo $semester;?>">1. Semester</option>
+                <option value="<?php echo $semester;?>">2. Semester</option>
+                <option value="<?php echo $semester;?>">3. Semester</option>
+                <option value="<?php echo $semester;?>">4. Semester</option>
+                <option value="<?php echo $semester;?>">5. Semester</option>
+                <option value="<?php echo $semester;?>">6. Semester</option>
+                <option value="<?php echo $semester;?>">7. Semester</option>
             </select>
 
         <p>Job:
-            <input type="text" size="40" maxlength="1000" name="job" placeholder="Job eingeben"></p>
+            <input type="text" size="40" maxlength="1000" name="job" value="<?php echo $job; ?>"></p>
 
         <p>Interessen:
-        <input type="text" size="40" maxlength="1000" name="interessen" placeholder="Interessen eingeben"></p>
+        <input type="text" size="40" maxlength="1000" name="interessen" value="<?php echo $interessen; ?>"></p>
 
         <p>Lieblingszitat:
-            <input type="text" size="40" maxlength="1000" name="zitat" placeholder="Zitat eingeben"></p>
+            <input type="text" size="40" maxlength="1000" name="zitat" value="<?php echo $zitat; ?>"></p>
 
         <p>Website:
-            <input type="text" size="40" maxlength="1000" name="website" placeholder="Website eingeben"></p>
+            <input type="text" size="40" maxlength="1000" name="website" value="<?php echo $website; ?>"></p>
 
         <p>Handynummer:
-            <input type="text" size="40" maxlength="1000" name="handy" placeholder="Handynummer eingeben"></p>
+            <input type="text" size="40" maxlength="1000" name="handy" value="<?php echo $kontakt; ?>"></p>
 
         <br><br>
         <input type="submit" name="update" value="Ändere deine Angaben">

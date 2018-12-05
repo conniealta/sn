@@ -25,7 +25,7 @@ $fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':user
 $profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
 $user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['username'];
 $studiengang = DB::query('SELECT studiengang FROM list5 WHERE id=:userid', array(':userid'=>$userid))[0]['studiengang'];
-$age = DB::query('SELECT age FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['heimat'];
+$age = DB::query('SELECT age FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['age'];
 $heimat = DB::query('SELECT heimat FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['heimat'];
 $sprachen = DB::query('SELECT sprachen FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['sprachen'];
 $semester = DB::query('SELECT semester FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['semester'];
