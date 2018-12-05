@@ -274,8 +274,6 @@ if(isset($_POST['searchbox'])) {
 
 <?php
 
-//$username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $_GET['username']))[0]['username'];
-
 //Anzeigen des letzten Posts der eingeloggten Person --> Variablen sind in include('user_data.php'):
 
 
@@ -362,10 +360,8 @@ foreach ($followingposts as $post) {
 }
 
 /* joints -> WHERE posts.user_id = followers.user_id
-= zusammenfügen, wo die "id" der Person, deren Post angezeigt werden soll, mit der "id" der Person übereinstimmt, der von der eingeloggten Person gefolgt ist
+= zusammenfügen, wo die "id" der Person, deren Post angezeigt werden soll, mit der "id" der Person übereinstimmt, die von der eingeloggten Person gefolgt ist
 */
-
-
 
 ?>
 
