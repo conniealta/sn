@@ -36,6 +36,7 @@ class Comment {
         $com = "";
         foreach ($comments as $comment) {
             $profile_pic = $comment['profile_pic'];
+            $username = $comment ['username'];
             $com = "<img style='width: 35px; height: 35px; border-radius: 55px; margin-left:55px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '."<a href='profile.php?username=".$username." ' >".$comment['username'].'</a>'.' '.' '.' '.$comment['comment']."<hr />";
 
         }

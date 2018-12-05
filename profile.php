@@ -85,10 +85,6 @@ session_start();
 
 
 
-
-
-
-
 <?php
 include('DB.php');
 include('Post.php');
@@ -456,6 +452,239 @@ echo "<a href='img_upload/post_pics/$img_id'></a>      <img src='img_upload/post
 //}
 //
 //?>
+<!---->
+
+
+
+
+
+
+
+
+
+<?php
+//
+//
+//
+//// je nachdem, auf welcher Profilseite wir sind, heißt die Profilseite z.B. "profile2.php?username=conniealta"
+//$isFollowing = False; //bedeutet, dass man einem Benutzer noch nicht folgt
+//
+//$username = "";
+//
+//// $user_name
+////$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['username'];
+//// if (isset($_SESSION["angemeldet"]))
+//
+//if (isset($_SESSION['angemeldet'])) {
+//
+//    // Follow-/Unfollow-Button anzeigen je nach dem auf welcher Profilseite man ist:
+//    if (DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid'=>$userid2))) {
+//        $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['username'];
+//
+//        $userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$username))[0]['id'];
+//        // "$userid" ist die "id" der Person, auf deren Profilseite wir sind (das kann auch unsere Profilseite sein, aber auch die Profilseite von einem anderen Benutzer)
+//
+//        /* beim "$userid" wird die "id" gespeichert, die dem "username" in der Datenbank gehört, der wiederum dem ":username" in der URL entsprechen muss
+//          -> anders formuliert: die "id" aus der Datenbank auswählen, wo "username" in der Datenbank dem ":username" in der URL entspricht
+//           und diese "id" dann bei der Variable "$userid" speichern */
+//
+//        $followerid = $userid2; //"followerid" ist die "id" des Benutzers, der sich eingeloggt hat
+//        //'$userid2' ist die "id" der eingeloggten Person (oben definiert: "$userid2 = $_SESSION['angemeldet'];"
+//        // wenn man auf seiner eigenen Profilseite ist, dann sind die "$userid=1" und die "$followerid=1" gleich
+//        // wenn man auf der Profilseite eines anderen Benutzers ist, dann ist z.B. die "$userid=3" und die eigene "followerid=1"
+//
+//        if (isset($_POST['follow'])) {
+//
+//            if ($userid != $followerid) { //dieser Code wird nur dann ausgeführt, wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist
+//                if (!DB::query('SELECT follower_id FROM followers WHERE user_id=:userid AND follower_id=:followerid', array(':userid'=>$userid, ':followerid'=>$followerid))) {
+//                    /* die id der Person, die sich eingeloggt hat, muss in der Datenbank nicht neben der id der Person stehen, auf deren
+//                    Profilseite die eingeloggte Person ist;
+//                    d.h. es wird geprüft, ob neben z.B. user_id=3 (Profilseite anderes Benutzers)-> follower_id=1 steht (eingeloggter Benutzer)
+//                    wenn es nicht steht, dann darf man der Person folgen */
+//                    DB::query('INSERT INTO followers VALUES (\'\', :userid, :followerid)', array(':userid'=>$userid, ':followerid'=>$followerid));
+//                }
+//                else {
+//                    echo 'Already following!';
+//                }
+//                /* wenn user_id=3 neben follower_id=1 steht, dann folgt die eingeloggte Person schon der Person, auf deren Profilseite wir sind  */
+//
+//                $isFollowing = True; //bedeutet, dass man einem Benutzer schon folgt
+//            }
+//        }
+//
+//        if (isset($_POST['unfollow'])) {
+//            if ($userid != $followerid) {
+//                if (DB::query('SELECT follower_id FROM followers WHERE user_id=:userid AND follower_id=:followerid', array(':userid'=>$userid, ':followerid'=>$followerid))) {
+//                    DB::query('DELETE FROM followers WHERE user_id=:userid AND follower_id=:followerid', array(':userid'=>$userid, ':followerid'=>$followerid));
+//                }
+//                $isFollowing = False;
+//            }
+//        }
+//
+//        if (DB::query('SELECT follower_id FROM followers WHERE user_id=:userid AND follower_id=:followerid ', array(':userid'=>$userid, ':followerid'=>$followerid))) {
+//            //echo 'Already following!';
+//            $isFollowing = True;
+//        } /* Wir schreiben hier (außerhalb der Hauptbedingung) fast den gleichen Code wie oben nochmals, sodass er ausgeführt wird, auch wenn der Follow-Button nicht geklickt wird:
+//          Siehe die Bedingung oben: "if (isset($_POST['follow'])) ..." */
+//    }
+//
+//
+//
+//    if (isset($_POST['deletepost'])) {
+//        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid))) {
+//            DB::query('DELETE FROM posts WHERE id=:postid and user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid));
+//            DB::query('DELETE FROM post_likes WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
+//            DB::query('DELETE FROM comments WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
+//            echo 'Post gelöscht!';
+//        }
+//    }
+//
+//    if (isset($_POST['comment'])) {
+//        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
+//            Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
+//            //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+//        }
+//    }
+//
+//
+//    if(isset($_POST['post'])){
+//        $file = $_FILES['file'];
+//
+//        $fileName = $_FILES['file']['name'];
+//        $fileTmpName = $_FILES['file']['tmp_name'];
+//        $fileSize = $_FILES['file']['size'];
+//        $fileError = $_FILES['file']['error'];
+//        $fileType = $_FILES['file']['type'];
+//
+//
+//        $fileExt = explode('.', $fileName);
+//        $fileActualExt = strtolower(end($fileExt));
+//
+//        $allowed = array('jpg', 'jpeg', 'png');
+//
+//
+//        if (in_array($fileActualExt, $allowed)){
+//            if($fileError === 0){
+//                if($fileSize< 1000000){
+//                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+//                    $fileDestination = "img_upload/post_pics/".$fileNameNew;
+//                    move_uploaded_file($fileTmpName,$fileDestination);
+//                    $bild_id = $fileNameNew;
+//
+//                }else {
+//                    echo"Deine Datei ist zu groß! (Max Größe 1MB)";
+//
+//                }
+//            }else {
+//                echo"Leider gab es ein Problem! ";
+//
+//            }
+//        }else {
+//            echo"Dieses Dateiformat wird nicht unterstützt!";
+//
+//        }
+//
+//    }
+//
+//
+//    if (isset($_POST['post'])) {
+//        if ($_FILES['file']['size'] == 0) {
+//            Post::createPost($_POST['postbody'], $userid2, $userid);
+//        } else {
+//            $postid = Post::createImgPost($bild_id, $userid2, $userid); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
+//        }
+//    }
+//    //Das PROBLEM: wenn man einen Text postet, ist alles ok --> wenn man ein Bild postet, wird dieses zweimal angezeigt
+//
+//
+//
+//
+////
+////    if (isset($_POST['post'])) { //prüfen, ob  der Post-Button geklickt wurde und wenn ja:
+////
+////        Post::createPost($_POST['postbody'], $userid2, $userid);
+////        /*  in "Post.php" -> '$postbody', 'loggedIn_userid', '$profileUserId'
+////
+////        --> die "$_POST['postbody'], $userid2, $userid" werden dann an die Parameter in "Post.php" übergeben
+////
+////        "$userid2 = $_SESSION['angemeldet'];" (oben definiert) -> das ist die "id" der eingeloggten Person
+////        $userid = die 'id' der Person, auf deren Profilseite die eingeloggte Person ist
+////
+////       --> durch die Übertragung ($userid2 -> $loggedIn_userid etc.)  darf  die eingeloggte Person nur auf ihrer eigenen Profilseite posten
+////        */
+////
+////    }
+//
+//
+//
+//    if (isset($_POST['like'])) {
+//        Post::likePost($_GET['postid'], $followerid);
+//    }
+//
+//    if (isset($_POST['unlike'])) {
+//        Post::likePost($_GET['postid'], $followerid);
+//    }
+//
+//
+//
+//    /*if (isset($_GET['postid'])) {
+//        Post::likePost($_GET['postid'], $followerid);
+//    }*/
+//    /*  in "Post.php" -> '$postid', '$likerId'
+//     --> die "$_GET['postid'], $followerid" werden dann an die Parameter in "Post.php" übergeben
+//
+//    $followerid = die eingeloggte Person
+//    $likerid = die Person, die den Post geliked hat
+//    --> durch die Übertragung ($followerid -> $likerid)  kann man sehen, ob die eingeloggte Person den Post geliked hat
+//     */
+//
+//
+//    $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
+//    $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
+//
+//    //$img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
+//
+//
+//    /*
+//    $profile_pic2 = das ist das Profilbild der Person, auf deren Profilseite wir sind
+//    $profile_pic = das ist das Profilbild der eingeloggten Person
+//
+//    $followerid -> $loggedIn_userid etc.  (Übertragung in Post.php)
+//
+//    die Variable "$posts" ist gleich der "return-Wert" von dieser Methode
+//
+//    in Post.php -> return $posts;
+//     "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
+//    */
+//
+//
+//
+//    //Comment::displayComments2($_GET['postid']);
+//
+//
+//    //Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
+//
+//    // PROBLEM ! --> Kommentare werden nicht angezeigt ... Die werden nur beim Feed angezeigt. Ich hab auch so probiert:
+//    //$comments = Comment::displayComments($_GET['postid']);
+//    // $comment = Comment::displayComments($_GET['postid']);
+//    //Comment::displayComments($posts['id']);
+//
+//
+//
+//    if (isset($_POST['comment'])) {
+//        Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+//    }
+//
+//} else {
+//    die('User not found!');
+//}
+//
+//
+//?>
+<!---->
+<!---->
+<!---->
+
 
 
 
@@ -727,6 +956,8 @@ if (isset($_GET['username'])) {
 
 
 <h1>Das Profil von '<?php echo $username; ?>'</h1>
+
+
 
 
 <form action="profile.php?username=<?php echo $username; ?>" method="post">
