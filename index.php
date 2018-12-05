@@ -164,7 +164,7 @@ echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upl
     <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
 
     <div class="user_details_left_right">
-        <a href="<?php echo $user_loggedin; ?>">
+        <a href="profile.php?username=<?php echo $user_name; ?>" >
             <?php
             echo $fname . " " . $lname;
 
@@ -435,9 +435,11 @@ if(isset($_POST['searchbox'])) {
 
 <?php
 
+//$username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $_GET['username']))[0]['username'];
+
 //Anzeigen des letzten Posts der eingeloggten Person:
 
-
+// Das kann ich auch ohne PDO machen ($profile_pic = DB:: query(SELECT profile_pic FROM list5 WHERE ...[0] [profile_pic]...
 $pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
 
 $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id=:userid ORDER BY id ASC');
@@ -495,7 +497,13 @@ $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.use
 
 foreach ($followingposts as $post) {
 
-    echo $post['username'].' '.' '."<img src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
+    $username = $post['username'];
+
+    echo  '<a href="profile.php?username=<?php echo $username; ?>" >'.$post['username'].'</a>'.' '.' '."<img src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ ";
+
+
+
+
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {

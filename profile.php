@@ -756,8 +756,9 @@ if (isset($_GET['username'])) {
 
         <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>
 
+
         <div class="user_details_left_right">
-            <a href="<?php echo $userid; ?>">
+            <a href="profile.php?username=<?php echo $username; ?>" >
                 <?php
                 echo $fname2 . " " . $lname2."<br>"."<br>";
                 echo $age. " ". 'Jahre alt'."<br>";
