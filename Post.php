@@ -188,7 +188,7 @@ class Post {
         foreach($dbposts as $p) {
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>".' '.' '.$username.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
                     // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
                     //Comment::displayComments($p['id']).
 
@@ -220,7 +220,7 @@ class Post {
                 //$posts .= (self::link_add($p['body'])) . "
 
 
-               $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+               $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.$username.' '.' '.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
                     //Comment::displayComments($p['id']).
 
                     "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>

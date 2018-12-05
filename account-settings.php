@@ -89,7 +89,7 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 
 
-<br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
     <form action="do-account-settings.php" method="post">
 
