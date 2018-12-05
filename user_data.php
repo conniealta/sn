@@ -10,17 +10,28 @@ if(!isset($_SESSION["angemeldet"]))
     die();
 }
 else {
-    $userid2 = $_SESSION['angemeldet'];
+    $user_loggedin = $_SESSION['angemeldet'];
     $showTimeline = True;
 }
 
 
 include('DB.php');
 
-$userid = DB::query('SELECT id FROM list5 WHERE id=:userid', array(':userid'=>$userid2))[0]['id'];
-$lname2 = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
-$fname2 = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
-$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
-$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['username'];
-$followerid = $userid2;
+$userid = DB::query('SELECT id FROM list5 WHERE id=:userid', array(':userid'=>$user_loggedin))[0]['id'];
+$lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
+$fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
+$profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
+$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['username'];
+$studiengang = DB::query('SELECT id FROM list5 WHERE id=:userid', array(':userid'=>$userid))[0]['studiengang'];
+$age = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['heimat'];
+$heimat = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['heimat'];
+$sprachen = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['sprachen'];
+$semester = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['semester'];
+$job = DB::query('SELECT id FROM list5 WHERE id=:userid', array(':userid'=>$userid))[0]['job'];
+$interessen = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['interessen'];
+$zitat = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['zitat'];
+$website = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['website'];
+$kontakt = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['kontaktnummer'];
+$email = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['email'];
 
+$followerid = $user_loggedin;
