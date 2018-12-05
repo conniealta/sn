@@ -20,7 +20,9 @@ class Comment {
         // Join machen --> Fremdschlüssel mit den Primärschlüsseln zusammenfügen, sodass nur der Kommentar und der Name des Nutzers, der ihn geschrieben hat, angezeigt werden
         foreach ($comments as $comment) {
             $profile_pic = $comment['profile_pic'];
-            echo $comment['username'].' '."<img style='width: 45px; height: 45px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '.$comment['comment']."<hr />";
+            $username = $comment ['username'];
+
+            echo "<img style='width: 35px; height: 35px; border-radius: 55px; margin-left:55px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '."<a href='profile.php?username=".$username." ' >".$comment['username'].'</a>'.' '.' '.' '.$comment['comment']."<hr />";
 
         }
         // ['comment'] = die Spalte in der Datenbank
@@ -34,7 +36,8 @@ class Comment {
         $com = "";
         foreach ($comments as $comment) {
             $profile_pic = $comment['profile_pic'];
-            $com = $comment['username'].' '."<img style='width: 45px; height: 45px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '.$comment['comment']."<hr />";
+            $com = "<img style='width: 35px; height: 35px; border-radius: 55px; margin-left:55px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '."<a href='profile.php?username=".$username." ' >".$comment['username'].'</a>'.' '.' '.' '.$comment['comment']."<hr />";
+
         }
         // ['comment'] = die Spalte in der Datenbank
         return $com;

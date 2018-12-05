@@ -452,7 +452,7 @@ if($statement->execute(array(':userid'=>$user_loggedin))) {
         $post_likes = $user->likes;
     }
 }
-echo $user_name."<img src='img_upload/profile_pics/$profile_pic'>     <img src='img_upload/post_pics/$img'>".$body;
+echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  $user_name  <img src='img_upload/post_pics/$img'>".$body;
 
 
 echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
@@ -499,9 +499,7 @@ foreach ($followingposts as $post) {
 
     $username = $post['username'];
 
-    echo  '<a href="profile.php?username=<?php echo $username; ?>" >'.$post['username'].'</a>'.' '.' '."<img src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ ";
-
-
+    echo  "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$post['username'].'</a>'.' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ ";
 
 
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
