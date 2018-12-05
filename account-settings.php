@@ -87,21 +87,27 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 
         <p>Username:
-            <input type="text" size="40" maxlength="250" name="username" placeholder="Username eingeben"></p>
+            <input type="text" size="40" maxlength="250" name="username" value="<?php echo $user_name; ?>"></p>
 
         <p>Email:
-            <input type="text" size="40" maxlength="250" name="email" placeholder="E-Mail eingeben"></p>
+            <input type="text" size="40" maxlength="250" name="email" value="<?php echo $email; ?>"></p>
 
-        <p>Passwort:
+        <p>Altes Passwort:
+            <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
+
+        <p>Neues Passwort:
+            <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
+
+        <p>Neues Passwort bestätigen:
             <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
 
         <br><br>
 
         <p>Vorname:
-        <input type="text" size="40" maxlength="250" name="fname" placeholder="Vorname eingeben"></p>
+        <input type="text" size="40" maxlength="250" name="fname" value="<?php echo $fname; ?>"</p>
 
         <p>Nachname:
-        <input type="text" size="40" maxlength="250" name="lname" placeholder="Nachname eingeben"></p>
+        <input type="text" size="40" maxlength="250" name="lname" value="<?php echo $lname; ?>"></p>
 
 
         <p>Alter:
