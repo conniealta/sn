@@ -39,6 +39,9 @@ if(isset($_POST['submit'])){
             if($fileSize< 1000000){
                 $fileNameNew = uniqid('', true).".".$fileActualExt;
                 $fileDestination = "img_upload/profile_pics/".$fileNameNew;
+
+
+
                 move_uploaded_file($fileTmpName,$fileDestination);
                 $bild_id = $fileNameNew;
 
