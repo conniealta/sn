@@ -1081,7 +1081,7 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 <div class="main_column column">
     <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
         <input type="file" name="file">
-        <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe etwas...."></textarea>
+        <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe etwas..."></textarea>
         <input type="submit" name="post" value="Post">
         <hr>
 
