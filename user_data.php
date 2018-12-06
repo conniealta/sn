@@ -16,6 +16,7 @@ else {
 
 
 include('DB.php');
+include ('db_pdo.php');
 
 // Fetch von allen Variablen in unserer User-Datenbanktabelle:
 
@@ -41,8 +42,8 @@ $followerid = $user_loggedin;
 
 
 //hier mach eine include-Datei von PDO !!!
-$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
 
+$pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
 $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id=:userid ORDER BY id ASC');
 
 if($statement->execute(array(':userid'=>$user_loggedin))) {
