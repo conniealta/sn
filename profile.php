@@ -907,9 +907,33 @@ if (isset($_GET['username'])) {
 
 
     $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
-    $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
 
-    //$img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
+   $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
+
+   //$img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
+
+    /*if ($_FILES['file']['size'] == 0) {
+        $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
+    } else {
+        $img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
+    }*/
+
+
+//oder:
+/*    if ($_FILES['file']['size'] == 0) {
+      $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
+  }
+
+
+  if ($_FILES['file']['size'] != 0) {
+      $img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
+  }*/
+
+
+
+
+
+
 
 
     /*
@@ -1091,7 +1115,18 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 <!--Anzeigen von Posts ($posts = Post::displayPosts...)-->
 <div class="posts">
     <?php echo $posts;
-    //echo $img_posts; ?>
+
+   //echo $img_posts;
+
+
+  /*  if ($_FILES['file']['size'] == 0) {
+        echo $posts;
+    }
+    if ($_FILES['file']['size'] != 0){
+        echo $img_posts;
+    }*/
+
+   ?>
 </div>
 
 
