@@ -10,6 +10,11 @@
 body {
 	line-height: 17px;
 	background-color: #E6EAE8;
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+
 }
 
 a {
@@ -43,10 +48,35 @@ a:hover {
 	text-decoration: none;
 }
 
+nav ul { /*nav ul statt ul wiel ul sonst hintergrund des footers beeinflusst */
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+}
+
+nav ul li {
+	float: left;
+}
+
+nav ul li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
 nav {
-	float: right;
 	right: 1px;
-	position: absolute;
 	margin: 10px;
 }
 
@@ -597,7 +627,10 @@ textarea:focus {
 }
 
 
+footer {
+	color: #FF0000;
 
+}
 
 
 

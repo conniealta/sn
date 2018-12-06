@@ -59,24 +59,9 @@ session_start();
 
 <body>
 
-<div class="header">
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-
-</div>
-
-
-<ul>
-    <li><a class="active" href="index.php">Feed</a></li>
-    <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="my-messages.php">Nachrichten</a></li>
-    <li><a href="notify.php">Benachrichtigungen</a></li>
-</ul>
-
+<?php
+include('header.php');
+?>
 
 <br><br><br><br>
 
@@ -862,6 +847,9 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
     //echo $img_posts; ?>
 </div>
 
+<?php
+include('footer.php');
+?>
 
 </body>
 

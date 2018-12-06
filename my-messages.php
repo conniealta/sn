@@ -6,7 +6,7 @@ session_start();
     <html lang="de">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
         <title> Nachrichten </title>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -18,33 +18,9 @@ session_start();
 <body>
 
 
-    <header>
-        <A ID="toc"></A>
-
-        <nav>
-            <div id="erste">
-
-                <ul class="list1">
-
-                    <li>
-                        <a  class="active" href="index.php">Feed</a>
-                    </li>
-
-                    <li>
-                        <a href="profile.php">Profil </a>
-                    </li>
-                    <li>
-                        <a class="wi" href="my-messages.php">Messages</a>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="notify.php">Benachrichtigungen</a>
-
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+<?php
+include('header.php');
+?>
 
     <br><br><br><br>
 
@@ -126,3 +102,11 @@ if (isset($_GET['mid'])) {
     }
 }
 ?>
+
+
+<?php
+include('footer.php');
+?>
+
+</body>
+</html>

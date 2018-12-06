@@ -6,7 +6,7 @@ session_start();
     <html lang="de">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="style-alt.css" media="screen"/>
         <title> Nachrichten </title>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -55,7 +55,7 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
     }
 
     if(strlen($username) == 0) {
-        echo 'Bitte einen Username angeben<br>';
+        echo 'Bitte einen Usernamen angeben<br>';
         $error = true;
     }
 
