@@ -114,9 +114,9 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
     $rand = rand(1, 2); //Random number between 1 and 2
 
     if($rand == 1)
-        $profile_pic = "images/defaults/head_deep_blue.png";
+        $profile_pic = "head_deep_blue.png";
     else if($rand == 2)
-        $profile_pic = "images/defaults/head_emerald.png";
+        $profile_pic = "head_emerald.png";
 
 
     //Keine Fehler, wir können den Nutzer registrieren

@@ -188,8 +188,12 @@ class Post {
         foreach($dbposts as $p) {
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>".' '.' '.$username.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
-                    // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
+                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+
+                    //$posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).
+
+
+                        // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
                     //Comment::displayComments($p['id']).
 
 
@@ -220,8 +224,11 @@ class Post {
                 //$posts .= (self::link_add($p['body'])) . "
 
 
-               $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.$username.' '.' '.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
-                    //Comment::displayComments($p['id']).
+                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+
+                    //$posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).
+
+                        //Comment::displayComments($p['id']).
 
                     "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
@@ -270,7 +277,9 @@ class Post {
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
 
-                $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])). "
+                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+
+                    "
               <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
@@ -289,7 +298,9 @@ class Post {
                 ";
             }
             else {
-                $posts .= $username.' '.' '."<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".(self::link_add($p['body'])). "
+                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+
+                    "
               <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>".$p['likes']." likes</span>
@@ -324,6 +335,103 @@ class Post {
     postid = das ist die "id" des jeweiligen Posteintrag
     if (isset($_GET['postid']) -> prüfen, ob der Like-Button geklickt wurde, wenn ja
     */
+
+
+
+
+
+    public static function displayImgPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
+        $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
+        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
+        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
+
+        $posts = "";
+
+        foreach($dbposts as $p) {
+            if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
+
+                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+
+
+                    // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
+                    //Comment::displayComments($p['id']).
+
+
+
+                    "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
+                 <input type='submit' name='like' value='Like'>
+                 <span>".$p['likes']." likes</span>
+                 ";
+
+                if ($userid == $loggedIn_userid){
+                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                }
+                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+
+
+                $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>";
+
+
+                $posts .= Comment::displayComments2($p['id']);
+                $posts .= "</form><hr /></br />
+                ";
+
+            }
+            else {
+                //$posts .= (self::link_add($p['body'])) . "
+
+
+                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
+
+                    //Comment::displayComments($p['id']).
+
+                    "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+                 <input type='submit' name='unlike' value='Unlike'>
+                 <span>".$p['likes']." likes</span>
+              
+                ";
+
+                if ($userid == $loggedIn_userid){
+                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                }
+                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+                #$userid == $loggedIn_userid
+
+                $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>";
+
+                $posts .= Comment::displayComments2($p['id']);
+                $posts .="
+             
+              </form><hr /></br />
+                ";
+            }
+        }
+
+        return $posts;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Damit hab ich versucht diese "Fragezeichen" abzuschaffen: (aber es ging nicht):
 //    public static function displayImgPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
 //

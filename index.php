@@ -45,126 +45,41 @@ include('header.php');
 
 
 <?php
-include('DB.php');
+include ('user_data.php');
 include('Post.php');
 include('Comment.php');
 
-$showTimeline = False;
-
-if(!isset($_SESSION["angemeldet"]))
-{
-    echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
-    die();
-}
-else {
-    $user_loggedin = $_SESSION['angemeldet'];
-    echo "Hallo User: ".$user_loggedin;
-    $showTimeline = True;
-}
 ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-
-$profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
-$lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['last_name'];
-$fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['first_name'];
-$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-
-//echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>"
-
-/*
-Das hier ist die längere Variante (ohne Klassen) und führt das gleiche aus:
-$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
-
-$statement = $pdo->prepare("SELECT * FROM list5 WHERE id=:userid");
-
-if($statement->execute(array(':userid'=>$user_loggedin))) {
-    while ($user = $statement->fetchObject()) {
-        $profile_pic = $user->profile_pic;
-        $fname = $user->first_name;
-        $lname = $user->last_name;
-    }
-}
-echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upload/profile_pics/$profile_pic'>"
-*/
-
-?>
-
-
-
-<?php
-
-
-?>
 
 
 <h1> Das Profil von '<?php echo $user_name; ?>'</h1>
 
 
+<div class="main_column column">
 
-<div class="user_details column">
+    <!-- Profil-Bild mit Infos -->
+    <div class="user_details column">
+        <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
 
-    <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
-
-    <div class="user_details_left_right">
-        <a href="<?php echo $user_loggedin; ?>">
-            <?php
-            echo $fname . " " . $lname;
-
-            ?>
-        </a>
+        <div class="user_details_left_right">
+            <a href="profile.php?username=<?php echo $user_name; ?>" >
+                <?php
+                echo $fname . " " . $lname;
+                ?>
+            </a>
+        </div>
     </div>
 
-</div>
 
-
-<!--<br><br><br><br><br><br><br><br><br><br>-->
-<!--<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">-->
-<!--    <input type="file" name="file">-->
-<!--    <button type="submit" name="submit"> Upload Profile Pic </button>-->
-<!---->
-<!--</form>-->
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br>
-<h1 class="title"> Feed  </h1>
-
-<div class="main_column column">
     <form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
+
         <textarea name="postbody" rows="8" cols="80" placeholder="Got something to say?"></textarea>
         <input type="submit" name="post" value="Post">
+        <br><br>
+        <input type="file" name="file">
+
         <hr>
 
     </form>
@@ -175,48 +90,21 @@ echo "<a href='img_upload/profile_pics/$profile_pic'></a>      <img src='img_upl
 </div>
 
 
-<?php
-/*
 
-Die Variante mit PDO:
-$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
-
-$statement = $pdo->prepare("SELECT * FROM img_upload ");
-
-if($statement->execute()) {
-    while ($user = $statement->fetchObject()) {
-        $img_id = $user->img_id;
-    }
-}
-
-echo "<a href='img_upload/post_pics/$img_id'></a>      <img src='img_upload/post_pics/$img_id'>";
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
+<br><br><br><br><br><br><br><br><br><br>
+<h1 class="title"> Feed  </h1>
 
-if (isset($_POST['submit'])) {
-    if ($_FILES['file']['size'] == 0) {
-        Post::createPost($_POST['postbody'], $user_loggedin, $userid);
-       $posts= Post::displayPosts2 ($username, $user_loggedin);
-    } else {
-        $postid = Post::createImgPost($_POST['postbody'], $user_loggedin, $userid);
-    }
-}
-*/?>
+
 
 
 <!--<div class="posts">-->
 <!--    --><?php //echo $posts; //$posts = Post::displayPosts2 ?>
 <!--</div>-->
 <!---->
-
-
-
-
-
-
-
-
 
 
 
@@ -249,14 +137,6 @@ if(isset($_POST['post'])){
                 move_uploaded_file($fileTmpName,$fileDestination);
                 $bild_id = $fileNameNew;
 
-                /*$pdo = new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de; dbname=u-ka034', 'ka034', 'zeeD6athoo', array('charset' => 'utf8'));
-                $sql = "INSERT INTO posts (user_id, img_id) VALUES (?, ?)";
-
-                $statement = $pdo->prepare($sql);
-                $statement->execute(array("$user_id", "$bild_id"));*/
-
-//                Post::createImgPost($bild_id, $user_loggedin, $userid);
-
             }else {
                 echo"Deine Datei ist zu groß! (Max Größe 1MB)";
 
@@ -272,7 +152,7 @@ if(isset($_POST['post'])){
 
 }
 
-
+// Post-Funktion und Bild-Post-Funktion:
 if (isset($_POST['post'])) {
     if ($_FILES['file']['size'] == 0) {
         Post::createPost2($_POST['postbody'], $user_loggedin);
@@ -282,31 +162,8 @@ if (isset($_POST['post'])) {
 }
 
 // Anzeigen von allen Posts der eingeloggten Person:
-//$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
 //$my_posts = Post::displayPosts2 ($profile_pic2, $username, $user_loggedin);
-
-// --> PROBLEM:  Die eigenen Posts werden im Feed nicht angezeigt (nur die Posts von den anderen Benutzern)
-
-
-
-
-
-
-
-
-
-
-
-
-//echo $username.' '.' '."<img src='img_upload/profile_pics/".$profile_pic."'>.<img src='img_upload/post_pics/".$img."'>".(self::link_add($body));
-
-
-
-
-
-
-
-
+// siehe unten die Variable der Aufruf von $my_posts;
 
 
 
@@ -318,6 +175,10 @@ if (isset($_GET['postid'])) {
 //Kommentar-Funktion:
 if (isset($_POST['comment'])) {
     Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+
+    //header('Location: index.php?postid=."$post['id']"');
+
+    //echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 }
 
 
@@ -357,39 +218,6 @@ if(isset($_POST['searchbox'])) {
 ?>
 
 
-
-
-
-
-
-
-
-
-
-<br><br><br>
-<form action="index.php" method="post">
-    <input type="text" name="searchbox" value="">
-    <input type="submit" name="search" value="Suchen">
-</form>
-<br><br><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--  Anzeigen von allen Posts der eingeloggten Person:
 <div class="posts">-->
 <!--    --><?php //echo $my_posts; ?>
@@ -398,25 +226,14 @@ if(isset($_POST['searchbox'])) {
 
 
 
+
+
 <?php
 
-//Anzeigen des letzten Posts der eingeloggten Person:
+//Anzeigen des letzten Posts der eingeloggten Person --> Variablen sind in include('user_data.php'):
 
 
-$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
-
-$statement = $pdo->prepare('SELECT * FROM posts WHERE user_id=:userid ORDER BY id ASC');
-
-if($statement->execute(array(':userid'=>$user_loggedin))) {
-    while ($user = $statement->fetchObject()) {
-        $body = $user->body;
-        $img = $user->img_id;
-        $post_id = $user->id;
-        $post_likes = $user->likes;
-    }
-}
-echo $user_name."<img src='img_upload/profile_pics/$profile_pic'>     <img src='img_upload/post_pics/$img'>".$body;
-
+echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  $user_name  <img src='img_upload/post_pics/$img'>".$body;
 
 echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
@@ -439,6 +256,9 @@ echo "<span>" . $post_likes . " likes</span>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
+// Wie kann ich folgendes Problem lösen: Wenn man etwas kommentiert, liked, postet wird die Seite neu geladen (und es bleibt nicht z.B. beim jeweiligen Kommentar, wo die Maus ist)
+// header('Location: index.php?postid=".$post_id."');
+
 Comment::displayComments($post_id);
 
 echo"
@@ -460,7 +280,11 @@ $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.use
 
 foreach ($followingposts as $post) {
 
-    echo $post['username'].' '.' '."<img src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ "; //profile_pic muss hier irgendwo sein
+    $username = $post['username'];
+
+    echo  "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$post['username'].'</a>'.' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ ";
+
+
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
@@ -492,28 +316,10 @@ foreach ($followingposts as $post) {
 }
 
 /* joints -> WHERE posts.user_id = followers.user_id
-= zusammenfügen, wo die "id" der Person, deren Post angezeigt werden soll, mit der "id" der Person übereinstimmt, der von der eingeloggten Person gefolgt ist
+= zusammenfügen, wo die "id" der Person, deren Post angezeigt werden soll, mit der "id" der Person übereinstimmt, die von der eingeloggten Person gefolgt ist
 */
 
-
-
-
-
-
-
-
-
-
-
 ?>
-
-
-
-
-<?php
-include('footer.php');
-?>
-
 
 
 </body>
