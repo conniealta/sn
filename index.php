@@ -2,35 +2,35 @@
 session_start();
 ?>
 
-<!DOCTYPE html> <!-- das ist HTML 5 -->
-<html lang="de">
-<head>
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" type="text/css" href=" " media="screen"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-    <title> Feed </title>
-
-    <style>
-        body {
-            font-size: 20px;
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-
-
-
-
-        .active {
-            background-color: #bd4147;
-        }
-    </style>
-
-</head>
-
-<body>
+<!--<!DOCTYPE html> <!-- das ist HTML 5 -->
+<!--<html lang="de">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!---->
+<!--    <link rel="stylesheet" type="text/css" href=" " media="screen"/>-->
+<!--    <link rel="stylesheet" type="text/css" href="css/style.css">-->
+<!---->
+<!--    <title> Feed </title>-->
+<!---->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-size: 20px;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            font-family: sans-serif;-->
+<!--        }-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--        .active {-->
+<!--            background-color: #bd4147;-->
+<!--        }-->
+<!--    </style>-->
+<!---->
+<!--</head>-->
+<!---->
+<!--<body>-->
 
 
 <?php
