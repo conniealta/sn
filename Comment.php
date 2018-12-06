@@ -1,6 +1,8 @@
 <?php
+
 class Comment {
-    public static function createComment ($commentBody, $postId, $userId) {
+
+   public static function createComment ($commentBody, $postId, $userId) {
         if (strlen($commentBody) > 100 || strlen($commentBody) < 1) {
             die('Inkorrekte Länge!');
         }
@@ -22,7 +24,7 @@ class Comment {
             $profile_pic = $comment['profile_pic'];
             $username = $comment ['username'];
 
-            echo "<img style='width: 35px; height: 35px; border-radius: 55px; margin-left:55px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '."<a href='profile.php?username=".$username." ' >".$comment['username'].'</a>'.' '.' '.' '.$comment['comment']."<hr />";
+            echo "<img style='width: 35px; height: 35px; border-radius: 55px; margin-left:55px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '."<a href='profile.php?username=".$username." ' >".$comment['username'].'</a>'.' '.' '.' '.Post::link_add($comment['comment'])."<hr />";
 
         }
         // ['comment'] = die Spalte in der Datenbank

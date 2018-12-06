@@ -75,7 +75,7 @@ include('Comment.php');
 
     <form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
 
-        <textarea name="postbody" rows="8" cols="80" placeholder="Got something to say?"></textarea>
+        <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe etwas..."></textarea>
         <input type="submit" name="post" value="Post">
         <br><br>
         <input type="file" name="file">
@@ -233,7 +233,7 @@ if(isset($_POST['searchbox'])) {
 //Anzeigen des letzten Posts der eingeloggten Person --> Variablen sind in include('user_data.php'):
 
 
-echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  $user_name  <img src='img_upload/post_pics/$img'>".$body;
+echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  $user_name  <img src='img_upload/post_pics/$img'>".Post::link_add($body);
 
 echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
@@ -282,7 +282,7 @@ foreach ($followingposts as $post) {
 
     $username = $post['username'];
 
-    echo  "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$post['username'].'</a>'.' '.' '.$post['body'] ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ ";
+    echo  "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$post['username'].'</a>'.' '.' '.Post::link_add($post['body']) ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ ";
 
 
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
