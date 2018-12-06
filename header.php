@@ -67,10 +67,15 @@
 <ul>
     <li><a class="active" href="index.php">Feed</a></li>
     <li><a href="profile.php">Profil </a></li>
-    <li><a class="wi" href="messages.php">Messages</a></li>
+    <li><a class="wi" href="my-messages.php">Nachrichten</a></li>
     <li><a href="notify.php">Benachrichtigungen</a></li>
-</ul>
+    <br>
+    <form  action="index.php" method="post">
+        <input style="margin-left:190px;" type="text" name="searchbox" value="">
+        <input type="submit" name="search" value="Suchen">
+    </form>
 
+</ul>
 
 
 
