@@ -72,7 +72,7 @@ class Post {
 // Das ist wenn die eingeloggte Person bei der eigenen Profilseite ist und von dort aus posten will:
     public static function createImgPost($img_id, $postbody, $loggedIn_userid, $profileUserId) {
 
-        if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
+        if (strlen($postbody) > 1000) {
 
             die('Inkorrekte Länge!');
         }
@@ -109,7 +109,7 @@ class Post {
 // Das ist wenn die eingeloggte Person beim "Feed" ist und von dort aus posten will:
     public static function createImgPost2 ($img_id, $postbody, $loggedIn_userid) {
 
-        if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
+        if (strlen($postbody) > 1000 ) {
 
             die('Inkorrekte Länge!');
         }

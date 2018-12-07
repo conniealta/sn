@@ -36,9 +36,9 @@ if (isset($_GET['username'])) {
         // wenn man auf der Profilseite eines anderen Benutzers ist, dann ist z.B. die "$userid=3" und die eigene "followerid=1"
 
 
-        if (isset($_POST['follow'])) {
+        if (isset($_POST['follow'])) { // wenn der Button "Follow" geklickt wird
 
-            if ($userid != $followerid) { //dieser Code wird nur dann ausgeführt, wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist
+            if ($userid != $followerid) { //folgender Code wird nur dann ausgeführt, wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist
                 if (!DB::query('SELECT follower_id FROM followers WHERE user_id=:userid AND follower_id=:followerid', array(':userid'=>$userid, ':followerid'=>$followerid))) {
                     /* die id der Person, die sich eingeloggt hat, muss in der Datenbank nicht neben der id der Person stehen, auf deren
                     Profilseite die eingeloggte Person ist;
@@ -83,7 +83,6 @@ if (isset($_GET['username'])) {
     if (isset($_POST['comment'])) {
         if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
             Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
-            //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
         }
     }
 
@@ -112,20 +111,12 @@ if (isset($_GET['username'])) {
                     move_uploaded_file($fileTmpName,$fileDestination);
                     $bild_id = $fileNameNew;
 
-                    /*$pdo = new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de; dbname=u-ka034', 'ka034', 'zeeD6athoo', array('charset' => 'utf8'));
-                    $sql = "INSERT INTO posts (user_id, img_id) VALUES (?, ?)";
-
-                    $statement = $pdo->prepare($sql);
-                    $statement->execute(array("$user_id", "$bild_id"));*/
-
-//                    Post::createImgPost($bild_id, $userid2, $userid);
-
                 }else {
-                    echo"Deine Datei ist zu groß! (Max Größe 1MB)";
+                    echo"Diese Datei ist zu groß! (Maximale Größe: 1MB)";
 
                 }
             }else {
-                echo"Leider gab es ein Problem! :(";
+                echo"Fehler!";
 
             }
         }else {
@@ -136,34 +127,17 @@ if (isset($_GET['username'])) {
     }
 
 
-    if (isset($_POST['post'])) {
-        if ($_FILES['file']['size'] == 0) {
+    if (isset($_POST['post'])) {  //prüfen, ob  der Post-Button geklickt wurde und wenn ja:
+        if ($_FILES['file']['size'] == 0) { // wenn der Post kein Bild enthält:
             Post::createPost($_POST['postbody'], $user_loggedin, $userid);
-        } else {
-            $postid = Post::createImgPost($bild_id, $_POST['postbody'], $user_loggedin, $userid ); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
+        } else { // wenn der Post ein Bild enthält
+            $postid = Post::createImgPost($bild_id, $_POST['postbody'], $user_loggedin, $userid );
         }
     }
-    //Das PROBLEM: wenn man einen Text postet, ist alles ok --> wenn man ein Bild postet, wird dieses zweimal angezeigt
-
-
-
-
-//
-//    if (isset($_POST['post'])) { //prüfen, ob  der Post-Button geklickt wurde und wenn ja:
-//
-//        Post::createPost($_POST['postbody'], $userid2, $userid);
-//        /*  in "Post.php" -> '$postbody', 'loggedIn_userid', '$profileUserId'
-//
-//        --> die "$_POST['postbody'], $userid2, $userid" werden dann an die Parameter in "Post.php" übergeben
-//
-//        "$userid2 = $_SESSION['angemeldet'];" (oben definiert) -> das ist die "id" der eingeloggten Person
-//        $userid = die 'id' der Person, auf deren Profilseite die eingeloggte Person ist
-//
-//       --> durch die Übertragung ($userid2 -> $loggedIn_userid etc.)  darf  die eingeloggte Person nur auf ihrer eigenen Profilseite posten
-//        */
-//
-//    }
-
+    /*  in "Post.php" sind die Variablen folgende: '$postbody', 'loggedIn_userid', '$profileUserId'
+   --> die oben definierten Parameter: "$_POST['postbody'], $user_loggedin, $userid" werden dann an die Parameter in "Post.php" übergeben
+    --> durch die Übertragung ($user_loggedin -> $loggedIn_userid etc.)  darf  die eingeloggte Person nur auf ihrer eigenen Profilseite posten
+*/
 
 
     if (isset($_POST['like'])) {
@@ -173,7 +147,6 @@ if (isset($_GET['username'])) {
     if (isset($_POST['unlike'])) {
         Post::likePost($_GET['postid'], $followerid);
     }
-
 
 
     /*if (isset($_GET['postid'])) {
