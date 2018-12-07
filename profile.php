@@ -10,21 +10,10 @@ include('Comment.php');
 
 <?php
 
-$profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
-$lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['last_name'];
-$fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['first_name'];
-$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-
-
-
 $username = "";
-// je nachdem, auf welcher Profilseite wir sind, heißt die Profilseite z.B. "profile2.php?username=conniealta"
+// je nachdem, auf welcher Profilseite wir sind, heißt die Profilseite z.B. "profile2.php?username=dani"
 $isFollowing = False; //bedeutet, dass man einem Benutzer noch nicht folgt
 
-
-// $user_name
-//$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['username'];
-// if (isset($_SESSION["angemeldet"]))
 
 if (isset($_GET['username'])) {
 
@@ -32,7 +21,7 @@ if (isset($_GET['username'])) {
         // Wir definieren zuerst die Variablen (bevor der Button geklickt wird) wie folgt:
 
         $username = DB::query('SELECT username FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['username'];
-        //$username = ":username", den wir in die URL angeben, muss dem "username" in der Datenbank entsprechen
+        //$username = ":username", den in der URL angegeben ist, muss dem "username" in der Datenbank entsprechen
 
         $userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
         // "$userid" ist die "id" der Person, auf deren Profilseite wir sind (das kann auch unsere Profilseite sein, aber auch die Profilseite von einem anderen Benutzer)
@@ -42,10 +31,9 @@ if (isset($_GET['username'])) {
            und diese "id" dann bei der Variable "$userid" speichern */
 
         $followerid = $user_loggedin; //"followerid" ist die "id" des Benutzers, der sich eingeloggt hat
-        //'$userid2' ist die "id" der eingeloggten Person (oben definiert: "$userid2 = $_SESSION['angemeldet'];"
+        //'$user_loggedin' ist die "id" der eingeloggten Person (in header.php bzw. in "user_data.php" definiert: "$user_loggedin = $_SESSION['angemeldet'];"
         // wenn man auf seiner eigenen Profilseite ist, dann sind die "$userid=1" und die "$followerid=1" gleich
         // wenn man auf der Profilseite eines anderen Benutzers ist, dann ist z.B. die "$userid=3" und die eigene "followerid=1"
-
 
 
         if (isset($_POST['follow'])) {
