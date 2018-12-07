@@ -208,8 +208,6 @@ else { // wenn der Post kein Bild enthält, wird das ausgeführt:
     echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
-        /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
-          wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
 
         echo "<input type='submit' name='like' value='Like'>";
     } else {
@@ -225,8 +223,6 @@ else { // wenn der Post kein Bild enthält, wird das ausgeführt:
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
-// Wie kann ich folgendes Problem lösen: Wenn man etwas kommentiert, liked, postet wird die Seite neu geladen (und es bleibt nicht z.B. beim jeweiligen Kommentar, wo die Maus ist)
-// header('Location: index.php?postid=".$post_id."');
 
     Comment::displayComments($post_id);
 
@@ -239,19 +235,23 @@ else { // wenn der Post kein Bild enthält, wird das ausgeführt:
 
 
 
-// Anazeigen der Posts mit den Kommentaren:
+// Anazeigen der Posts der anderen Benutzer mit den jeweiligen Kommentaren:
 $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username, posts.img_id, list5.profile_pic FROM list5, posts, followers
                              WHERE posts.user_id = followers.user_id
                              AND list5.id = posts.user_id
                              AND follower_id = :userid
                              ORDER BY posts.id DESC;', array(':userid'=>$user_loggedin));
 
+/*
+joints -> WHERE posts.user_id = followers.user_id
+= zusammenfügen, wo die "id" der Person, deren Post angezeigt werden soll, mit der "id" der Person übereinstimmt, die von der eingeloggten Person gefolgt ist
+*/
 
 foreach ($followingposts as $post) {
 
-    $username = $post['username'];
+    $username = $post['username']; // Fetch von der Spalte "username" in unserer Datenbanktabelle
 
-if (!$post['img_id']== "") {
+if (!$post['img_id']== "") { //wenn der Post ein Bild enthält, wird der Post mit dem Bild angezeigt:
 
     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>' . ' ' . ' ' . Post::link_add($post['body']) . "<img src='img_upload/post_pics/" . $post['img_id'] . "'>";
 
@@ -285,15 +285,13 @@ if (!$post['img_id']== "") {
 
 }
 
-else {
+else { // wenn der Post kein Bild enthält, wird das ausgeführt:
     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>' . ' ' . ' ' . Post::link_add($post['body']);
 
 
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
-        /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
-          wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
 
         echo "<input type='submit' name='like' value='Like'>";
     } else {
@@ -318,15 +316,8 @@ else {
               <hr /></br />";
 
 }
-
 }
-
-/* joints -> WHERE posts.user_id = followers.user_id
-= zusammenfügen, wo die "id" der Person, deren Post angezeigt werden soll, mit der "id" der Person übereinstimmt, die von der eingeloggten Person gefolgt ist
-*/
-
 ?>
-
 
 </body>
 </html>
