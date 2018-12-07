@@ -277,26 +277,9 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
-
-
-<!--Anzeigen von Posts ($posts = Post::displayPosts...)-->
+<!--Anzeigen von Posts (oben wird die Variable definiert: $posts = Post::displayPosts...)-->
 <div class="posts">
     <?php echo $posts;
-
-   //echo $img_posts;
-
-
-  /*
-
-  if ($_FILES['file']['size'] == 0) {
-        echo $posts;
-    }
-    if ($_FILES['file']['size'] != 0){
-        echo $img_posts;
-    }
-
-  */
-
    ?>
 </div>
 
