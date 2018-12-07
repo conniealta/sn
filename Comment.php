@@ -23,8 +23,13 @@ class Comment {
         foreach ($comments as $comment) {
             $profile_pic = $comment['profile_pic'];
             $username = $comment ['username'];
+            //$userid = $comment ['user_id'];
 
             echo "<img style='width: 35px; height: 35px; border-radius: 55px; margin-left:55px;' src='img_upload/profile_pics/$profile_pic'>".' '.' '."<a href='profile.php?username=".$username." ' >".$comment['username'].'</a>'.' '.' '.' '.Post::link_add($comment['comment'])."<hr />";
+
+           /* if ($userid = $loggedIn_userid){
+               echo "<input type='submit' name='deletecomment' value='Löschen'> ";
+            }*/
 
         }
         // ['comment'] = die Spalte in der Datenbank

@@ -1,39 +1,6 @@
 <?php
 session_start();
-?>
 
-<!--<!DOCTYPE html> <!-- das ist HTML 5 -->
-<!--<html lang="de">-->
-<!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!---->
-<!--    <link rel="stylesheet" type="text/css" href=" " media="screen"/>-->
-<!--    <link rel="stylesheet" type="text/css" href="css/style.css">-->
-<!---->
-<!--    <title> Feed </title>-->
-<!---->
-<!--    <style>-->
-<!--        body {-->
-<!--            font-size: 20px;-->
-<!--            margin: 0;-->
-<!--            padding: 0;-->
-<!--            font-family: sans-serif;-->
-<!--        }-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--        .active {-->
-<!--            background-color: #bd4147;-->
-<!--        }-->
-<!--    </style>-->
-<!---->
-<!--</head>-->
-<!---->
-<!--<body>-->
-
-
-<?php
 include('header.php');
 ?>
 
@@ -225,6 +192,16 @@ if(isset($_POST['searchbox'])) {
 
 
 
+<?php
+/*if (isset($_POST['deletecomment'])) {
+if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid))) {
+DB::query('DELETE FROM posts WHERE id=:postid and user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid));
+DB::query('DELETE FROM post_likes WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
+DB::query('DELETE FROM comments WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
+echo 'Post gelöscht!';
+}
+}
+*/?>
 
 
 
@@ -242,14 +219,13 @@ if (!$img== "") {
         /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
           wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
 
-        echo "<input type='submit' name='unlike' value='Unlike'>";
-    } else {
-
         echo "<input type='submit' name='like' value='Like'>";
+    }
+    else {
+        echo "<input type='submit' name='unlike' value='Unlike'>";
     }
     echo "<span>" . $post_likes . " likes</span>
               </form>
-
 
 
               <form action='index.php?postid=" . $post_id . " 'method='post'>
@@ -268,7 +244,7 @@ if (!$img== "") {
 }
 
 else {
-    echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=" .$user_name . " ' > $user_name  </a> " . Post::link_add($body);
+    echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=" .$user_name . " ' > $user_name  </a> " . Post::link_add($body);
 
     echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
@@ -276,10 +252,9 @@ else {
         /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
           wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
 
-        echo "<input type='submit' name='unlike' value='Unlike'>";
-    } else {
-
         echo "<input type='submit' name='like' value='Like'>";
+    } else {
+        echo "<input type='submit' name='unlike' value='Unlike'>";
     }
     echo "<span>" . $post_likes . " likes</span>
               </form>
@@ -376,6 +351,7 @@ else {
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
+
     Comment::displayComments($post['id']);
 
     echo "
