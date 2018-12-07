@@ -80,49 +80,43 @@ if(isset($_POST['post'])){
                 $bild_id = $fileNameNew;
 
             }else {
-                echo"Deine Datei ist zu groß! (Max Größe 1MB)";
+                echo"Die Datei ist zu groß! (Maximale Größe: 1MB)";
 
             }
         }else {
-            echo"Leider gab es ein Problem! :(";
+            echo "Fehler!";
 
         }
     }else {
-        echo"Dieses Dateiformat wird nicht unterstützt!";
+        echo "Dieses Dateiformat wird nicht unterstützt!";
 
     }
 
 }
 
-// Post-Funktion und Bild-Post-Funktion:
+// Text-Post-Funktion und Bild-Post-Funktion:
 if (isset($_POST['post'])) {
     if ($_FILES['file']['size'] == 0) {
         Post::createPost2($_POST['postbody'], $user_loggedin);
     } else {
-        $postid = Post::createImgPost2($bild_id, $user_loggedin); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
+        $postid = Post::createImgPost2($bild_id, $_POST['postbody'], $user_loggedin);
     }
 }
-
-// Anzeigen von allen Posts der eingeloggten Person:
-//$my_posts = Post::displayPosts2 ($profile_pic2, $username, $user_loggedin);
-// siehe unten die Variable der Aufruf von $my_posts;
-
 
 
 //Liking-Funktion:
 if (isset($_GET['postid'])) {
-    Post::likePost($_GET['postid'], $user_loggedin); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+    Post::likePost($_GET['postid'], $user_loggedin);
 }
 
 //Kommentar-Funktion:
 if (isset($_POST['comment'])) {
-    Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+    Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin);
 
     //header('Location: index.php?postid=."$post['id']"');
 
     //echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 }
-
 
 
 // Suchfunktion:
@@ -155,16 +149,7 @@ if(isset($_POST['searchbox'])) {
     echo '</pre>';
 
 }
-
-
 ?>
-
-
-<!--  Anzeigen von allen Posts der eingeloggten Person:
-<div class="posts">-->
-<!--    --><?php //echo $my_posts; ?>
-<!--</div>-->
-
 
 
 <?php
@@ -184,7 +169,7 @@ echo 'Post gelöscht!';
 
 //Anzeigen des letzten Posts der eingeloggten Person --> Variablen sind in include('user_data.php'):
 
-if (!$img== "") {
+if (!$img== "") { //wenn der Post ein Bild enthält, wird der Post mit dem Bild angezeigt:
 
    echo  "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=".$user_name . "'  > $user_name  </a> <img src='img_upload/post_pics/$img'>" . Post::link_add($body);
 
@@ -196,12 +181,11 @@ if (!$img== "") {
 
         echo "<input type='submit' name='like' value='Like'>";
     }
-    else {
+    else { // wenn die eingeloggte Person den Post schon geliked hat, dann führ das aus:
         echo "<input type='submit' name='unlike' value='Unlike'>";
     }
     echo "<span>" . $post_likes . " likes</span>
               </form>
-
 
               <form action='index.php?postid=" . $post_id . " 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
@@ -218,7 +202,7 @@ if (!$img== "") {
               <hr /></br />";
 }
 
-else {
+else { // wenn der Post kein Bild enthält, wird das ausgeführt:
     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=" .$user_name . " ' > $user_name  </a> " . Post::link_add($body);
 
     echo "<form action='index.php?postid=" . $post_id . "' method='post'>";

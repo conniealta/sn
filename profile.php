@@ -786,7 +786,7 @@ if (isset($_GET['username'])) {
         if ($_FILES['file']['size'] == 0) {
             Post::createPost($_POST['postbody'], $userid2, $userid);
         } else {
-            $postid = Post::createImgPost($bild_id, $userid2, $userid); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
+            $postid = Post::createImgPost($bild_id, $_POST['postbody'], $userid2, $userid ); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
         }
     }
     //Das PROBLEM: wenn man einen Text postet, ist alles ok --> wenn man ein Bild postet, wird dieses zweimal angezeigt
