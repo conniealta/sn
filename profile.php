@@ -148,10 +148,6 @@ if (isset($_GET['username'])) {
         Post::likePost($_GET['postid'], $followerid);
     }
 
-
-    /*if (isset($_GET['postid'])) {
-        Post::likePost($_GET['postid'], $followerid);
-    }*/
     /*  in "Post.php" -> '$postid', '$likerId'
      --> die "$_GET['postid'], $followerid" werden dann an die Parameter in "Post.php" übergeben
 
@@ -163,36 +159,7 @@ if (isset($_GET['username'])) {
 
     $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
 
-   $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
-
-   //$img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
-
-    /*
-     if ($_FILES['file']['size'] == 0) {
-        $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
-    } else {
-        $img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
-    }
-    */
-
-
-
- /*if ($_FILES['file']['size'] == 0) {
-      $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
-  }
-
-
-  if ($_FILES['file']['size'] != 0) {
-      $img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
-  }*/
-
-
-
-
-
-
-
-
+    $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
 
     /*
     $profile_pic2 = das ist das Profilbild der Person, auf deren Profilseite wir sind
@@ -202,14 +169,13 @@ if (isset($_GET['username'])) {
 
     die Variable "$posts" ist gleich der "return-Wert" von dieser Methode
 
-    in Post.php -> return $posts;
+    in "Post.php" -> return $posts;
      "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
     */
 
 
-
+// !!!!!!!!!!!
   //Comment::displayComments2($_GET['postid']);
-
 
     //Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
 
@@ -228,10 +194,6 @@ if (isset($_GET['username'])) {
     die('User not found!');
 }
 
-
-
-
-
 ?>
 
 
@@ -240,17 +202,9 @@ if (isset($_GET['username'])) {
 <h1>Das Profil von '<?php echo $username; ?>'</h1>
 
 
-
-
 <form action="profile.php?username=<?php echo $username; ?>" method="post">
 
     <?php
-
-    $lname2 = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
-    $fname2 = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
-    $user_name2 = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['username'];
-    $studiengang = DB::query('SELECT studiengang FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['studiengang'];
-    $age = DB::query('SELECT age FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['age'];
 
     if ($userid != $followerid) { //nur wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist, wird der Button angezeigt
         if ($isFollowing) {
@@ -274,9 +228,9 @@ if (isset($_GET['username'])) {
             <a href="profile.php?username=<?php echo $username; ?>" >
                 <?php
                 echo $fname2 . " " . $lname2."<br>"."<br>";
-                echo $age. " ". 'Jahre alt'."<br>";
-                echo $studiengang;
-
+                echo $age2. " ". 'Jahre alt'."<br>"."<br>";
+                echo $studiengang2;
+                // diese sind in "user_data.php" definiert --> das sind die Infos der Person, auf deren Profilseite wir sind
                 ?>
             </a>
         </div>
@@ -292,37 +246,7 @@ if (isset($_GET['username'])) {
 if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
     echo '<a href="account-settings.php">Profil bearbeiten</a>';
 }
-?>
 
-
-
-
-<!--<br><br><br><br><br><br><br><br>-->
-<!---->
-<!--<h1> Das Profil von '--><?php //echo $user_name; ?><!--'</h1>-->
-<!---->
-<!---->
-<!---->
-<!--<div class="user_details column">-->
-<!---->
-<!--    <a href='img_upload/profile_pics/--><?php //echo $profile_pic;?><!--'>      <img src='img_upload/profile_pics/--><?php //echo $profile_pic;?><!--'></a>-->
-<!---->
-<!--    <div class="user_details_left_right">-->
-<!--        <a href="--><?php //echo $userid2; ?><!--">-->
-<!--            --><?php
-//            echo $fname . " " . $lname;
-//
-//            ?>
-<!--        </a>-->
-<!--    </div>-->
-<!---->
-<!--</div>-->
-
-
-<br><br><br><br><br><br><br><br><br><br>
-
-
-<?php
 if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
     echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
@@ -330,25 +254,10 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 </form>';
 }
+
 ?>
 
-<!---->
-<!--<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">-->
-<!--    <input type="file" name="file">-->
-<!--    <button type="submit" name="submit"> Upload Profile Pic </button>-->
-<!---->
-<!--</form>-->
-
-
-
-
-
-<!--<form action="profile.php?username=--><?php ///*echo $username; */?><!--" method="post">-->
-<!--    <textarea name="postbody" rows="8" cols="80"></textarea>-->
-<!--    <input type="submit" name="post" value="Post">-->
-<!--</form>-->
-
-<br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 <div class="main_column column">

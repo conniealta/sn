@@ -40,6 +40,23 @@ $email = DB::query('SELECT email FROM list5 WHERE id=:userid', array(':userid' =
 $followerid = $user_loggedin;
 
 
+// $profile_pic = das ist das Profilbild der eingeloggten Person
+// $profile_pic2 = das ist das Profilbild der Person, auf deren Profilseite wir sind
+// userid = das ist die id der Person, auf deren Profilseite wir sind
+
+$username = DB::query('SELECT username FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['username'];
+$userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
+$lname2 = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
+$fname2 = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['first_name'];
+$user_name2 = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['username'];
+$studiengang2 = DB::query('SELECT studiengang FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['studiengang'];
+$age2 = DB::query('SELECT age FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['age'];
+$profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
+
+
+
+
+
 
 //hier mach eine include-Datei von PDO !!!
 
