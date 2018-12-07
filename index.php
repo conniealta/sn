@@ -2,21 +2,14 @@
 session_start();
 
 include('header.php');
+include('Post.php');
+include('Comment.php');
 ?>
 
 <br><br><br><br>
 
-<a href="logout.php">Log out!</a>
 
 
-
-
-<?php
-
-include('Post.php');
-include('Comment.php');
-
-?>
 
 
 
