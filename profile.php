@@ -246,15 +246,6 @@ if (isset($_GET['username'])) {
 if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
     echo '<a href="account-settings.php">Profil bearbeiten</a>';
 }
-
-if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
-    echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <button type="submit" name="submit"> Upload Profile Pic </button>
-
-</form>';
-}
-
 ?>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
