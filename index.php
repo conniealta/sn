@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('header.php');
+include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 include('Post.php');
 include('Comment.php');
 ?>
@@ -9,12 +9,7 @@ include('Comment.php');
 <br><br><br><br>
 
 
-
-
-
-
-
-<h1> Das Profil von '<?php echo $user_name; ?>'</h1>
+<h1> Das Profil von '<?php echo $user_name; ?>'</h1> <!-- die gelben Variablen sind oben in "header.php" in "user_data.php" definiert-->
 
 
 <div class="main_column column">
@@ -50,28 +45,15 @@ include('Comment.php');
 </div>
 
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-<br><br><br><br><br><br><br><br><br><br>
 <h1 class="title"> Feed  </h1>
-
-
-
-
-<!--<div class="posts">-->
-<!--    --><?php //echo $posts; //$posts = Post::displayPosts2 ?>
-<!--</div>-->
-<!---->
-
 
 
 
 <?php
 
-$userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
+//$userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
 
 if(isset($_POST['post'])){
     $file = $_FILES['file'];

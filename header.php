@@ -73,7 +73,7 @@
             include ('user_data.php');
             $user_loggedin = $_SESSION['angemeldet'];
             $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-            echo "<a href='index.php?username=$username'>Feed</a>"
+            echo "<a class='active' href='index.php?username=$username'>Feed</a>"
             ?>
 
         </li>
