@@ -1,8 +1,8 @@
 <?php
 session_start();
+include('header.php');
 
-
-$showTimeline = False;
+/*$showTimeline = False;
 
 if(!isset($_SESSION["angemeldet"]))
 {
@@ -16,21 +16,23 @@ else {
 
 
 include('user_data.php'); // Fetch von allen Variablen in unserer User-Datenbanktabelle  --> include('DB.php') ist drin
-
+*/
 
 ?>
 
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> </title>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title> </title>-->
+<!---->
+<!--</head>-->
+<!--<body>-->
 
-</head>
-<body>
+<br><br><br><br><br>
 
 <div class="user_details column">
 
@@ -48,40 +50,20 @@ include('user_data.php'); // Fetch von allen Variablen in unserer User-Datenbank
 </div>
 
 
-
+<br><br><br><br><br><br><br><br><br><br>
 <?php
-if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
+if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
     echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
     <button type="submit" name="submit"> Upload Profile Pic </button>
 
 </form>';
 }
+
 ?>
 
 <br><br>
 
-
-
-<!--<form action="do-account-settings.php" method="post">-->
-<!--    <p>Alter:-->
-<!--        <input type="text" size="40" maxlength="10" name="age" placeholder="Alter eingeben">-->
-<!--    <input type="submit" name="update" value="Ändere deine Angaben"></p>-->
-<!--</form>-->
-<!---->
-<!---->
-<!--<form action="do-account-settings.php" method="post">-->
-<!--    <p>Interessen:-->
-<!--        <input type="text" size="40" maxlength="10" name="interessen" placeholder="Interessen eingeben">-->
-<!--    <input type="submit" name="update" value="Ändere deine Angaben"></p>-->
-<!--</form>-->
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br>
 
     <form action="do-account-settings.php" method="post">
 
@@ -170,9 +152,9 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
         <br><br>
         <input type="submit" name="update" value="Ändere deine Angaben">
 
-
     </form>
 
+<br><br><br><br><br><br><br><br><br><br>
 
 </body>
 </html>
