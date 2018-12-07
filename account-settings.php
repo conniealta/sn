@@ -2,35 +2,7 @@
 session_start();
 include('header.php');
 
-/*$showTimeline = False;
-
-if(!isset($_SESSION["angemeldet"]))
-{
-    echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
-    die();
-}
-else {
-    $userid2 = $_SESSION['angemeldet'];
-    $showTimeline = True;
-}
-
-
-include('user_data.php'); // Fetch von allen Variablen in unserer User-Datenbanktabelle  --> include('DB.php') ist drin
-*/
-
 ?>
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title> </title>-->
-<!---->
-<!--</head>-->
-<!--<body>-->
 
 <br><br><br><br><br>
 
@@ -64,9 +36,7 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
 <br><br>
 
-
     <form action="do-account-settings.php" method="post">
-
 
         <p>Username:
             <input type="text" size="40" maxlength="250" name="username" value="<?php echo $user_name; ?>"></p>
