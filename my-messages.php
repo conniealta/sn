@@ -29,7 +29,7 @@ include('header.php');
 
 <?php
 session_start();
-include('DB.php');
+
 
 if(!isset($_SESSION["angemeldet"]))
 {

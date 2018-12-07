@@ -14,7 +14,7 @@ include('header.php');
 
 
 <?php
-include('DB.php');
+
 include('Post.php');
 include('Comment.php');
 

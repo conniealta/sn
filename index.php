@@ -45,7 +45,7 @@ include('header.php');
 
 
 <?php
-include ('user_data.php');
+
 include('Post.php');
 include('Comment.php');
 

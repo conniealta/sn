@@ -30,7 +30,7 @@ include('header.php');
 
 <?php
 
-include('DB.php');
+
 include('Post.php');
 
 
@@ -50,7 +50,7 @@ echo "<h1>Benachrichtigungen</h1>";
 if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin))) {
     $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin));
     $user = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-    $postId = DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:list5id', array(':list5id'=>$user_loggedin, ':postid'=>$postId));
+    $postId = DB::query('SELECT id FROM posts WHERE user_id=:userid ORDER BY id ASC', array(':userid'=>$user_loggedin))[0]['id'];
 
     foreach($notifications as $n) {
         if ($n['type'] == 1) {
@@ -60,15 +60,15 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
                 echo "Du hast eine Benachrichtigung!<hr />";
             } else {
                 $extra = json_decode($n['extra']);
-                echo "<a href='profile.php?username=".$senderName ."'> @$senderName </a> hat dich in einem  <a href='profile.php?username=".$senderName."&postid=138 '>Post</a> markiert! - ".$extra->postbody."<hr />";
+                echo "<a href='profile.php?username=".$senderName ."'> @$senderName </a> hat dich in einem  <a href='profile.php?username=$senderName&postid=$postId '>Post</a> markiert! - ".$extra->postbody."<hr />";
             }
 
         } else if ($n['type'] == 2) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid'=>$n['sender']))[0]['username'];
-            echo "<a href='profile.php?username=".$senderName ."'> @$senderName </a> hat deinen  <a href='profile.php?username=".$user."&postid=138 '>Post</a> geliked! <hr />" ;
+            echo "<a href='profile.php?username=".$senderName ."'> @$senderName </a> hat deinen  <a href='profile.php?username=$user&postid=".$p['id']."'>Post</a> geliked! <hr />" ;
 
             //postid muss noch geändert werden,  aber wenn jetzt der postid in der URL übergeben wird,
-            //  dann wird der Post geliked oder entliked
+
 
         }
 
@@ -81,3 +81,4 @@ include('footer.php');
 ?>
 </body>
 </html>
+
