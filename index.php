@@ -232,26 +232,27 @@ if(isset($_POST['searchbox'])) {
 
 //Anzeigen des letzten Posts der eingeloggten Person --> Variablen sind in include('user_data.php'):
 
+if (!$img== "") {
 
-echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  $user_name  <img src='img_upload/post_pics/$img'>".Post::link_add($body);
+   echo  "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=".$user_name . "'  > $user_name  </a> <img src='img_upload/post_pics/$img'>" . Post::link_add($body);
 
-echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
+    echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
-if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
-    /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
-      wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
+    if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
+        /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
+          wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
 
-    echo "<input type='submit' name='unlike' value='Unlike'>";
-}else {
+        echo "<input type='submit' name='unlike' value='Unlike'>";
+    } else {
 
-    echo "<input type='submit' name='like' value='Like'>";
-}
-echo "<span>" . $post_likes . " likes</span>
+        echo "<input type='submit' name='like' value='Like'>";
+    }
+    echo "<span>" . $post_likes . " likes</span>
               </form>
 
 
 
-              <form action='index.php?postid=".$post_id." 'method='post'>
+              <form action='index.php?postid=" . $post_id . " 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
@@ -259,12 +260,46 @@ echo "<span>" . $post_likes . " likes</span>
 // Wie kann ich folgendes Problem lösen: Wenn man etwas kommentiert, liked, postet wird die Seite neu geladen (und es bleibt nicht z.B. beim jeweiligen Kommentar, wo die Maus ist)
 // header('Location: index.php?postid=".$post_id."');
 
-Comment::displayComments($post_id);
+    Comment::displayComments($post_id);
 
-echo"
+    echo "
 
               <hr /></br />";
+}
 
+else {
+    echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=" .$user_name . " ' > $user_name  </a> " . Post::link_add($body);
+
+    echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
+
+    if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
+        /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
+          wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
+
+        echo "<input type='submit' name='unlike' value='Unlike'>";
+    } else {
+
+        echo "<input type='submit' name='like' value='Like'>";
+    }
+    echo "<span>" . $post_likes . " likes</span>
+              </form>
+
+
+
+              <form action='index.php?postid=" . $post_id . " 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>
+              ";
+// Wie kann ich folgendes Problem lösen: Wenn man etwas kommentiert, liked, postet wird die Seite neu geladen (und es bleibt nicht z.B. beim jeweiligen Kommentar, wo die Maus ist)
+// header('Location: index.php?postid=".$post_id."');
+
+    Comment::displayComments($post_id);
+
+    echo "
+
+              <hr /></br />";
+}
 
 
 
@@ -282,7 +317,9 @@ foreach ($followingposts as $post) {
 
     $username = $post['username'];
 
-    echo  "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$post['profile_pic']."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$post['username'].'</a>'.' '.' '.Post::link_add($post['body']) ."<img src='img_upload/post_pics/".$post['img_id']."'>". "~ ";
+if (!$post['img_id']== "") {
+
+    echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>' . ' ' . ' ' . Post::link_add($post['body']) . "<img src='img_upload/post_pics/" . $post['img_id'] . "'>";
 
 
     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
@@ -292,7 +329,7 @@ foreach ($followingposts as $post) {
           wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
 
         echo "<input type='submit' name='like' value='Like'>";
-    }else {
+    } else {
         echo "<input type='submit' name='unlike' value='Unlike'>";
 
     }
@@ -301,17 +338,51 @@ foreach ($followingposts as $post) {
 
 
 
-              <form action='index.php?postid=".$post['id']." 'method='post'>
+              <form action='index.php?postid=" . $post['id'] . " 'method='post'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
     Comment::displayComments($post['id']);
 
-    echo"
+    echo "
 
               <hr /></br />";
 
+}
+
+else {
+    echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>' . ' ' . ' ' . Post::link_add($post['body']);
+
+
+    echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
+
+    if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
+        /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
+          wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
+
+        echo "<input type='submit' name='like' value='Like'>";
+    } else {
+        echo "<input type='submit' name='unlike' value='Unlike'>";
+
+    }
+    echo "<span>" . $post['likes'] . " likes</span>
+              </form>
+
+
+
+              <form action='index.php?postid=" . $post['id'] . " 'method='post'>
+              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <input type='submit' name='comment' value='Kommentieren'>
+              </form>
+              ";
+    Comment::displayComments($post['id']);
+
+    echo "
+
+              <hr /></br />";
+
+}
 
 }
 

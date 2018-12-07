@@ -2,63 +2,6 @@
 session_start();
 ?>
 
-
-<!DOCTYPE html> <!-- das ist HTML 5 -->
-<html lang="de">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-    <title> Mein Profil </title>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-    <style>
-        body {
-            font-size: 20px;
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-            position: -webkit-sticky; /* Safari */
-            position: sticky;
-            top: 0;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #111;
-        }
-
-        .active {
-            background-color: #bd4147;
-        }
-    </style>
-
-</head>
-
-
-
-<body>
-
 <?php
 include('header.php');
 ?>
@@ -897,15 +840,17 @@ if (isset($_GET['username'])) {
 
    //$img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
 
-    /*if ($_FILES['file']['size'] == 0) {
+    /*
+     if ($_FILES['file']['size'] == 0) {
         $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
     } else {
         $img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
-    }*/
+    }
+    */
 
 
-//oder:
-/*    if ($_FILES['file']['size'] == 0) {
+
+ /*if ($_FILES['file']['size'] == 0) {
       $posts = Post::displayPosts($profile_pic2, $userid, $username, $followerid);
   }
 
@@ -913,6 +858,7 @@ if (isset($_GET['username'])) {
   if ($_FILES['file']['size'] != 0) {
       $img_posts = Post::displayImgPosts($profile_pic2, $userid, $username, $followerid);
   }*/
+
 
 
 
@@ -1104,12 +1050,16 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
    //echo $img_posts;
 
 
-  /*  if ($_FILES['file']['size'] == 0) {
+  /*
+
+  if ($_FILES['file']['size'] == 0) {
         echo $posts;
     }
     if ($_FILES['file']['size'] != 0){
         echo $img_posts;
-    }*/
+    }
+
+  */
 
    ?>
 </div>
