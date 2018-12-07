@@ -202,18 +202,16 @@ class Post {
 
                     if (!$p['img_id']== "") { // wenn es ein Bild gibt, dann führ das aus (zeig das Bild an!)
 
-                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' ';
+                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '
 
-                                  if ($userid == $loggedIn_userid){
-                                      $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
-                                  }
-
-                        $posts .= "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
+                       ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
                  ";
 
-
+                        if ($userid == $loggedIn_userid){
+                            $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                        }
                         #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
 
@@ -229,18 +227,16 @@ class Post {
                     }
 
                     else { // wenn es kein Bild im Post gibt, dann führe das aus:
-                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' ';
+                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '
 
-                                  if ($userid == $loggedIn_userid){
-                                      $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
-                                  }
-
-                        $posts .= "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
+                        ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  <span>".$p['likes']." likes</span>
                  ";
 
-
+                        if ($userid == $loggedIn_userid){
+                            $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
+                        }
                         #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
 
@@ -277,19 +273,17 @@ class Post {
 
 
                 if (!$p['img_id']== "") {
-                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $username . '</a>' . ' ' . ' ' . "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' ';
+                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $username . '</a>' . ' ' . ' ' . "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '
 
-                             if ($userid == $loggedIn_userid) {
-                                 $posts .= "<input type='submit' name='deletepost' value='Löschen'> ";
-                             }
-
-                    $posts.= "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+                    ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>" . $p['likes'] . " likes</span>
               
                 ";
 
-
+                    if ($userid == $loggedIn_userid) {
+                        $posts .= "<input type='submit' name='deletepost' value='Löschen'> ";
+                    }
                 #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
                 #$userid == $loggedIn_userid
 
@@ -306,19 +300,17 @@ class Post {
                 }
 
                 else {
-                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' ';
+                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '
 
-                         if ($userid == $loggedIn_userid) {
-                             $posts .= "<input type='submit' name='deletepost' value='Löschen'> ";
-                         }
-
-                        $posts .= "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
+                    ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span>" . $p['likes'] . " likes</span>
               
                 ";
 
-
+                    if ($userid == $loggedIn_userid) {
+                        $posts .= "<input type='submit' name='deletepost' value='Löschen'> ";
+                    }
                     #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
                     #$userid == $loggedIn_userid
 

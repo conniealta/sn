@@ -1,24 +1,15 @@
 <?php
 session_start();
-?>
-
-<?php
-include('header.php');
+include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
+include('Post.php');
+include('Comment.php');
 ?>
 
 <br><br><br><br>
 
-<a href="logout.php">Log out!</a>
-
-
-
 
 <?php
-
-include('Post.php');
-include('Comment.php');
-
-$showTimeline = False;
+/*$showTimeline = False;
 
 if(!isset($_SESSION["angemeldet"]))
 {
@@ -30,7 +21,7 @@ else {
     echo "Hallo User: ".$userid2;
     $showTimeline = True;
 }
-?>
+*/?>
 
 
 <?php
@@ -644,10 +635,10 @@ echo "<a href='img_upload/post_pics/$img_id'></a>      <img src='img_upload/post
 
 <?php
 
-$profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['profile_pic'];
-$lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['last_name'];
-$fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['first_name'];
-$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $userid2))[0]['username'];
+$profile_pic = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['profile_pic'];
+$lname = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['last_name'];
+$fname = DB::query('SELECT first_name FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['first_name'];
+$user_name = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
 
 
 
@@ -675,7 +666,7 @@ if (isset($_GET['username'])) {
           -> anders formuliert: die "id" aus der Datenbank auswählen, wo "username" in der Datenbank dem ":username" in der URL entspricht
            und diese "id" dann bei der Variable "$userid" speichern */
 
-        $followerid = $userid2; //"followerid" ist die "id" des Benutzers, der sich eingeloggt hat
+        $followerid = $user_loggedin; //"followerid" ist die "id" des Benutzers, der sich eingeloggt hat
         //'$userid2' ist die "id" der eingeloggten Person (oben definiert: "$userid2 = $_SESSION['angemeldet'];"
         // wenn man auf seiner eigenen Profilseite ist, dann sind die "$userid=1" und die "$followerid=1" gleich
         // wenn man auf der Profilseite eines anderen Benutzers ist, dann ist z.B. die "$userid=3" und die eigene "followerid=1"
@@ -784,9 +775,9 @@ if (isset($_GET['username'])) {
 
     if (isset($_POST['post'])) {
         if ($_FILES['file']['size'] == 0) {
-            Post::createPost($_POST['postbody'], $userid2, $userid);
+            Post::createPost($_POST['postbody'], $user_loggedin, $userid);
         } else {
-            $postid = Post::createImgPost($bild_id, $_POST['postbody'], $userid2, $userid ); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
+            $postid = Post::createImgPost($bild_id, $_POST['postbody'], $user_loggedin, $userid ); // Füg eine Variable "postbody" hinzu damit man auch Bilder mit Texte posten kann
         }
     }
     //Das PROBLEM: wenn man einen Text postet, ist alles ok --> wenn man ein Bild postet, wird dieses zweimal angezeigt
