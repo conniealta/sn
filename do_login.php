@@ -11,8 +11,9 @@ else
     die();
 }
 
-$pdo=new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de;dbname=u-ka034', 'ka034', 'zeeD6athoo',array('charset'=>'utf8'));
+include ('db_pdo.php');
 
+$pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
 
 //echo $passwort;
 $statement = $pdo->prepare("SELECT * FROM list5 WHERE email=:email AND passwort=:passwort");
