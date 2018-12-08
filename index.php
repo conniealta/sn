@@ -163,6 +163,7 @@ if(isset($_POST['searchbox'])) {
 
 
 <?php
+// Löschen von Kommentaren:
 /*if (isset($_POST['deletecomment'])) {
 if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid))) {
 DB::query('DELETE FROM posts WHERE id=:postid and user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid));
