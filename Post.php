@@ -3,6 +3,7 @@ include('Notify2.php');
 
 class Post {
 
+// Das ist wenn die eingeloggte Person bei der eigenen Profilseite ist und von dort aus posten will:
     public static function createPost($postbody, $loggedIn_userid, $profileUserId) {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
 
@@ -34,7 +35,7 @@ class Post {
 
 
 
-
+// Das ist wenn die eingeloggte Person beim "Feed" ist und von dort aus posten will:
     public static function createPost2 ($postbody, $loggedIn_userid) {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
 
@@ -188,12 +189,8 @@ class Post {
 
 
 
-
-
     public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
-        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
-        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
 
         $posts = "";
 
@@ -261,16 +258,9 @@ class Post {
 
             }
             else { // Der Unterschied zwischen dem Haupt-If und diesem Else ist der Unlike/Like-Button !!
-                //$posts .= (self::link_add($p['body'])) . "
 
-
-                //$posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
-
-                    //$posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).
 
                         //Comment::displayComments($p['id']).
-
-
 
                 if (!$p['img_id']== "") {
                     $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $username . '</a>' . ' ' . ' ' . "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '
@@ -325,94 +315,11 @@ class Post {
               </form><hr /></br />
                 ";
                 }
-
-
-
-
             }
         }
 
         return $posts;
     }
-
-
-
-
-
-    public static function displayPosts2 ($profilePic, $username, $loggedIn_userid) { //hier irgendwo profile_pic
-        $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$loggedIn_userid));
-        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
-        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
-
-        $posts = "";
-        /* .$id=$pdo->lastInsertId(); !!!!
-        ohne foreach, sondern:
-        $my_posts = DB::query('SELECT body FROM posts WHERE user_id=:userid', array(':userid' => $user_loggedin))[0]['body'];
-        echo $my_posts --> da wird der Post mit id "0" angezeigt und wir wollen dass der letzte angezeigt wird aber wie??? und wie fügen wir noch die Bilder hinzu? (siehe unten "img src ...")*/
-
-        foreach($dbposts as $p) {
-
-            if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
-
-                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
-
-                    "
-              <form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
-                 <input type='submit' name='like' value='Like'>
-                 <span>".$p['likes']." likes</span>
-               
-                 <form action='profile.php?postid=".$p['id']." 'method='post'>
-              <textarea name='commentbody' rows='3' cols='50'></textarea>
-              <input type='submit' name='comment' value='Kommentieren'>
-              </form>
-              ";
-                if ($loggedIn_userid){
-                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
-                }
-                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
-                $posts .="
-              </form><hr /></br />
-                ";
-            }
-            else {
-                $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
-
-                    "
-              <form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
-                 <input type='submit' name='unlike' value='Unlike'>
-                 <span>".$p['likes']." likes</span>
-                
-                  <form action='profile.php?postid=".$p['id']." 'method='post'>
-              <textarea name='commentbody' rows='3' cols='50'></textarea>
-              <input type='submit' name='comment' value='Kommentieren'>
-              </form>
-                 ";
-
-                if ($loggedIn_userid){
-                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
-                }
-                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
-                #$userid == $loggedIn_userid
-                $posts .="
-              </form><hr /></br />
-                ";
-            }
-        }
-        return $posts;
-    }
-
-
-//mit "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
-    /* $p = ein Array mit den Datenbankeinträgen: z.B. --> Array ([id]=>1 [0]=>1 [body]=>Hello [1]=>Hello [posted_at]=>2018-11-08 17:37:23 ...)
-    $p[body] = unser Post wird bei "body" in der Datenbanktabelle gespeichert --> mit dieser Funktion sehen wir nur den Inhalt des Posts (nicht id, Datum, etc.)
-    $posts = "" -> zunächst leer Array
-    "<hr />" = horizontale Linie
-    ".=" (->  $txt1 = "Hello"; $txt2 = " world!"; $txt1 .= $txt2; --> Hello world)
-    htmlspecialchars = wandelt Sonderzeichen in HTML-Codes um
-    postid = das ist die "id" des jeweiligen Posteintrag
-    if (isset($_GET['postid']) -> prüfen, ob der Like-Button geklickt wurde, wenn ja
-    */
-
 
 
 
@@ -494,104 +401,16 @@ class Post {
     }
 
 
+    //mit "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
+    /* $p = ein Array mit den Datenbankeinträgen: z.B. --> Array ([id]=>1 [0]=>1 [body]=>Hello [1]=>Hello [posted_at]=>2018-11-08 17:37:23 ...)
+    $p[body] = unser Post wird bei "body" in der Datenbanktabelle gespeichert --> mit dieser Funktion sehen wir nur den Inhalt des Posts (nicht id, Datum, etc.)
+    $posts = "" -> zunächst leer Array
+    "<hr />" = horizontale Linie
+    ".=" (->  $txt1 = "Hello"; $txt2 = " world!"; $txt1 .= $txt2; --> Hello world)
+    htmlspecialchars = wandelt Sonderzeichen in HTML-Codes um
+    postid = das ist die "id" des jeweiligen Posteintrag
+    if (isset($_GET['postid']) -> prüfen, ob der Like-Button geklickt wurde, wenn ja
+    */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Damit hab ich versucht diese "Fragezeichen" abzuschaffen: (aber es ging nicht):
-//    public static function displayImgPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
-//
-//        $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
-//        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
-//        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
-//        $posts = "";
-//
-//        foreach($dbposts as $p) {
-//
-//            if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
-//
-//                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
-//
-//                    // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
-//                    //Comment::displayComments($p['id']).
-//
-//                    "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
-//                 <input type='submit' name='like' value='Like'>
-//                 <span>".$p['likes']." likes</span>
-//                 ";
-//
-//
-//
-//                if ($userid == $loggedIn_userid){
-//                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
-//                }
-//                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
-//
-//                $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
-//              <textarea name='commentbody' rows='3' cols='50'></textarea>
-//              <input type='submit' name='comment' value='Kommentieren'>
-//              </form>";
-//
-//
-//                $posts .= Comment::displayComments2($p['id']);
-//
-//                $posts .= "</form><hr /></br />
-//                ";
-//
-//
-//
-//            }
-//            else {
-//                //$posts .= (self::link_add($p['body'])) . "
-//
-//                $posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) .
-//
-//                    //Comment::displayComments($p['id']).
-//
-//                    "<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
-//                 <input type='submit' name='unlike' value='Unlike'>
-//                 <span>".$p['likes']." likes</span>
-//
-//
-//                ";
-//
-//                if ($userid == $loggedIn_userid){
-//                    $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
-//                }
-//                #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
-//                #$userid == $loggedIn_userid
-//
-//                $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
-//              <textarea name='commentbody' rows='3' cols='50'></textarea>
-//              <input type='submit' name='comment' value='Kommentieren'>
-//              </form>";
-//
-//
-//                $posts .= Comment::displayComments2($p['id']);
-//
-//                $posts .="
-//              </form><hr /></br />
-//                ";
-//
-//
-//            }
-//
-//        }
-//
-//        return $posts;
-//
-//
-//    }
 }
 ?>
