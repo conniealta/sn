@@ -144,34 +144,3 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
 }
 
 
-
-/*
-$statement = $pdo->prepare("SELECT * FROM list WHERE email=:email AND passwort=:passwort");
-
-//"passwort" = das ist die Variable bei der Datenbak
-//":passwort" = das ist der Parameter, den wir im Formular eingegeben haben
-
-
-if($statement->execute(array(':email'=>$email, ':passwort'=>$passwort))) {
-    if($row=$statement->fetch()) {
-        //echo "angemeldet";
-        $_SESSION["angemeldet"]=$row["id"];
-        header('Location: index.php');
-    }
-    else
-    {
-        echo"nicht berechtigt";
-    }
-} else {
-    echo "Datenbank-Fehler:";
-    echo $statement->errorInfo()[2];
-    echo $statement->queryString;
-    die();
-}
-
-
-$statement = $pdo->prepare("INSERT INTO posts (content) VALUES (?)");
-$statement->execute(array($content));
-
-echo $content." "."mit id in der Datenbank: ".$id=$pdo->lastInsertId();*/
-

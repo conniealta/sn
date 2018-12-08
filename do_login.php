@@ -36,8 +36,5 @@ else {
 }
 
 
-
-
-
 //"passwort" = das ist die Variable bei der Datenbak
 //":passwort" = das ist der Parameter, den wir im Formular eingegeben haben
