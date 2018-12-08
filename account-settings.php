@@ -4,7 +4,12 @@ include('header.php');
 
 ?>
 
-<br><br><br><br><br>
+<br><br>
+<h3>Benutzereinstellungen </h3>
+
+<br><br>
+
+<h4>Profilbild ändern</h4>
 
 <div class="user_details column">
 
@@ -23,11 +28,13 @@ include('header.php');
 
 
 <br><br><br><br><br><br><br><br><br><br>
+
+
 <?php
 if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
     echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
-    <button type="submit" name="submit"> Upload Profile Pic </button>
+    <button type="submit" name="submit"> Profilbild hochladen </button>
 
 </form>';
 }
@@ -36,6 +43,7 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
 <br><br>
 
+<h4>Benutzerdaten ändern</h4>
     <form action="do-account-settings.php" method="post">
 
         <p>Username:
@@ -45,16 +53,24 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
             <input type="text" size="40" maxlength="250" name="email" value="<?php echo $email; ?>"></p>
 
         <p>Altes Passwort:
-            <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
+            <input type="password" size="40"  maxlength="250" name="old_password" placeholder="••••••"></p>
 
         <p>Neues Passwort:
-            <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
+            <input type="password" size="40"  maxlength="250" name="new_password1" placeholder="••••••"></p>
 
         <p>Neues Passwort bestätigen:
-            <input type="password" size="40"  maxlength="250" name="passwort" placeholder="••••••"></p>
+            <input type="password" size="40"  maxlength="250" name="new_password2" placeholder="••••••"></p>
+
+       <br>
+        <input type="submit" name="update_account" value="Ändere deine Angaben">
+
+    </form>
+
 
         <br><br>
 
+<h4>Benutzerinformationen ändern</h4>
+        <form action="do-account-settings.php" method="post">
         <p>Vorname:
         <input type="text" size="40" maxlength="250" name="fname" value="<?php echo $fname; ?>"</p>
 
@@ -119,12 +135,13 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
         <p>Handynummer:
             <input type="text" size="40" maxlength="1000" name="handy" value="<?php echo $kontakt; ?>"></p>
 
-        <br><br>
-        <input type="submit" name="update" value="Ändere deine Angaben">
+        <br>
+        <input type="submit" name="update_info" value="Ändere deine Angaben">
 
     </form>
 
 <br><br><br><br><br><br><br><br><br><br>
+
 
 </body>
 </html>

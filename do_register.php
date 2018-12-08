@@ -122,7 +122,7 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
     //Keine Fehler, wir können den Nutzer registrieren
     if(!$error) {
 
-        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
+        //$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 
         $statement = $pdo->prepare("INSERT INTO list5 (first_name, last_name, username, email, passwort, profile_pic) VALUES (:fname, :lname, :username, :email, :passwort, :profilepic)");
 
