@@ -112,10 +112,14 @@ if (isset($_POST['post'])) {
 
 if (isset($_POST['like'])) {
     Post::likePost($_GET['postid'], $user_loggedin);
+
+    //header('Location: index.php?postid=$_GET["postid"]');
 }
 
 if (isset($_POST['unlike'])) {
     Post::likePost($_GET['postid'], $user_loggedin);
+
+   // header('Location: index.php?postid=$_GET["postid"]');
 }
 
 

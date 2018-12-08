@@ -157,10 +157,12 @@ class Post {
 
             Notify2::createNotify(" ", $postid);
 
+
         } else {
 
             DB::query('UPDATE posts SET likes=likes-1 WHERE id=:postid', array(':postid' => $postid));
             DB::query('DELETE FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $postid, ':userid' => $likerId));
+
         }
     }
 
