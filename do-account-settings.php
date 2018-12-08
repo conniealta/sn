@@ -18,23 +18,6 @@ else {
 <?php
 include('DB.php');
 
-/* Problem:
-jetzt ist es so, dass die leere Eingabefelder als leere Datenbankeinträge mitgespeichert werden
-
-Wahrscheinlich wäre es besser eine <form action...> für jedes einzelne Eingabefeld individuell zu machen, damit
-nur die Daten verändert werden, die man verändern will
-*/
-
-
-/*if(isset($_POST['age'])) {
-    $age=$_POST["age"];
-    $result = DB::query('UPDATE list5 SET age=:age WHERE id=:userid', array(':age'=>$age, ':userid' => $user_loggedin));
-
-    //echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
-    header('Location: account-settings.php');
-
-}*/
-
 
 if(isset($_POST['update_account'])) {
 
@@ -94,6 +77,9 @@ if(isset($_POST['update_account'])) {
 }
 
 
+
+//*********************************************************************************************************************************
+
 if(isset($_POST['update_info'])) {
     $vorname=$_POST["fname"];
     $nachname = $_POST["lname"];
@@ -120,6 +106,8 @@ if(isset($_POST['update_info'])) {
 }
 */
 
+
+//*********************************************************************************************************************************
 
 if(isset($_POST['update_password'])) {
 
