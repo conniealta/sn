@@ -102,7 +102,7 @@ class Post {
             die('Incorrect user!');
         }
     }
-    //funktion für bilder
+
 
 
 
@@ -139,7 +139,7 @@ class Post {
             die('Incorrect user!');
         }
     }
-    //funktion für bilder
+
 
 
 
@@ -183,8 +183,6 @@ class Post {
 
         return ($newstring);
     }
-//$posts .= "<img src='img_upload/profile_pics/".$profilePic."'>.<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']) . "
-
 
 
 
@@ -326,8 +324,6 @@ class Post {
 
     public static function displayImgPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
-        //ich muss ein MySQL Befehl machen, sodass das Profilbild nur von der userid genommen wird -> jetzt wird das Profilbild der eingeloggten Person auch bei den Posts der anderen Benutzer angezeigt
-        // entweder füge ich eine Spalte "profile_pic" zu "posts"-Tabelle --> sodass ich unten so sagen kann: "$p['profile_pic']"
 
         $posts = "";
 
@@ -339,7 +335,6 @@ class Post {
 
                     // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
                     //Comment::displayComments($p['id']).
-
 
 
                     "<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
@@ -365,8 +360,6 @@ class Post {
 
             }
             else {
-                //$posts .= (self::link_add($p['body'])) . "
-
 
                 $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".self::link_add($p['body']).
 
@@ -401,8 +394,10 @@ class Post {
     }
 
 
-    //mit "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
-    /* $p = ein Array mit den Datenbankeinträgen: z.B. --> Array ([id]=>1 [0]=>1 [body]=>Hello [1]=>Hello [posted_at]=>2018-11-08 17:37:23 ...)
+/*
+    Erläuterung:
+    mit "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
+    $p = ein Array mit den Datenbankeinträgen: z.B. --> Array ([id]=>1 [0]=>1 [body]=>Hello [1]=>Hello [posted_at]=>2018-11-08 17:37:23 ...)
     $p[body] = unser Post wird bei "body" in der Datenbanktabelle gespeichert --> mit dieser Funktion sehen wir nur den Inhalt des Posts (nicht id, Datum, etc.)
     $posts = "" -> zunächst leer Array
     "<hr />" = horizontale Linie
@@ -410,7 +405,8 @@ class Post {
     htmlspecialchars = wandelt Sonderzeichen in HTML-Codes um
     postid = das ist die "id" des jeweiligen Posteintrag
     if (isset($_GET['postid']) -> prüfen, ob der Like-Button geklickt wurde, wenn ja
-    */
+
+*/
 
 }
 ?>
