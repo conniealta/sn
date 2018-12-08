@@ -36,6 +36,63 @@ nur die Daten verändert werden, die man verändern will
 }*/
 
 
+if(isset($_POST['update_account'])) {
+
+    $error = false;
+
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+
+    $email_alt = DB::query('SELECT email FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['email'];
+    $username_alt = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
+
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
+        $error = true;
+    }
+
+    if (strlen($username) == 0) {
+        echo 'Bitte einen Usernamen angeben<br>';
+        $error = true;
+    }
+
+    if ($email_alt != $email) { // nur wenn die E-Mail verändert wurde
+
+        if (!$error) { //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
+
+            $email_2 = DB::query('SELECT * FROM list5 WHERE email=:email', array(':email' => $email))[0]['email'];
+
+            if ($email_2 !== false) {
+                echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+                $error = true;
+            }
+        }
+    }
+
+
+    if ($username_alt != $username) { // nur wenn der Username verändert wurde
+        if (!$error) { //Überprüfe, dass der Username noch nicht registriert wurde
+
+            $username_2 = DB::query('SELECT * FROM list5 WHERE username=:username', array(':username' => $username))[0]['username'];
+
+            if ($username_2 !== false) {
+                echo 'Dieser Username ist bereits vergeben<br>';
+                $error = true;
+            }
+        }
+    }
+
+//Keine Fehler, wir können die Daten ändern
+    if (!$error) {
+
+        $result3 = DB::query('UPDATE list5 SET username=:username, email=:email WHERE id=:userid', array(':username' => $username, ':email' => $email, ':userid' => $user_loggedin));
+
+        echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
+        header('Location: account-settings.php');
+    }
+}
+
 
 if(isset($_POST['update_info'])) {
     $vorname=$_POST["fname"];
@@ -64,32 +121,15 @@ if(isset($_POST['update_info'])) {
 */
 
 
-if(isset($_POST['update_account'])) {
+if(isset($_POST['update_password'])) {
 
-    $error = false;
-
-    $username = $_POST["username"];
-    $email = $_POST["email"];
     $passwort = $_POST["old_password"];
     $passwort_neu = $_POST["new_password1"];
     $passwort_neu2 = $_POST["new_password2"];
 
-
     $passwort_alt = DB::query('SELECT passwort FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['passwort'];
-    $email_alt = DB::query('SELECT email FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['email'];
-    $username_alt = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
 
 
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
-        $error = true;
-    }
-
-    if (strlen($username) == 0) {
-        echo 'Bitte einen Usernamen angeben<br>';
-        $error = true;
-    }
 
     if (strlen($passwort) == 0) {
         echo 'Bitte ein Passwort angeben<br>';
@@ -128,37 +168,11 @@ if(isset($_POST['update_account'])) {
     }
 
 
-    if ($email_alt != $email) { // nur wenn die E-Mail verändert wurde
-
-        if (!$error) { //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
-
-            $email_2 = DB::query('SELECT * FROM list5 WHERE email=:email', array(':email' => $email))[0]['email'];
-
-            if ($email_2 !== false) {
-                echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
-                $error = true;
-            }
-        }
-    }
-
-
-    if ($username_alt != $username) { // nur wenn der Username verändert wurde
-        if (!$error) { //Überprüfe, dass der Username noch nicht registriert wurde
-
-            $username_2 = DB::query('SELECT * FROM list5 WHERE username=:username', array(':username' => $username))[0]['username'];
-
-            if ($username_2 !== false) {
-                echo 'Dieser Username ist bereits vergeben<br>';
-                $error = true;
-            }
-        }
-    }
-
-//Keine Fehler, wir können den Nutzer registrieren
+//Keine Fehler, wir können die Daten ändern
     if (!$error) {
 
         $passwort_neu_hash = password_hash($passwort_neu, PASSWORD_DEFAULT);
-        $result2 = DB::query('UPDATE list5 SET username=:username, email=:email, passwort=:new_password1 WHERE id=:userid', array(':username' => $username, ':email' => $email, ':new_password1' => hash('sha256', $passwort_neu, false), ':userid' => $user_loggedin));
+        $result2 = DB::query('UPDATE list5 SET passwort=:new_password1 WHERE id=:userid', array(':new_password1' => hash('sha256', $passwort_neu, false), ':userid' => $user_loggedin));
 
         echo 'Du hast erfolgreich deine Angaben geändert. <a href="profile.php">Weiter zum Profil</a>';
         header('Location: account-settings.php');

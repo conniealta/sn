@@ -52,6 +52,16 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
         <p>Email:
             <input type="text" size="40" maxlength="250" name="email" value="<?php echo $email; ?>"></p>
 
+
+        <br>
+        <input type="submit" name="update_account" value="Ändere deine Angaben">
+
+    </form>
+
+<br><br>
+
+<h4>Passwort ändern</h4>
+<form action="do-account-settings.php" method="post">
         <p>Altes Passwort:
             <input type="password" size="40"  maxlength="250" name="old_password" placeholder="••••••"></p>
 
@@ -62,7 +72,7 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
             <input type="password" size="40"  maxlength="250" name="new_password2" placeholder="••••••"></p>
 
        <br>
-        <input type="submit" name="update_account" value="Ändere deine Angaben">
+        <input type="submit" name="update_password" value="Ändere deine Angaben">
 
     </form>
 
