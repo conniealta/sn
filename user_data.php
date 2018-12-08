@@ -56,10 +56,6 @@ $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', arra
 
 
 
-
-
-//hier mach eine include-Datei von PDO !!!
-
 $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
 $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id=:userid ORDER BY id ASC');
 
@@ -71,7 +67,5 @@ if($statement->execute(array(':userid'=>$user_loggedin))) {
         $post_likes = $user->likes;
     }
 }
-// Kann ich das  auch ohne PDO machen ($profile_pic = DB:: query(SELECT profile_pic FROM list5 WHERE ...[0] [profile_pic]...
-// --> hat nicht geklappt
 
 

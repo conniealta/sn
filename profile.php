@@ -174,6 +174,9 @@ if (isset($_GET['username'])) {
     */
 
 
+
+
+
 // !!!!!!!!!!!
   //Comment::displayComments2($_GET['postid']);
 
