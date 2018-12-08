@@ -61,9 +61,9 @@ if(isset($_POST['update_account'])) {
 
         if (!$error) { //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
 
-            $email_2 = DB::query('SELECT * FROM list5 WHERE email=:email', array(':email' => $email))[0]['email'];
+            $email_db = DB::query('SELECT * FROM list5 WHERE email=:email', array(':email' => $email))[0]['email'];
 
-            if ($email_2 !== false) {
+            if ($email_db !== false) {
                 echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
                 $error = true;
             }
@@ -74,9 +74,9 @@ if(isset($_POST['update_account'])) {
     if ($username_alt != $username) { // nur wenn der Username verändert wurde
         if (!$error) { //Überprüfe, dass der Username noch nicht registriert wurde
 
-            $username_2 = DB::query('SELECT * FROM list5 WHERE username=:username', array(':username' => $username))[0]['username'];
+            $username_db = DB::query('SELECT * FROM list5 WHERE username=:username', array(':username' => $username))[0]['username'];
 
-            if ($username_2 !== false) {
+            if ($username_db !== false) {
                 echo 'Dieser Username ist bereits vergeben<br>';
                 $error = true;
             }
