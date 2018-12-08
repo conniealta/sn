@@ -105,9 +105,19 @@ if (isset($_POST['post'])) {
 
 
 //Liking-Funktion:
-if (isset($_GET['postid'])) {
+
+/*if (isset($_GET['postid'])) {
+    Post::likePost($_GET['postid'], $user_loggedin);
+}*/
+
+if (isset($_POST['like'])) {
     Post::likePost($_GET['postid'], $user_loggedin);
 }
+
+if (isset($_POST['unlike'])) {
+    Post::likePost($_GET['postid'], $user_loggedin);
+}
+
 
 //Kommentar-Funktion:
 if (isset($_POST['comment'])) {
@@ -269,7 +279,6 @@ if (!$post['img_id']== "") { //wenn der Post ein Bild enthält, wird der Post mi
     }
     echo "<span>" . $post['likes'] . " likes</span>
               </form>
-
 
 
               <form action='index.php?postid=" . $post['id'] . " 'method='post'>
