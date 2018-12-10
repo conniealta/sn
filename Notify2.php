@@ -14,7 +14,7 @@ class Notify2 {
             $s = $temp[0]["sender"];
             DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>2, ':receiver'=>$r, ':sender'=>$s, ':extra'=>""));
         }
-        return $notify;
+
     }
 }
 ?>
