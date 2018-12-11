@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $showTimeline = False;
 
 if(!isset($_SESSION["angemeldet"]))
@@ -44,7 +43,7 @@ $followerid = $user_loggedin;
 // $profile_pic2 = das ist das Profilbild der Person, auf deren Profilseite wir sind
 // userid = das ist die id der Person, auf deren Profilseite wir sind
 
-// Fetch der Variablen / Nutzerinfos der Person, auf deren Profilseite wir sind:
+// Fetch der Variablen, Nutzerinfos der Person, auf deren Profilseite wir sind:
 $username = DB::query('SELECT username FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['username'];
 $userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
 $lname2 = DB::query('SELECT last_name FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['last_name'];
