@@ -204,7 +204,7 @@ class Post {
 
 
 
-    public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) { //hier irgendwo profile_pic
+    public static function displayPosts($profilePic, $userid, $username, $loggedIn_userid) {
         $dbposts = DB::query('SELECT * FROM posts WHERE user_id=:userid ORDER BY id DESC', array(':userid'=>$userid));
 
         $posts = "";
@@ -214,7 +214,7 @@ class Post {
 
                     if (!$p['img_id']== "") { // wenn es ein Bild gibt, dann führ das aus (zeig das Bild an!)
 
-                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '
+                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
 
                        ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
@@ -239,7 +239,7 @@ class Post {
                     }
 
                     else { // wenn es kein Bild im Post gibt, dann führe das aus:
-                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '
+                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
 
                         ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
@@ -278,7 +278,7 @@ class Post {
                         //Comment::displayComments($p['id']).
 
                 if (!$p['img_id']== "") {
-                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $username . '</a>' . ' ' . ' ' . "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '
+                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $username . '</a>' . ' ' . ' ' . "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
 
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
@@ -305,7 +305,7 @@ class Post {
                 }
 
                 else {
-                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '
+                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
 
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
