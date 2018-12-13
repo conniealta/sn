@@ -259,17 +259,11 @@ class Post {
 
 
                         $posts .= Comment::displayComments2($p['id']);
-                        $posts .= "</form><hr /></br />
-                ";
-
-
-                    }
-
-                    //$posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).
-
 
                         // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
-                    //Comment::displayComments($p['id']).
+                        //$posts .= Comment::displayComments($p['id'])."</form><hr /></br />";
+
+                    }
 
             }
             else { // Der Unterschied zwischen dem Haupt-If und diesem Else ist der Unlike/Like-Button !!
