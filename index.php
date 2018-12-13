@@ -185,7 +185,7 @@ if (!$img== "") { //wenn der Post ein Bild enthält, wird der Post mit dem Bild 
     echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
-        /*damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
+        /* damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
           wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt: */
 
         echo "<input type='submit' name='like' value='Like'>";
