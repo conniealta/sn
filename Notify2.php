@@ -1,7 +1,7 @@
 <?php
 class Notify2 {
 
-    public static function createNotify($text = "", $postid = 0) {
+    public static function createNotify($text = " ", $postid = 0) {
         $text = explode(" ", $text);
         $notify = array();
         foreach ($text as $word) {
