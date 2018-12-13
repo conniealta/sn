@@ -16,7 +16,7 @@ include('header.php');
     <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
 
     <div class="user_details_left_right">
-        <a href="<?php echo $userid; ?>">
+        <a href="profile.php?username=<?php echo $username; ?>" >
             <?php
             echo $fname . " " . $lname;
 
