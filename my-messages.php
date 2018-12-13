@@ -44,16 +44,15 @@ else {
 
 
 if (isset($_GET['mid'])) {
-    $message = DB::query('SELECT * FROM messages WHERE id=:mid AND receiver=:receiver OR sender=:sender', array(':mid'=>$_GET['mid'], ':receiver'=>$user_loggedin, ':sender'=>$user_loggedin))[0];
+    $message = DB::query('SELECT * FROM messages WHERE id=:mid AND (receiver=:receiver OR sender=:sender)', array(':mid'=>$_GET['mid'], ':receiver'=>$userid, ':sender'=>$userid))[0];
     echo '<h1>Nachrichten ansehen</h1>';
     echo htmlspecialchars($message['body']);
     echo '<hr />';
-    if ($message['sender'] == $user_loggedin) {
+    if ($message['sender'] == $userid) {
         $id = $message['receiver'];
     } else {
         $id = $message['sender'];
     }
-
     DB::query('UPDATE messages SET `read`=1 WHERE id=:mid', array (':mid'=>$_GET['mid']));
     ?>
     <form action="messages.php?receiver=<?php echo $id; ?>" method="post">
@@ -61,8 +60,9 @@ if (isset($_GET['mid'])) {
         <input type="submit" name="send" value="Send Message">
     </form>
 
-<?php
-}else{
+    <?php
+} else {
+
     ?>
 
     <h1>Meine Nachrichten</h1>
