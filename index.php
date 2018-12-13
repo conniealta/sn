@@ -96,19 +96,15 @@ if(isset($_POST['post'])){
 
 // Text-Post-Funktion und Bild-Post-Funktion:
 if (isset($_POST['post'])) {
-    if ($_FILES['file']['size'] == 0) {
+    if ($_FILES['file']['size'] == 0) { //wenn der Post kein Bild enthält bzw. keine Datei
         Post::createPost2($_POST['postbody'], $user_loggedin);
-    } else {
+    } else { // wenn der Post eine Bild-Datei enthält
         $postid = Post::createImgPost2($bild_id, $_POST['postbody'], $user_loggedin);
     }
 }
 
 
 //Liking-Funktion:
-
-/*if (isset($_GET['postid'])) {
-    Post::likePost($_GET['postid'], $user_loggedin);
-}*/
 
 if (isset($_POST['like'])) {
     Post::likePost($_GET['postid'], $user_loggedin);
