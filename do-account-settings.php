@@ -40,30 +40,46 @@ if(isset($_POST['update_account'])) {
         $error = true;
     }
 
-    if ($email_alt != $email) { // nur wenn die E-Mail verändert wurde
-
-        if (!$error) { //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
-
-            $email_db = DB::query('SELECT * FROM list5 WHERE email=:email', array(':email' => $email))[0]['email'];
-
-            if ($email_db !== false) {
-                echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
-                $error = true;
-            }
-        }
-    }
 
 
-    if ($username_alt != $username) { // nur wenn der Username verändert wurde
         if (!$error) { //Überprüfe, dass der Username noch nicht registriert wurde
 
-            $username_db = DB::query('SELECT * FROM list5 WHERE username=:username', array(':username' => $username))[0]['username'];
+            if ($username_alt != $username) { // nur wenn der Username verändert wurde
 
-            if ($username_db !== false) {
+            //$email_db = DB::query('SELECT * FROM list5 WHERE email=:email', array(':email' => $email))[0]['email'];
+            include('db_pdo.php');
+            $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
+
+            $statement = $pdo->prepare("SELECT * FROM list5 WHERE username = :username");
+            $result = $statement->execute(array(':username' => $username));
+            $user = $statement->fetch();
+
+
+            if($user !== false) {
                 echo 'Dieser Username ist bereits vergeben<br>';
                 $error = true;
             }
-        }
+            }
+    }
+
+
+        if (!$error) { //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
+
+            if ($email_alt != $email) { // nur wenn die E-Mail verändert wurde
+
+            //$username_db = DB::query('SELECT * FROM list5 WHERE username=:username', array(':username' => $username))[0]['username'];
+            include('db_pdo.php');
+            $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
+
+            $statement = $pdo->prepare("SELECT * FROM list5 WHERE email = :email");
+            $result = $statement->execute(array(':email' => $email));
+            $user = $statement->fetch();
+
+            if($user !== false) {
+                echo 'Diese E-Mail ist bereits vergeben<br>';
+                $error = true;
+            }
+            }
     }
 
 //Keine Fehler, wir können die Daten ändern

@@ -121,13 +121,13 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
         <p>Aktuelles Semester:
             <select name="semester" value="<?php echo $semester;?>">
-                <option value="<?php echo $semester;?>">1. Semester</option>
-                <option value="<?php echo $semester;?>">2. Semester</option>
-                <option value="<?php echo $semester;?>">3. Semester</option>
-                <option value="<?php echo $semester;?>">4. Semester</option>
-                <option value="<?php echo $semester;?>">5. Semester</option>
-                <option value="<?php echo $semester;?>">6. Semester</option>
-                <option value="<?php echo $semester;?>">7. Semester</option>
+                <option value="1. Semester">1. Semester</option>
+                <option value="2. Semester">2. Semester</option>
+                <option value="3. Semester">3. Semester</option>
+                <option value="4. Semester">4. Semester</option>
+                <option value="5. Semester">5. Semester</option>
+                <option value="6. Semester">6. Semester</option>
+                <option value="7. Semester">7. Semester</option>
             </select>
 
         <p>Job:

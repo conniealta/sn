@@ -211,6 +211,7 @@ class Post {
 
         foreach($dbposts as $p) {
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
+// Der Unterschied zwischen dem Haupt-If und dem Else ist der Unlike/Like-Button !!
 
                     if (!$p['img_id']== "") { // wenn es ein Bild gibt, dann führ das aus (zeig das Bild an!)
 
@@ -259,21 +260,14 @@ class Post {
 
 
                         $posts .= Comment::displayComments2($p['id']);
-                        $posts .= "</form><hr /></br />
-                ";
 
+                        // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
+                        //$posts .= Comment::displayComments($p['id'])."</form><hr /></br />";
 
                     }
 
-                    //$posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).
-
-
-                        // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
-                    //Comment::displayComments($p['id']).
-
             }
             else { // Der Unterschied zwischen dem Haupt-If und diesem Else ist der Unlike/Like-Button !!
-
 
                         //Comment::displayComments($p['id']).
 

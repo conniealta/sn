@@ -232,7 +232,9 @@ if (isset($_GET['username'])) {
                 <?php
                 echo $fname2 . " " . $lname2."<br>"."<br>";
                 echo $age2. " ". 'Jahre alt'."<br>"."<br>";
-                echo $studiengang2;
+                echo $studiengang2."<br>"."<br>";
+                echo $semester2. ". ". ' Semester '."<br>"."<br>";
+                echo ' Interessen: '.$interessen2. " "."<br>"."<br>";
                 // diese sind in "user_data.php" definiert --> das sind die Infos der Person, auf deren Profilseite wir sind
                 ?>
             </a>
