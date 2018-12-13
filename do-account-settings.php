@@ -42,9 +42,9 @@ if(isset($_POST['update_account'])) {
 
 
 
-        if (!$error) { //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
+        if (!$error) { //Überprüfe, dass der Username noch nicht registriert wurde
 
-            if ($email_alt != $email) { // nur wenn die E-Mail verändert wurde
+            if ($username_alt != $username) { // nur wenn der Username verändert wurde
 
             //$email_db = DB::query('SELECT * FROM list5 WHERE email=:email', array(':email' => $email))[0]['email'];
             include('db_pdo.php');
@@ -54,17 +54,19 @@ if(isset($_POST['update_account'])) {
             $result = $statement->execute(array(':username' => $username));
             $user = $statement->fetch();
 
+
             if($user !== false) {
                 echo 'Dieser Username ist bereits vergeben<br>';
                 $error = true;
             }
-        }
+            }
     }
 
 
-        if (!$error) { //Überprüfe, dass der Username noch nicht registriert wurde
+        if (!$error) { //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
 
-            if ($username_alt != $username) { // nur wenn der Username verändert wurde
+            if ($email_alt != $email) { // nur wenn die E-Mail verändert wurde
+
             //$username_db = DB::query('SELECT * FROM list5 WHERE username=:username', array(':username' => $username))[0]['username'];
             include('db_pdo.php');
             $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
@@ -74,10 +76,10 @@ if(isset($_POST['update_account'])) {
             $user = $statement->fetch();
 
             if($user !== false) {
-                echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+                echo 'Diese E-Mail ist bereits vergeben<br>';
                 $error = true;
             }
-        }
+            }
     }
 
 //Keine Fehler, wir können die Daten ändern
