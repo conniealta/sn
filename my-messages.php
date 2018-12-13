@@ -2,20 +2,6 @@
 session_start();
 ?>
 
-    <!DOCTYPE html> <!-- das ist HTML 5 -->
-    <html lang="de">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
-        <title> Nachrichten </title>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-
-
-    </head>
-
-<body>
 
 
 <?php
@@ -46,6 +32,7 @@ else {
 if (isset($_GET['mid'])) {
     $message = DB::query('SELECT * FROM messages WHERE id=:mid AND (receiver=:receiver OR sender=:sender)', array(':mid'=>$_GET['mid'], ':receiver'=>$userid, ':sender'=>$userid))[0];
     echo '<h1>Nachrichten ansehen</h1>';
+    echo  "<a  href='my-messages.php?username=$username'>Zurück</a> <br> <br>";
     echo htmlspecialchars($message['body']);
     echo '<hr />';
     if ($message['sender'] == $userid) {
@@ -85,10 +72,26 @@ if (isset($_GET['mid'])) {
         }
 
         if ($message['read'] == 0) {
-            echo "<a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> gesendet von " . $message['username'] . '<hr />';
+
+            if ($message['username'] == $message['receiver']) {
+
+                echo "<a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> <hr />";
+
+            } else {
+                echo "Du hast <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> <hr />";
+
+            }
+        } else if ($message['username'] == $message['sender']) {
+
+            echo "<a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> <hr />";
+
         } else {
-            echo "<a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> gesendet von " . $message['username'] . '<hr />';
+            echo "Du hast <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> <hr />";
+
+#mid = message id
         }
+
+
 
     }
 
@@ -105,29 +108,4 @@ include('footer.php');
 </body>
 </html>
 
-if ($message['read'] == 0) {
-
-if ($message['username'] != $message['receiver']) {
-
-echo "<a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> <hr />";
-
-} else {
-echo "Du hast <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> <hr />";
-
-}
-} else if ($message['username'] == $message['receiver']) {
-
-echo "<a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> <hr />";
-
-} else {
-echo "Du hast <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> <hr />";
-
-#mid = message id
-}
-
-if($message['read'] == 0){
-echo "<strong>" . $m . "</strong><hr />";
-
-}else{
-echo  $m . "<hr />";
-}
+select username from list5 where id=:sender, array (':sender'=>$user_loggedin,)
