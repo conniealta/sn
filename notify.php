@@ -50,7 +50,7 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
 
         } else if ($n['type'] == 2) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid'=>$n['sender']))[0]['username'];
-            echo "<a href='profile.php?username=".$senderName ."'> @$senderName </a> hat deinen  <a href='profile.php?username=$user&postid=".$posts['id']."'>Post</a> geliked! <hr />" ;
+            echo "<a href='profile.php?username=".$senderName ."'> @$senderName </a> hat deinen  <a href='profile.php?username=$user&postid=$postId'>Post</a> geliked! <hr />" ;
 
             //postid muss noch geändert werden,  aber wenn jetzt der postid in der URL übergeben wird,
 
