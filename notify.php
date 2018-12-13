@@ -22,28 +22,12 @@ session_start();
 include('header.php');
 ?>
 
-<br><br><br><br>
-
-<a href="logout.php">Log out!</a>
-
 
 
 <?php
 
 
 include('Post.php');
-
-
-
-if(!isset($_SESSION["angemeldet"]))
-{
-    echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
-    die();
-}
-else {
-    $user_loggedin = $_SESSION['angemeldet'];
-    echo "Hallo User: ".$user_loggedin;
-}
 
 
 

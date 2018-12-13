@@ -8,24 +8,12 @@ session_start();
 include('header.php');
 ?>
 
-    <br><br><br><br>
 
-    <a href="logout.php">Log out!</a>
 
 
 <?php
 session_start();
 
-
-if(!isset($_SESSION["angemeldet"]))
-{
-    echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
-    die();
-}
-else {
-    $user_loggedin = $_SESSION['angemeldet'];
-    echo "Hallo User: " . $user_loggedin;
-}
 
 
 
@@ -57,6 +45,7 @@ if (isset($_GET['mid'])) {
     include('Post.php');
     $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE (receiver=:receiver OR sender=:sender) AND list5.id = messages.sender', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
 
+
     foreach ($messages as $message) {
 
         if ($message['sender'] == $user_loggedin) {
@@ -71,30 +60,18 @@ if (isset($_GET['mid'])) {
             $m = $message['body'];
         }
 
+
         if ($message['read'] == 0) {
-
-            if ($message['username'] == $message['receiver']) {
-
-                echo "<a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> <hr />";
-
-            } else {
-                echo "Du hast <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> <hr />";
-
-            }
-        } else if ($message['username'] == $message['sender']) {
-
-            echo "<a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> hat dir eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> <hr />";
-
+            echo "<a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> wurde gesendet von <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username']) . "</a> <hr />";
         } else {
-            echo "Du hast <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username'])."</a> eine Nachricht geschickt: <a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> <hr />";
-
-#mid = message id
+            echo "<a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> wurde gesendet von <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username']) . "</a> <hr />";
         }
 
 
+#mid = message id
+
 
     }
-
 
 
 }
@@ -105,7 +82,8 @@ if (isset($_GET['mid'])) {
 include('footer.php');
 ?>
 
-</body>
-</html>
 
-select username from list5 where id=:sender, array (':sender'=>$user_loggedin,)
+
+
+
+
