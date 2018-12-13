@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-//$user_id = "test"; //durch unsere Session ersetzen !!!!
-
 $showTimeline = False;
 
 if(!isset($_SESSION["angemeldet"]))
