@@ -4,6 +4,7 @@ include('Notify2.php');
 class Post {
 
 // Das ist wenn die eingeloggte Person bei der eigenen Profilseite ist und von dort aus posten will:
+
     public static function createPost($postbody, $loggedIn_userid, $profileUserId) {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
 
@@ -36,6 +37,7 @@ class Post {
 
 
 // Das ist wenn die eingeloggte Person beim "Feed" ist und von dort aus posten will:
+
     public static function createPost2 ($postbody, $loggedIn_userid) {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
 
