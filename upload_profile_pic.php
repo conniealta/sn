@@ -18,6 +18,8 @@ else {
 }
 
 
+include('db_pdo.php');
+
 if(isset($_POST['submit'])){
     $file = $_FILES['file'];
 
@@ -40,15 +42,11 @@ if(isset($_POST['submit'])){
                 $fileNameNew = uniqid('', true).".".$fileActualExt;
                 $fileDestination = "img_upload/profile_pics/".$fileNameNew;
 
-
-
                 move_uploaded_file($fileTmpName,$fileDestination);
                 $bild_id = $fileNameNew;
 
-                $pdo = new PDO('mysql:: host=mars.iuk.hdm-stuttgart.de; dbname=u-ka034', 'ka034', 'zeeD6athoo', array('charset' => 'utf8'));
+                $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
                 $sql = "UPDATE list5 SET profile_pic='$bild_id' WHERE id='$user_id'";
-
-                //insert into list5 (id, profile_pic) !!!
                 $statement = $pdo->prepare($sql);
                 $statement->execute(array("$user_id", "$bild_id"));
 
@@ -56,7 +54,7 @@ if(isset($_POST['submit'])){
                 echo"Deine Datei ist zu groß! (Max Größe 1MB)";
             }
         }else {
-            echo"Leider gab es ein Problem! :(";
+            echo"Fehler!";
         }
     }else {
         echo"Dieses Dateiformat wird nicht unterstützt!";
