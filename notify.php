@@ -34,6 +34,7 @@ include('header.php');
 include('Post.php');
 
 
+
 if(!isset($_SESSION["angemeldet"]))
 {
     echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
