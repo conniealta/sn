@@ -211,7 +211,7 @@ class Post {
 
         foreach($dbposts as $p) {
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
-// Der Unterschied zwischen dem Haupt-If und diesem Else ist der Unlike/Like-Button !!
+// Der Unterschied zwischen dem Haupt-If und dem Else ist der Unlike/Like-Button !!
 
                     if (!$p['img_id']== "") { // wenn es ein Bild gibt, dann führ das aus (zeig das Bild an!)
 

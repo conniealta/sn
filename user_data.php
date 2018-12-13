@@ -52,7 +52,15 @@ $user_name2 = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':u
 $studiengang2 = DB::query('SELECT studiengang FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['studiengang'];
 $age2 = DB::query('SELECT age FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['age'];
 $profile_pic2 = DB::query('SELECT profile_pic FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['profile_pic'];
-
+$heimat2 = DB::query('SELECT heimat FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['heimat'];
+$sprachen2 = DB::query('SELECT sprachen FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['sprachen'];
+$semester2 = DB::query('SELECT semester FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['semester'];
+$job2 = DB::query('SELECT job FROM list5 WHERE id=:userid', array(':userid'=>$userid))[0]['job'];
+$interessen2 = DB::query('SELECT interessen FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['interessen'];
+$zitat2 = DB::query('SELECT zitat FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['zitat'];
+$website2 = DB::query('SELECT website FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['website'];
+$kontakt2 = DB::query('SELECT kontaktnummer FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['kontaktnummer'];
+$email2 = DB::query('SELECT email FROM list5 WHERE id=:userid', array(':userid' => $userid))[0]['email'];
 
 
 
