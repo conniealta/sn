@@ -247,6 +247,7 @@ if (isset($_GET['username'])) {
 
 <br><br><br>
 
+
 <?php
 if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
     echo '<a href="account-settings.php">Profil bearbeiten</a>';
