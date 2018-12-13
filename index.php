@@ -211,7 +211,7 @@ if (!$img== "") { //wenn der Post ein Bild enthält, wird der Post mit dem Bild 
               <hr /></br />";
 }
 
-else { // wenn der Post kein Bild enthält, wird das ausgeführt:
+else { // wenn der Post kein Bild enthält, wird das gleiche ausgeführt, aber ohne Platzhalter für "$img":
     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=" .$user_name . " ' > $user_name  </a> " . Post::link_add($body);
 
     echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
