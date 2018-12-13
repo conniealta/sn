@@ -42,25 +42,24 @@ else {
 }
 
 
-if (isset($_GET['mid'])){
-$message = DB::query('SELECT * FROM messages WHERE id=:mid AND (receiver=:receiver OR sender=:sender)', array(':mid' => $_GET['mid'], ':receiver' => $user_loggedin, ':sender' => $user_loggedin))[10];
-echo '<h1>Nachrichten ansehen</h1>';
-echo htmlspecialchars($message['body']);
-echo '<hr />';
 
-if ($message['sender'] == $user_loggedin) {
-    $id = $message['receiver'];
-} else {
-    $id = $message['sender'];
-}
+if (isset($_GET['mid'])) {
+    $message = DB::query('SELECT * FROM messages WHERE id=:mid AND receiver=:receiver OR sender=:sender', array(':mid'=>$_GET['mid'], ':receiver'=>$user_loggedin, ':sender'=>$user_loggedin))[0];
+    echo '<h1>Nachrichten ansehen</h1>';
+    echo htmlspecialchars($message['body']);
+    echo '<hr />';
+    if ($message['sender'] == $user_loggedin) {
+        $id = $message['receiver'];
+    } else {
+        $id = $message['sender'];
+    }
 
-DB::query('UPDATE messages SET `read`=1 WHERE id=:mid', array(':mid' => $_GET['mid']));
-?>
-
-<form action="messages.php?receiver=<?php echo $id; ?>" method="post">
-    <textarea name="body" rows="8" cols="80"></textarea>
-    <input type="submit" name="send" value="Nachricht senden">
-</form>
+    DB::query('UPDATE messages SET `read`=1 WHERE id=:mid', array (':mid'=>$_GET['mid']));
+    ?>
+    <form action="messages.php?receiver=<?php echo $id; ?>" method="post">
+        <textarea name="body" rows="8" cols="80"></textarea>
+        <input type="submit" name="send" value="Send Message">
+    </form>
 
 <?php
 }else{
