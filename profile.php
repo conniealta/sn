@@ -43,7 +43,7 @@ if (isset($_GET['username'])) {
                     /* die id der Person, die sich eingeloggt hat, muss in der Datenbank nicht neben der id der Person stehen, auf deren
                     Profilseite die eingeloggte Person ist;
                     d.h. es wird geprüft, ob neben z.B. user_id=3 (Profilseite anderes Benutzers)-> follower_id=1 steht (eingeloggter Benutzer)
-                    wenn es nicht steht, dann darf man der Person folgen */
+                    wenn es nicht steht, dann darf man der Person folgen: */
                     DB::query('INSERT INTO followers VALUES (\'\', :userid, :followerid)', array(':userid'=>$userid, ':followerid'=>$followerid));
                 }
                 else {
@@ -67,7 +67,7 @@ if (isset($_GET['username'])) {
         if (DB::query('SELECT follower_id FROM followers WHERE user_id=:userid AND follower_id=:followerid ', array(':userid'=>$userid, ':followerid'=>$followerid))) {
             //echo 'Already following!';
             $isFollowing = True;
-        } /* Wir schreiben hier (außerhalb der Hauptbedingung) fast den gleichen Code wie oben nochmals, sodass er ausgeführt wird, auch wenn der Follow-Button nicht geklickt wird:
+        } /* Wir schreiben hier (außerhalb der Bedingung) fast den gleichen Code wie oben nochmals, sodass er ausgeführt wird, auch wenn der Follow-Button nicht geklickt wird:
           Siehe die Bedingung oben: "if (isset($_POST['follow'])) ..." */
     }
 
@@ -77,12 +77,6 @@ if (isset($_GET['username'])) {
             DB::query('DELETE FROM post_likes WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
             DB::query('DELETE FROM comments WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
             echo 'Post gelöscht!';
-        }
-    }
-
-    if (isset($_POST['comment'])) {
-        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
-            Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
         }
     }
 
@@ -188,10 +182,16 @@ if (isset($_GET['username'])) {
     //Comment::displayComments($posts['id']);
 
 
-
     if (isset($_POST['comment'])) {
-        Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
+            Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
+        }
     }
+
+    /*  if (isset($_POST['comment'])) {
+          Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
+      }*/
+
 
 } else {
     die('User not found!');
