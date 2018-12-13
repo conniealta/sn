@@ -225,7 +225,7 @@ class Post {
                         if ($userid == $loggedIn_userid){
                             $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
                         }
-                        #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+                        //damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
 
                         $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
@@ -250,7 +250,7 @@ class Post {
                         if ($userid == $loggedIn_userid){
                             $posts .="<input type='submit' name='deletepost' value='Löschen'> ";
                         }
-                        #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
+                        //damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
 
                         $posts .= "<form action='profile.php?postid=".$p['id']." 'method='post'>
