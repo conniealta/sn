@@ -80,12 +80,6 @@ if (isset($_GET['username'])) {
         }
     }
 
-    if (isset($_POST['comment'])) {
-        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
-            Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
-        }
-    }
-
 
     if(isset($_POST['post'])){
         $file = $_FILES['file'];
@@ -188,10 +182,16 @@ if (isset($_GET['username'])) {
     //Comment::displayComments($posts['id']);
 
 
-
     if (isset($_POST['comment'])) {
-        Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid); //wir ändern '$followerid' zu '$user_loggedin', weil in dieser Datei die Variable einfach umbenannt wurde
+        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
+            Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
+        }
     }
+
+    /*  if (isset($_POST['comment'])) {
+          Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
+      }*/
+
 
 } else {
     die('User not found!');
