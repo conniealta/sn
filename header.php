@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href=" " media="screen"/>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <title> Feed </title>
+    <title> Alcyone </title>
 
     <style>
         body {

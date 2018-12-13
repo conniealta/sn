@@ -250,6 +250,14 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
     echo '<a href="account-settings.php">Profil bearbeiten</a>';
 }
 ?>
+<br><br><br>
+
+<?php
+
+
+echo '<a href="followers.php">Followers</a> <h />';
+echo '<a href="following.php">Following</a>';
+?>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
