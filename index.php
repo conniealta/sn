@@ -157,10 +157,8 @@ if(isset($_POST['searchbox'])) {
             $paramsarray[":p$i"] = $tosearch[$i];
         }
     }
-    $posts = DB::query('SELECT posts.body FROM posts WHERE posts.body LIKE :body '.$whereclause.'', $paramsarray);
-    echo '<pre>';
-    print_r($posts);
-    echo '</pre>';
+    $posts = DB::query('SELECT posts.body, list5.username, posts.posted_at FROM posts, list5 WHERE list5.id = posts.user_id AND posts.body LIKE :body '.$whereclause.'LIMIT 15', $paramsarray);
+            echo json_encode($posts);
 
 }
 ?>
@@ -333,5 +331,3 @@ else { // wenn der Post kein Bild enthält, wird das ausgeführt:
 }
 ?>
 
-</body>
-</html>
