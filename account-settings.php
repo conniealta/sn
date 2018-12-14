@@ -181,13 +181,35 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
         <p>Aktuelles Semester:
             <select name="semester" value="<?php echo $semester;?>">
-                <option value="1. Semester">1. Semester</option>
-                <option value="2. Semester">2. Semester</option>
-                <option value="3. Semester">3. Semester</option>
-                <option value="4. Semester">4. Semester</option>
-                <option value="5. Semester">5. Semester</option>
-                <option value="6. Semester">6. Semester</option>
-                <option value="7. Semester">7. Semester</option>
+
+                <?php if ($semester == "1. Semester") {
+                    echo '<option selected="selected">1. Semester</option>';
+                } else echo '<option value="1. Semester">1. Semester</option>'; ?>;
+
+                <?php if ($semester == "2. Semester") {
+                    echo '<option selected="selected">2. Semester</option>';
+                } else echo '<option value="2. Semester">2. Semester</option>'; ?>;
+
+                <?php if ($semester == "3. Semester") {
+                    echo '<option selected="selected">3. Semester</option>';
+                } else echo '<option value="3. Semester">3. Semester</option>'; ?>;
+
+                <?php if ($semester == "4. Semester") {
+                    echo '<option selected="selected">4. Semester</option>';
+                } else echo '<option value="4. Semester">4. Semester</option>'; ?>;
+
+                <?php if ($semester == "5. Semester") {
+                    echo '<option selected="selected">5. Semester</option>';
+                } else echo '<option value="5. Semester">5. Semester</option>'; ?>;
+
+                <?php if ($semester == "6. Semester") {
+                    echo '<option selected="selected">6. Semester</option>';
+                } else echo '<option value="6. Semester">6. Semester</option>'; ?>;
+
+                <?php if ($semester == "7. Semester") {
+                    echo '<option selected="selected">7. Semester</option>';
+                } else echo '<option value="7. Semester">7. Semester</option>'; ?>;
+
             </select>
 
         <p>Job:
