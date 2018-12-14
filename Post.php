@@ -1,6 +1,6 @@
 <?php
-include('Notify2.php');
 
+include('Notify2.php');
 class Post {
 
 // Das ist wenn die eingeloggte Person bei der eigenen Profilseite ist und von dort aus posten will:

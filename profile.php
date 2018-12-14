@@ -292,7 +292,5 @@ echo '<a href="following.php">Following</a>';
 include('footer.php');
 ?>
 
-</body>
 
-</html>
 

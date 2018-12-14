@@ -18,12 +18,12 @@ session_start();
 
 
 if (isset($_GET['mid'])) {
-    $message = DB::query('SELECT * FROM messages WHERE id=:mid AND (receiver=:receiver OR sender=:sender)', array(':mid'=>$_GET['mid'], ':receiver'=>$userid, ':sender'=>$userid))[0];
+    $message = DB::query('SELECT * FROM messages WHERE id=:mid AND (receiver=:receiver OR sender=:sender)', array(':mid'=>$_GET['mid'], ':receiver'=>$user_loggedin, ':sender'=>$user_loggedin))[0];
     echo '<h1>Nachrichten ansehen</h1>';
     echo  "<a  href='my-messages.php?username=$username'>Zurück</a> <br> <br>";
     echo htmlspecialchars($message['body']);
     echo '<hr />';
-    if ($message['sender'] == $userid) {
+    if ($message['sender'] == $user_loggedin) {
         $id = $message['receiver'];
     } else {
         $id = $message['sender'];

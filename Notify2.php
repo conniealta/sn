@@ -1,5 +1,6 @@
 
 <?php
+
 class Notify2 {
     public static function createNotify($text = "", $postid = 0) {
         $text = explode(" ", $text);
