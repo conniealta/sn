@@ -262,7 +262,7 @@ class Post {
                         $posts .= Comment::displayComments2($p['id']);
 
                         // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
-                        //$posts .= Comment::displayComments($p['id'])."</form><hr /></br />";
+                       // $posts .= Comment::displayComments($p['id'])."</form><hr /></br />";
 
                     }
 
