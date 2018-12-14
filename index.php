@@ -97,7 +97,7 @@ if(isset($_POST['post'])){
 // Text-Post-Funktion und Bild-Post-Funktion:
 if (isset($_POST['post'])) {
     if ($_FILES['file']['size'] == 0) { //wenn der Post kein Bild enthält bzw. keine Datei
-        Post::createPost2($_POST['postbody'], $user_loggedin);
+        Post::createPost2($_POST['postbody'], $user_loggedin, $post_id);
     } else { // wenn der Post eine Bild-Datei enthält
         $postid = Post::createImgPost2($bild_id, $_POST['postbody'], $user_loggedin);
     }

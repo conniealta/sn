@@ -5,7 +5,7 @@ class Post {
 
 // Das ist wenn die eingeloggte Person bei der eigenen Profilseite ist und von dort aus posten will:
 
-    public static function createPost($postbody, $loggedIn_userid, $profileUserId) {
+    public static function createPost($postbody, $loggedIn_userid, $profileUserId, $post_id) {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
 
             die('Inkorrekte Länge!');
@@ -20,7 +20,7 @@ class Post {
                     $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
 
                     if ($r != 0) {
-                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"]));
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra, :post_id)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"], ':post_id'=>$post_id));
                     }
                 }
             }
@@ -38,7 +38,7 @@ class Post {
 
 // Das ist wenn die eingeloggte Person beim "Feed" ist und von dort aus posten will:
 
-    public static function createPost2 ($postbody, $loggedIn_userid) {
+    public static function createPost2 ($postbody, $loggedIn_userid, $post_id) {
         if (strlen($postbody) > 1000 || strlen($postbody) < 1) {
 
             die('Inkorrekte Länge!');
@@ -55,7 +55,7 @@ class Post {
 
                     if ($r != 0) {
                         #solange der User existiert, wird eine Benachrichtigung gesendet
-                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :reciever, :sender, :extra)', array(':type' => $n["type"], ':reciever' => $r, ':sender' => $s, ':extra' => $n["extra"]));
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :reciever, :sender, :extra, :post_id)', array(':type' => $n["type"], ':reciever' => $r, ':sender' => $s, ':extra' => $n["extra"], ':post_id'=>$post_id));
                     }
                 }
             }
@@ -73,7 +73,7 @@ class Post {
 
 
 // Das ist wenn die eingeloggte Person bei der eigenen Profilseite ist und von dort aus posten will:
-    public static function createImgPost($img_id, $postbody, $loggedIn_userid, $profileUserId) {
+    public static function createImgPost($img_id, $postbody, $loggedIn_userid, $profileUserId, $post_id) {
 
         if (strlen($postbody) > 1000) {
 
@@ -89,7 +89,7 @@ class Post {
                     $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
 
                     if ($r != 0) {
-                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"]));
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra, :post_id)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"], ':post_id'=>$post_id));
                     }
                 }
             }
@@ -110,7 +110,7 @@ class Post {
 
 
 // Das ist wenn die eingeloggte Person beim "Feed" ist und von dort aus posten will:
-    public static function createImgPost2 ($img_id, $postbody, $loggedIn_userid) {
+    public static function createImgPost2 ($img_id, $postbody, $loggedIn_userid, $post_id) {
 
         if (strlen($postbody) > 1000 ) {
 
@@ -126,7 +126,7 @@ class Post {
                     $r = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$key))[0]['id'];
 
                     if ($r != 0) {
-                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"]));
+                        DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra, :post_id)', array(':type'=>$n["type"], ':receiver'=>$r, ':sender'=>$s, ':extra'=>$n["extra"], ':post_id'=>$post_id));
                     }
                 }
             }
