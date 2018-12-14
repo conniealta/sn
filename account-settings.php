@@ -99,7 +99,11 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
         <p>Studiengang:
         <select name="studiengang" value="<?php echo $studiengang; ?>">
-            <option "<?php echo $studiengang;?>">Online-Medien-Management</option>
+            <?php if ($studiengang == "Online-Medien-Management") {
+                echo '<option selected="selected"> Online-Medien-Management</option>';
+            } else echo '<option value="Online-Medien-Management"> Online-Medien-Management</option>'; ?>;
+
+            <option selected="selected"> "<?php echo $studiengang;?>">Online-Medien-Management</option>
             <option "<?php echo $studiengang;?>">Wirtschaftsinformatik und digitale Medien</option>
             <option value="Informationsdesign">Informationsdesign</option>
             <option value="Bibliotheksmanagement">Bibliotheksmanagement</option>
