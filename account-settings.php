@@ -99,27 +99,83 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
         <p>Studiengang:
         <select name="studiengang" value="<?php echo $studiengang; ?>">
+
             <?php if ($studiengang == "Online-Medien-Management") {
                 echo '<option selected="selected"> Online-Medien-Management</option>';
             } else echo '<option value="Online-Medien-Management"> Online-Medien-Management</option>'; ?>;
 
-            <option selected="selected"> "<?php echo $studiengang;?>">Online-Medien-Management</option>
-            <option "<?php echo $studiengang;?>">Wirtschaftsinformatik und digitale Medien</option>
-            <option value="Informationsdesign">Informationsdesign</option>
-            <option value="Bibliotheksmanagement">Bibliotheksmanagement</option>
-            <option value="Audiovisuelle Medien">Audiovisuelle Medien</option>
-            <option value="Crossmedia Redaktion/Public Relations">Crossmedia Redaktion/Public Relations</option>
-            <option value="Deutsch-chinseischer Studiengang Medien und Technologie">Deutsch-chinseischer Studiengang Medien und Technologie</option>
-            <option value="Informationswissenschaften">Informationswissenschaften</option>
-            <option value="Integriertes Produktdesign">Integriertes Produktdesign</option>
-            <option value="Mediapublishing">Mediapublishing</option>
-            <option value="Medieninformatik">Medieninformatik</option>
-            <option value="Medienwirtschaft">Medienwirtschaft</option>
-            <option value="Mobile Medien">Mobile Medien</option>
-            <option value="Print Media Technologies">Print Media Technologies</option>
-            <option value="Verpackungstechnik">Verpackungstechnik</option>
-            <option value="Werbung und Marktkommunikation">Werbung und Marktkommunikation</option>
-            <option value="Wirtschaftsingenieurwesen Medien">Wirtschaftsingenieurwesen Medien</option>
+            <?php if ($studiengang == "Audiovisuelle Medien") {
+                echo '<option selected="selected"> Audiovisuelle Medien</option>';
+            } else echo '<option value="Audiovisuelle Medien"> Audiovisuelle Medien</option>'; ?>;
+
+            <?php if ($studiengang == "Wirtschaftsinformatik und digitale Medien") {
+                echo '<option selected="selected">Wirtschaftsinformatik und digitale Medien</option>';
+            } else echo '<option value="Audiovisuelle Medien">Wirtschaftsinformatik und digitale Medien</option>'; ?>;
+
+            <?php if ($studiengang == "Informationsdesign") {
+                echo '<option selected="selected">Informationsdesign</option>';
+            } else echo '<option value="Informationsdesign">Informationsdesign</option>'; ?>;
+
+            <?php if ($studiengang == "Bibliotheksmanagement") {
+                echo '<option selected="selected">Bibliotheksmanagement</option>';
+            } else echo '<option value="Bibliotheksmanagement">Bibliotheksmanagement</option>'; ?>;
+
+            <?php if ($studiengang == "Crossmedia Redaktion/Public Relations") {
+                echo '<option selected="selected">Crossmedia Redaktion/Public Relations</option>';
+            } else echo '<option value="Crossmedia Redaktion/Public Relations">Crossmedia Redaktion/Public Relations</option>'; ?>;
+
+            <?php if ($studiengang == "Deutsch-chinseischer Studiengang Medien und Technologie") {
+                echo '<option selected="selected">Deutsch-chinseischer Studiengang Medien und Technologie</option>';
+            } else echo '<option value="Deutsch-chinseischer Studiengang Medien und Technologie">Deutsch-chinseischer Studiengang Medien und Technologie</option>'; ?>;
+
+            <?php if ($studiengang == "Informationswissenschaften") {
+                echo '<option selected="selected">Informationswissenschaften</option>';
+            } else echo '<option value="Informationswissenschaften">Informationswissenschaften</option>'; ?>;
+
+            <?php if ($studiengang == "Integriertes Produktdesign") {
+                echo '<option selected="selected">Integriertes Produktdesign</option>';
+            } else echo '<option value="Integriertes Produktdesign">Integriertes Produktdesign</option>'; ?>;
+
+            <?php if ($studiengang == "Mediapublishing") {
+                echo '<option selected="selected">Mediapublishing</option>';
+            } else echo '<option value="Mediapublishing">Mediapublishing</option>'; ?>;
+
+            <?php if ($studiengang == "Medieninformatik") {
+                echo '<option selected="selected">Medieninformatik</option>';
+            } else echo '<option value="Medieninformatik">Medieninformatik</option>'; ?>;
+
+            <?php if ($studiengang == "Medienwirtschaft") {
+                echo '<option selected="selected">Medienwirtschaft</option>';
+            } else echo '<option value="Medienwirtschaft">Medienwirtschaft</option>'; ?>;
+
+            <?php if ($studiengang == "Mobile Medien") {
+                echo '<option selected="selected">Mobile Medien</option>';
+            } else echo '<option value="Mobile Medien">Mobile Medien</option>'; ?>;
+
+            <?php if ($studiengang == "Mediapublishing") {
+                echo '<option selected="selected">Mediapublishing</option>';
+            } else echo '<option value="Mediapublishing">Mediapublishing</option>'; ?>;
+
+            <?php if ($studiengang == "Mediapublishing") {
+                echo '<option selected="selected">Mediapublishing</option>';
+            } else echo '<option value="Mediapublishing">Mediapublishing</option>'; ?>;
+
+            <?php if ($studiengang == "Print Media Technologies") {
+                echo '<option selected="selected">Print Media Technologies</option>';
+            } else echo '<option value="Print Media Technologies">Print Media Technologies</option>'; ?>;
+
+            <?php if ($studiengang == "Verpackungstechnik") {
+                echo '<option selected="selected">Verpackungstechnik</option>';
+            } else echo '<option value="Mediapublishing">Verpackungstechnik</option>'; ?>;
+
+            <?php if ($studiengang == "Wirtschaftsingenieurwesen Medien") {
+                echo '<option selected="selected">Wirtschaftsingenieurwesen Medien</option>';
+            } else echo '<option value="Wirtschaftsingenieurwesen Medien">Wirtschaftsingenieurwesen Medien</option>'; ?>;
+
+            <?php if ($studiengang == "Werbung und Marktkommunikation") {
+                echo '<option selected="selected">Werbung und Marktkommunikation</option>';
+            } else echo '<option value="Werbung und Marktkommunikation">Werbung und Marktkommunikation</option>'; ?>;
+
         </select>
         </p>
 
