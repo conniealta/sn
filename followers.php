@@ -2,15 +2,6 @@
 session_start();
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 
-if(!isset($_SESSION["angemeldet"]))
-{
-    echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
-    die();
-}
-else {
-    $user_loggedin = $_SESSION['angemeldet'];
-
-}
 
 
 $userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
@@ -24,10 +15,10 @@ $followerid = $user_loggedin; //"followerid" ist die "id" des Benutzers, der sic
 
 
 
-if (DB::query('SELECT follower_id FROM followers WHERE user_id=:userid AND follower_id=:followerid', array(':userid'=>$userid, ':followerid'=>$followerid))) {
+$follower = DB::query('SELECT follower_id FROM followers, list5 WHERE list5.id=:user_id', array(':user_id'=>$userid));
 
-    echo $userid;
-}
+
+    print $follower;
 
 
 
