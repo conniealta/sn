@@ -11,7 +11,6 @@ $userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':use
   -> anders formuliert: die "id" aus der Datenbank auswählen, wo "username" in der Datenbank dem ":username" in der URL entspricht
    und diese "id" dann bei der Variable "$userid" speichern */
 
-$followerid = $user_loggedin; //"followerid" ist die "id" des Benutzers, der sich eingeloggt hat
 
 
 
