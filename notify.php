@@ -53,14 +53,3 @@ include('footer.php');
 
 ?>
 
-gfzgug
-ghvzhg
-asdfghj
-ertzui
-dfghjk
-ertzui
-ertzui
-cvbnm,
-rtzuio
-cvbnm
-rtzui
