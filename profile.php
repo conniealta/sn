@@ -257,9 +257,8 @@ if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigen
 
 <?php
 
-
-echo '<a href="followers.php">Followers</a> <h />';
-echo '<a href="following.php">Following</a>';
+echo"<a href='followers.php?username=".$username."'> Followers</a> <h />";
+echo"<a href='following.php?username=".$username."'> Following</a> ";
 ?>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
