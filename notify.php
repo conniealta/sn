@@ -52,3 +52,5 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
 include('footer.php');
 
 ?>
+
+gfzgug
