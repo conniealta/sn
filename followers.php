@@ -47,7 +47,6 @@ if (isset($_GET['username'])) {
 
     foreach ($dbfollowers as $f) {
 
-        //echo $f['username'];
         $username = $f['username'];
 
         echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $f['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $f['username'] . '</a>';
