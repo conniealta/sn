@@ -33,9 +33,9 @@ else {
 if (isset($_POST['send'])) {
     if (DB::query('SELECT id FROM list5 WHERE id=:receiver', array(':receiver'=>$_GET['receiver']))) {
         DB::query("INSERT INTO messages VALUES ('', :body, :sender, :receiver, 0)", array(':body'=>$_POST['body'], ':sender'=>$user_loggedin, ':receiver'=>htmlspecialchars($_GET['receiver'])));
-        echo "Message Sent!";
+        echo "Nachricht gesendet!";
     } else {
-        die('Invalid ID!');
+        die('Ungültige Id!');
     }
 }
 ?>
