@@ -25,7 +25,6 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
     $user = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
 
 
-    Notify2::createNotify("", $_GET['postid']);
 
 
 
