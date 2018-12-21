@@ -147,28 +147,6 @@ class Post {
 
 
 
-    /*public static function likePost($postid, $likerId) {
-        if (!DB::query('SELECT user_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid'=>$postid, ':userid'=>$likerId))) {
-            //wenn folgendes nicht der Fall ist: der Benutzer hat den Post bereits geliked, dann wird der Code ausgeführt:
-
-            DB::query('UPDATE posts SET likes=likes+1 WHERE id=:postid', array(':postid' => $postid));
-            //wo die Post-"id" in der Datenbank gleich die ":postid" ist, die dem URL übergeben wird, wenn man auf den Like-Button klickt
-
-            DB::query('INSERT INTO post_likes VALUES (\'\',:postid, :userid)', array(':postid' => $postid, ':userid' => $likerId));
-            //das zeigt ob die eingeloggte Person (followerid) den Post geliked hat
-
-            Notify2::createNotify(" ", $postid);
-
-
-        } else {
-
-            DB::query('UPDATE posts SET likes=likes-1 WHERE id=:postid', array(':postid' => $postid));
-            DB::query('DELETE FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $postid, ':userid' => $likerId));
-
-        }
-    }*/
-
-
     public static function likePost($postId, $likerId) {
         if (!DB::query('SELECT user_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid'=>$postId, ':userid'=>$likerId))) {
             //Verneinung von : "Benutzer-id steht neben post_id in der Tabelle post_likes, d.h. Benutzer hat diesen bestimmten Post schon geliked"
