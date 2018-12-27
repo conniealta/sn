@@ -42,7 +42,7 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
         } else if ($n['type'] == 2) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
             echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen  <a href='profile.php?username=$user&postid=".$n['post_id']."'>Post</a> geliked! <hr />";
-            //postid muss noch geändert werden,  aber wenn jetzt der postid in der URL übergeben wird,
+            #post_id ist die id, die in der Datenbanktabelle gespeichert wurde
 
 
         }
