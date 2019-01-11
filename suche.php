@@ -52,9 +52,22 @@ if(isset($_POST['searchbox'])) {
         $paramsarray[":u$i"] = $tosearch[$i];
     }
 
-    $users = DB::query('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'', $paramsarray);
+   /* $users = DB::query('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'', $paramsarray);
     $user_search = $users['username'];
     print_r($user_search);
+    print_r($users);*/
+
+
+    $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
+    $statement = $pdo->prepare('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'');
+
+    if($statement->execute(array(':username'=>$username, $paramsarray ))) {
+        while ($user = $statement->fetchObject()) {
+            $user_search= $user->username;
+        }
+    }
+    print_r($user_search);
+    echo $user_search;
 
   /*  $whereclause = "";
     $paramsarray = array(':body'=>'%'.$_POST['searchbox'].'%');
