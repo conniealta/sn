@@ -9,7 +9,7 @@ include('Comment.php');
 <br><br><br><br>
 
 
-<h1> Willkommen, <?php echo $user_name; ?></h1> <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert-->
+<h1> Hey, <?php echo $user_name; ?></h1> <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert-->
 
 
 <div class="main_column column">
@@ -26,9 +26,7 @@ include('Comment.php');
             </a>
         </div>
     </div>
-
-
-
+</div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -55,7 +53,8 @@ if(isset($_POST['searchbox'])) {
     }
 
     $users = DB::query('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'', $paramsarray);
-    print_r($users);
+    $user_search = $users['username'];
+    print_r($user_search);
 
     $whereclause = "";
     $paramsarray = array(':body'=>'%'.$_POST['searchbox'].'%');
