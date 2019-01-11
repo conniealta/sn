@@ -72,7 +72,6 @@ if(isset($_POST['searchbox'])) {
         }
     }
     print_r($user_search);
-    echo $user_search;
 
   /*  $whereclause = "";
     $paramsarray = array(':body'=>'%'.$_POST['searchbox'].'%');
