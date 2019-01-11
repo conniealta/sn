@@ -57,11 +57,16 @@ if(isset($_POST['searchbox'])) {
     print_r($user_search);
     print_r($users);*/
 
+   /*  So??
+   foreach ($users as $user1) ...
+   $user_search = $user1['username']
+   */
+
 
     $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
     $statement = $pdo->prepare('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'');
 
-    if($statement->execute(array(':username'=>$username, $paramsarray ))) {
+    if($statement->execute($paramsarray )) {
         while ($user = $statement->fetchObject()) {
             $user_search= $user->username;
         }
