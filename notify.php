@@ -41,8 +41,9 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
 
         } else if ($n['type'] == 2) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
-            echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen Post</a> geliked! <hr />";
-            #post_id ist die id, die in der Datenbanktabelle gespeichert wurde
+
+                echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen Post</a> geliked! " ."<hr />";
+                #post_id ist die id, die in der Datenbanktabelle gespeichert wurde
 
 
         }
