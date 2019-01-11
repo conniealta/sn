@@ -56,7 +56,7 @@ if(isset($_POST['searchbox'])) {
     $user_search = $users['username'];
     print_r($user_search);
 
-    $whereclause = "";
+  /*  $whereclause = "";
     $paramsarray = array(':body'=>'%'.$_POST['searchbox'].'%');
     for ($i = 0; $i < count($tosearch); $i++) {
         if ($i % 2) { // jedes zweite Wort
@@ -65,7 +65,7 @@ if(isset($_POST['searchbox'])) {
         }
     }
     $posts = DB::query('SELECT posts.body, list5.username, posts.posted_at FROM posts, list5 WHERE list5.id = posts.user_id AND posts.body LIKE :body '.$whereclause.'LIMIT 15', $paramsarray);
-    echo json_encode($posts);
+    echo json_encode($posts);*/
 
 }
 ?>
