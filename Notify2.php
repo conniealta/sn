@@ -1,6 +1,5 @@
 
 <?php
-
 class Notify2 {
     public static function createNotify($text = "", $postid = 0) {
         $text = explode(" ", $text);
@@ -14,12 +13,9 @@ class Notify2 {
             $temp = DB::query('SELECT posts.user_id AS receiver, post_likes.user_id AS sender FROM posts, post_likes WHERE posts.id = post_likes.post_id AND posts.id=:postid', array(':postid'=>$postid));
             $r = $temp[0]["receiver"];
             $s = $temp[0]["sender"];
-            DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra, :post_id)', array(':type'=>2, ':receiver'=>$r, ':sender'=>$s, ':extra'=>"", ':post_id'=>$postid));
+            DB::query('INSERT INTO notifications VALUES (\'\', :type, :receiver, :sender, :extra)', array(':type'=>2, ':receiver'=>$r, ':sender'=>$s, ':extra'=>""));
         }
-
-
         return $notify;
     }
 }
 ?>
-
