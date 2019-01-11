@@ -9,7 +9,7 @@ include('Comment.php');
 <br><br><br><br>
 
 
-<h1> Willkommen, <?php echo $user_name; ?></h1> <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert-->
+<h1> Hey, <?php echo $user_name; ?></h1> <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert-->
 
 
 <div class="main_column column">
@@ -26,9 +26,7 @@ include('Comment.php');
             </a>
         </div>
     </div>
-
-
-
+</div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -55,9 +53,10 @@ if(isset($_POST['searchbox'])) {
     }
 
     $users = DB::query('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'', $paramsarray);
-    print_r($users);
+    $user_search = $users['username'];
+    print_r($user_search);
 
-    $whereclause = "";
+  /*  $whereclause = "";
     $paramsarray = array(':body'=>'%'.$_POST['searchbox'].'%');
     for ($i = 0; $i < count($tosearch); $i++) {
         if ($i % 2) { // jedes zweite Wort
@@ -66,7 +65,7 @@ if(isset($_POST['searchbox'])) {
         }
     }
     $posts = DB::query('SELECT posts.body, list5.username, posts.posted_at FROM posts, list5 WHERE list5.id = posts.user_id AND posts.body LIKE :body '.$whereclause.'LIMIT 15', $paramsarray);
-    echo json_encode($posts);
+    echo json_encode($posts);*/
 
 }
 ?>
