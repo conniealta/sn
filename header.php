@@ -101,7 +101,7 @@
     </li>
 
     <br>
-    <form  action="index.php" method="post">
+    <form  action="suche.php" method="post">
         <input style="margin-left:190px;" type="text" name="searchbox" value="">
         <input type="submit" name="search" value="Suchen">
     </form>
