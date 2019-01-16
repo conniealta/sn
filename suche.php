@@ -6,33 +6,14 @@ include('Post.php');
 include('Comment.php');
 ?>
 
-<br><br><br><br>
 
 
-<h1> Hey, <?php echo $user_name; ?></h1> <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert-->
 
-
-<div class="main_column column">
-
-    <!-- Profil-Bild mit Infos -->
-    <div class="user_details column">
-        <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
-
-        <div class="user_details_left_right">
-            <a href="profile.php?username=<?php echo $user_name; ?>" >
-                <?php
-                echo $fname . " " . $lname;
-                ?>
-            </a>
-        </div>
-    </div>
-</div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 <h1 class="title"> Suche  </h1>
 
-
+<br><br><br>
 
 <?php
 
@@ -64,27 +45,21 @@ if(isset($_POST['searchbox'])) {
 
 
     $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
-    $statement = $pdo->prepare('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'');
+    $statement = $pdo->prepare('SELECT list5.username, list5.profile_pic FROM list5 WHERE list5.username LIKE :username '.$whereclause.'');
 
     if($statement->execute($paramsarray )) {
         while ($user = $statement->fetchObject()) {
             $user_search= $user->username;
+            $prof_pic = $user->profile_pic;
         }
     }
-    print_r($user_search);
+    print_r( "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $prof_pic . "'>". ' ' . ' ' . "<a href='profile.php?username=" . $user_search . " ' >" . $user_search . '</a>'  );
 
-  /*  $whereclause = "";
-    $paramsarray = array(':body'=>'%'.$_POST['searchbox'].'%');
-    for ($i = 0; $i < count($tosearch); $i++) {
-        if ($i % 2) { // jedes zweite Wort
-            $whereclause .= " OR body LIKE :p$i ";
-            $paramsarray[":p$i"] = $tosearch[$i];
-        }
-    }
-    $posts = DB::query('SELECT posts.body, list5.username, posts.posted_at FROM posts, list5 WHERE list5.id = posts.user_id AND posts.body LIKE :body '.$whereclause.'LIMIT 15', $paramsarray);
-    echo json_encode($posts);*/
 
 }
+
 ?>
 
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
