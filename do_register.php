@@ -66,6 +66,11 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
         $error = true;
     }
 
+    if(strlen($passwort) > 30 || strlen($passwort) < 2) {
+        echo "Passwort zwischen 2 und 30 Zeichen!<br>";
+        $error = true;
+    }
+
     if(strlen($passwort) == 0) {
         echo 'Bitte ein Passwort angeben<br>';
         $error = true;
@@ -79,13 +84,7 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
             $error = true;
         }
     }
-
-    // !!!!!!!!
-
-   /* if(strlen($passwort > 30 || strlen($passwort) < 1)) {
-        echo "Passwort zwischen 3 und 30 Zeichen!<br>";
-        $error = true;
-    }*/
+    
 
 
     //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
