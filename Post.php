@@ -162,7 +162,6 @@ class Post {
 
 
 
-
     public static function link_add($text){
         $text = explode(" ", $text);
         $newstring = "";
