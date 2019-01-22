@@ -79,7 +79,6 @@
         </li>
 
         <li>
-
             <?php
             echo "<a href='profile.php?username=$username'>Profil</a>"
             ?>
