@@ -96,13 +96,24 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-
     </button>
 
+
+
+<div class="header">
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
+
+</div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
+<ul>
 
             <li class="nav-item active">
                 <?php

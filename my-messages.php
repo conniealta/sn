@@ -21,8 +21,10 @@ session_start();
 
 if (isset($_GET['mid'])) {
     $message = DB::query('SELECT * FROM messages WHERE id=:mid AND (receiver=:receiver OR sender=:sender)', array(':mid'=>$_GET['mid'], ':receiver'=>$user_loggedin, ':sender'=>$user_loggedin))[0];
+
     echo '<h1>Nachrichten ansehen</h1>';
     echo  "<a  href='my-messages.php?username=$username'>Zurück</a> <br> <br>";
+
     echo htmlspecialchars($message['body']);
     echo '<hr />';
     if ($message['sender'] == $user_loggedin) {
@@ -31,6 +33,8 @@ if (isset($_GET['mid'])) {
         $id = $message['sender'];
     }
     DB::query('UPDATE messages SET `read`=1 WHERE id=:mid', array (':mid'=>$_GET['mid']));
+
+
     ?>
     <form action="messages.php?receiver=<?php echo $id; ?>" method="post">
         <textarea name="body" rows="8" cols="80"></textarea>
@@ -45,7 +49,7 @@ if (isset($_GET['mid'])) {
     <h1>Meine Nachrichten</h1>
     <?php
     include('Post.php');
-    $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE (receiver=:receiver OR sender=:sender) AND list5.id = messages.sender', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
+    $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE (receiver=:receiver OR sender=:sender) AND list5.id = messages.sender ORDER BY messages.id DESC', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
 
 
     foreach ($messages as $message) {

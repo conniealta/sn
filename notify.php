@@ -6,8 +6,8 @@ include('Post.php');
 
 echo "<h1>Benachrichtigungen</h1>";
 if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin))) {
-    $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin));
-    $user = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
+    $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid ORDER BY notifications.id DESC', array(':userid'=>$user_loggedin));
+
 
 
 
@@ -26,7 +26,7 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
 
                 echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen Post</a> geliked! " ."<hr />";
-                #post_id ist die id, die in der Datenbanktabelle gespeichert wurde
+
 
 
         }
