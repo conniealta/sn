@@ -125,10 +125,7 @@ include('Comment.php');
                                                              Fände es irgendwie cooler wenn da der Name stehen würde - Lori-->
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 bg-white">
-                <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
-                    <img src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
-            </div>
+
             <div class="col-sm-8 bg-white p-2">
                 <div class="user_details column">
                     <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
