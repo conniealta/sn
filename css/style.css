@@ -9,7 +9,7 @@
 
 body {
 	line-height: 17px;
-	background-color: #E6EAE8;
+	background-color: #E6EAE8;                                              /*Hintergrund der kompletten Seite*/
 	font-size: 20px;
 	margin: 0;
 	padding: 0;
@@ -88,7 +88,7 @@ nav a{
 }
 
 nav a:hover {
-	border-bottom: 7px solid #e67e22;
+	border-bottom: 7px solid #00a4ff;                        /*unterstirchenes wenn man mit der maus drüber geht nav bar*/
 	color: #fff;
 }
 
@@ -108,7 +108,7 @@ nav a:hover {
 	border-radius: 5px;
 	box-shadow: 2px 2px 1px #D3D3D3;
 	z-index: -1;
-	color: #555;
+	color: #000000;                           /* Das ist "keine ausgewählt" bei dem Upload-Lori*/
 }
 
 .user_details {
@@ -627,8 +627,66 @@ textarea:focus {
 }
 
 
+
+
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+	color: #e9ecef;
+}
+
+.active {
+	background-color: #69c6ec;
+}
+
+
+.btn-outline-primary {
+	color: #69c6ec;
+	border-color: #69c6ec;
+}
+
+.btn-outline-primary:hover {
+	color: #fff;
+	background-color: #69c6ec;
+	border-color: #69c6ec;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	background-color: #f8f9fa;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	text-decoration: none;
+	overflow: no-content;
+
+}
+
+.nav-item {
+	background-color: #f8f9fa;
+	text-decoration: none;
+	overflow: no-content;
+
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+	color: #00a4ff;                                                   /* Schrift ändert farbe in nav bar bei hover - lori */
+	text-decoration: none;
+	overflow: no-content;
+}
+
+.nav-item active{
+	text-decoration: none;
+	overflow: no-content;
+
+}
+
+
+
+
+
 footer {
-	color: #FF0000;
+	color: #00a4ff;
 
 }
 

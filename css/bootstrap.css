@@ -5685,7 +5685,7 @@ a.list-group-item-danger.active:focus {
 }
 .close:hover,
 .close:focus {
-  color: #000;
+  color: #FFFFF;
   text-decoration: none;
   cursor: pointer;
   filter: alpha(opacity=50);

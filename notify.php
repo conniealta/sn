@@ -1,30 +1,13 @@
 <?php
 session_start();
-?>
-
-
-
-<?php
 include('header.php');
-?>
-
-
-
-<?php
-
-
 include('Post.php');
-
-
-
 
 
 echo "<h1>Benachrichtigungen</h1>";
 if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin))) {
     $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin));
     $user = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-
-
 
 
 

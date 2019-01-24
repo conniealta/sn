@@ -5,7 +5,7 @@ $showTimeline = False;
 
 if(!isset($_SESSION["angemeldet"]))
 {
-    echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
+    echo"Bitte zuerst <a href=\"login.php\">einloggen</a>";
     die();
 }
 else {

@@ -13,7 +13,7 @@ include('header.php');
 
 if(!isset($_SESSION["angemeldet"]))
 {
-    echo"Bitte zuerst <a href=\"login.html\">einloggen</a>";
+    echo"Bitte zuerst <a href=\"login.php\">einloggen</a>";
     die();
 }
 else {
@@ -22,6 +22,14 @@ else {
 
 }
 ?>
+
+
+
+
+
+
+
+
 
 <h1>Send a Message</h1>
 <form action="messages.php?receiver=<?php echo htmlspecialchars($_GET['receiver']); ?>" method="post">
