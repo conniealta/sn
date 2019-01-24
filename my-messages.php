@@ -47,7 +47,7 @@ if (isset($_GET['mid'])) {
     <h1>Meine Nachrichten</h1>
     <?php
     include('Post.php');
-    $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE (receiver=:receiver OR sender=:sender) AND list5.id = messages.sender', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
+    $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE (receiver=:receiver OR sender=:sender) AND list5.id = messages.sender ORDER BY messages.id DESC', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
 
 
     foreach ($messages as $message) {
