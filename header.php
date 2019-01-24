@@ -101,12 +101,7 @@
 
 
 <div class="header">
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
-    <h2>Scroll Down</h2>
-    <p>Scroll down to see the sticky effect.</p>
+
 
 </div>
 
@@ -150,9 +145,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Ausloggen</a>
             </li>
-
-            </li>
-
+</ul>
             <!--                                                               Auskommentiert weil es mir komplett die Navbar verschiebt - Lori
             <li class="nav-item">
                 <?php /*
@@ -173,7 +166,7 @@
                 <input style="margin-left:190px;" type="text" name="searchbox" value="">
                 <input type="submit" name="search" value="Suchen">
             </form>-->
-        </ul>
+
            <!-- <form  action="suche.php" method="post" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" class="searchbox" placeholder="Search">
