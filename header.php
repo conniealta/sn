@@ -32,7 +32,6 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href=" " media="screen"/>
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/register.js"></script>
     <!--=============================================================0
 
@@ -47,47 +46,6 @@
     <Title> Alcyone </Title>
 
 
-    <style>                                                  /* Style der Navbar ist hier definiert! - Lori */
-
-        body {
-            font-size: 20px;
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-            position: -webkit-sticky; /* Safari */
-            position: sticky;
-            top: 0;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #ffffff; /*Hintergrund hover nav bar war schwarz*/
-        }
-
-        .active {
-            background-color: #69c6ec;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -97,55 +55,47 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-
-
-<div class="header">
-
-
-</div>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-<ul>
+            <ul class="header">
 
-            <li class="nav-item active">
-                <?php
-                session_start();
-                include('user_data.php');
-                $user_loggedin = $_SESSION['angemeldet'];
-                $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-                echo "<a class='active' href='index.php?username=$username'>Home</a>"
-                ?>
-            </li>
-
-
-            <li class="nav-item">
-                <?php
-                echo "<a href='profile.php?username=$username'>Profil</a>"
-                ?>
-
-            <li>
-                <?php
-                echo "<a  href='my-messages.php?username=$username'>Messages</a>"
-                ?>
-
-            </li>
-
-            <!-- hier habe ich die Navbar alt integriert - warum kann ich hier die profilseite nitcht mit php integrieren?-->
+                <li class="nav-item active">
+                    <?php
+                    session_start();
+                    include('user_data.php');
+                    $user_loggedin = $_SESSION['angemeldet'];
+                    $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
+                    echo "<a class='active' href='index.php?username=$username'>Home</a>"
+                    ?>
+                </li>
 
 
-            <li class="nav-item">
-                <a class="nav-link " href="notify.php?username=$username">Benachrichtigungen</a>
-            </li>
+                <li class="nav-item">
+                    <?php
+                    echo "<a href='profile.php?username=$username'>Profil</a>"
+                    ?>
 
-            <li>
+                <li>
+                    <?php
+                    echo "<a  href='my-messages.php?username=$username'>Messages</a>"
+                    ?>
 
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">Ausloggen</a>
-            </li>
-</ul>
+                </li>
+
+                <!-- hier habe ich die Navbar alt integriert - warum kann ich hier die profilseite nitcht mit php integrieren?-->
+
+
+                <li class="nav-item">
+                    <a class="nav-link " href="notify.php?username=$username">Benachrichtigungen</a>
+                </li>
+
+                <li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Ausloggen</a>
+                </li>
+            </ul>
             <!--                                                               Auskommentiert weil es mir komplett die Navbar verschiebt - Lori
             <li class="nav-item">
                 <?php /*
@@ -161,31 +111,33 @@
 
 
             <!-- DAS IST DIE BOOTSTRAP SUCHLEISTE Icon anstelle von Search wäre cool - MUSS NOCH FORMULAR BEKOMMEN WIE ANDERE LEISTE UM AUCH DIE LEUTE ZU FINDEN CONNY FRAGEN - LORI-->
-<!--
-            <form action="suche.php" method="post">
+            <!--
+                        <form action="suche.php" method="post">
+                            <input style="margin-left:190px;" type="text" name="searchbox" value="">
+                            <input type="submit" name="search" value="Suchen">
+                        </form>-->
+
+            <!-- <form  action="suche.php" method="post" class="navbar-form navbar-left" role="search">
+                 <div class="form-group">
+                     <input type="text" class="searchbox" placeholder="Search">
+                 </div>
+                 <button type="submit" class="btn bg-white" value="Suchen">
+                     <span class="glyphicon glyphicon-search"></span>
+                 </button>
+             </form>-->
+            <form action="suche.php" method="post" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                       name="searchbox" value="">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Search
+                </button>
+            </form>
+            <!--
+            <form  action="suche.php" method="post">
                 <input style="margin-left:190px;" type="text" name="searchbox" value="">
                 <input type="submit" name="search" value="Suchen">
             </form>-->
 
-           <!-- <form  action="suche.php" method="post" class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="searchbox" placeholder="Search">
-                </div>
-                <button type="submit" class="btn bg-white" value="Suchen">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </form>-->
-        <form action="suche.php" method="post" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchbox" value="">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Search</button>
-        </form>
-        <!--
-        <form  action="suche.php" method="post">
-            <input style="margin-left:190px;" type="text" name="searchbox" value="">
-            <input type="submit" name="search" value="Suchen">
-        </form>-->
-
-<!-- Kommentar-->
+            <!-- Kommentar-->
     </div>
 
 </nav>

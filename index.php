@@ -36,7 +36,7 @@ include('Comment.php');
                 $user_loggedin = $_SESSION['angemeldet'];
                 $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
                 echo "<a class='nav-link' href='profile.php?username='$username'>Mein Profil</a>"
-              */  ?>
+              */ ?>
                 <!-- Eigentlich muss ich hier php einbinden damit profilname angezeigt wird...<ul>
 
 
@@ -56,7 +56,7 @@ include('Comment.php');
             <?php
                 echo "<a href='profile.php?username=$username'>Profil</a>"
                 */ ?>         <!-- hier habe ich die Navbar alt integriert - warum kann ich hier die profilseite nitcht mit php integrieren?-->
-            <!-- </li>
+<!-- </li>
             <li>
                 <?php /*
                 echo "<a  href='my-messages.php?username=$username'>Messages</a>"
@@ -82,7 +82,7 @@ include('Comment.php');
                 $user_loggedin = $_SESSION['angemeldet'];
                 $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
                 echo "<a class='active' href='index.php?username=$username'>Feed</a>"*/
-            ?>
+?>
 
                 <a class="nav-link" href='profile.php?username=$username'>Mein Profil</a>
             </li>--->
@@ -122,36 +122,43 @@ include('Comment.php');
     <h1 class="py-5"> Willkommen, <?php echo $user_name; ?></h1>    <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert
 
 
-                                                             Fände es irgendwie cooler wenn da der Name stehen würde - Lori-->
-    <div class="container">
+
+
+
+
+
+
+
+                                                              Fände es irgendwie cooler wenn da der Name stehen würde - Lori-->
+    <div class="container höhe-postbox bg-white ">
         <div class="row">
 
-            <div class="col-sm-8 bg-white p-2">
-                <div class="user_details column">
-                    <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
-                        <img src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
 
-                    <div class="user_details_left_right">
-                        <a href="profile.php?username=<?php echo $user_name; ?>">
-                            <?php
-                            echo $fname . " " . $lname;
-                            ?>
-                        </a>
-                    </div>
+            <div class="col-lg-3 user_details column py-2">
+                <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
+                    <img src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
+
+                <div class="user_details_left_right">
+                    <a href="profile.php?username=<?php echo $user_name; ?>">
+                        <?php
+                        echo $fname . " " . $lname;
+                        ?>
+                    </a>
                 </div>
-                <form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
+            </div>
+            <form class=" col-lg-9 py-2 post_form" action="index.php" method="POST" enctype="multipart/form-data">
 
                     <textarea name="postbody" rows="8" cols="80"
                               placeholder="Schreibe hier um etwas zu posten.."></textarea>
-                    <input type="submit" name="post" value="Post">
-                    <br><br>
-                    <input type="file" name="file">
+                <input type="submit" name="post" value="Post">
+                <br><br>
+                <input type="file" name="file">
 
-                    <hr>
+                <hr>
 
-                </form>
+            </form>
 
-            </div>
+
         </div>
     </div>
     <!-- <div class="main_column column">
