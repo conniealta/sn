@@ -117,7 +117,7 @@ include('Comment.php');
 </nav>
 nav -->
 
-<main class="container">
+<main class="container" style="padding-top: 50px">
     <!--mit container mittig gesetzt - mit container fluid ist es auf komplette bildbreite verteilt-->
     <h1 class="py-5"> Willkommen, <?php echo $user_name; ?></h1>    <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert
 

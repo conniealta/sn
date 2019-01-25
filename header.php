@@ -49,7 +49,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+<nav class="navbar navbar-expand-lg pos-fixed navbar-light bg-light" style="min-width: 100%">
     <a class="navbar-brand" href="#">Alcyone</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

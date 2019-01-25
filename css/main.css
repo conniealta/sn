@@ -1318,6 +1318,10 @@ li a:hover {
   height: 500px;
 }
 
+.place_content {
+  padding-top: 50px
+}
+
 footer {
   color: #00a4ff;
 
