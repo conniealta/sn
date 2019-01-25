@@ -212,7 +212,15 @@ nav -->
 
 
     if(isset($_POST['post'])){
+
+       if(isset($_FILES['file']['name'])) {
+
+           if(!($_FILES['file']['name'] == ""))  {
+
+
         $file = $_FILES['file'];
+        echo "Hey";
+        echo $_FILES['file']['name'];
 
         $fileName = $_FILES['file']['name'];
         $fileTmpName = $_FILES['file']['tmp_name'];
@@ -247,6 +255,8 @@ nav -->
             echo "Dateiformat nicht unterstützt";
 
         }
+       }
+       }
 
     }
 
