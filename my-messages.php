@@ -45,7 +45,7 @@ if (isset($_GET['mid'])) {
 } else {
 
     ?>
-
+<main class="container">
     <h1>Meine Nachrichten</h1>
     <?php
     include('Post.php');
@@ -83,6 +83,8 @@ if (isset($_GET['mid'])) {
 }
 ?>
 
+
+</main>
 
 <?php
 include('footer.php');
