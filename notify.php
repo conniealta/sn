@@ -2,8 +2,10 @@
 session_start();
 include('header.php');
 include('Post.php');
+?>
+<main class="container">
 
-
+<?php
 echo "<h1>Benachrichtigungen</h1>";
 if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin))) {
     $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid ORDER BY notifications.id DESC', array(':userid'=>$user_loggedin));
@@ -36,6 +38,11 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
 
 
 }
+
+?>
+</main>
+
+<?php
 include('footer.php');
 
 ?>

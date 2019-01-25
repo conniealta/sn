@@ -201,7 +201,7 @@ if (isset($_GET['username'])) {
 ?>
 
 
-
+<main class="container">
 
 <h1>Das Profil von '<?php echo $username; ?>'</h1>
 
@@ -287,7 +287,7 @@ echo"<a href='following.php?username=".$username."'> Following</a> ";
     <?php echo $posts;
    ?>
 </div>
-
+</main>
 <?php
 include('footer.php');
 ?>

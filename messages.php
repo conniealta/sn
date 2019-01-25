@@ -27,8 +27,7 @@ else {
 
 
 
-
-
+<main class="container">
 
 
 <h1>Sende eine Nachricht</h1>
@@ -47,3 +46,4 @@ if (isset($_POST['send'])) {
     }
 }
 ?>
+    </main>
