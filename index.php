@@ -115,7 +115,7 @@ include('Comment.php');
 
 
 </nav>
-nav-->
+nav -->
 
 <main class="container">
     <!--mit container mittig gesetzt - mit container fluid ist es auf komplette bildbreite verteilt-->
