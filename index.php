@@ -211,41 +211,51 @@ nav -->
     // WARUM IST DAS AUSKOMMENTIERT? KANN DAS WEG? - LORI
 
 
-    if(isset($_POST['post'])){
-        $file = $_FILES['file'];
+    if (isset($_POST['post'])) {
 
-        $fileName = $_FILES['file']['name'];
-        $fileTmpName = $_FILES['file']['tmp_name'];
-        $fileSize = $_FILES['file']['size'];
-        $fileError = $_FILES['file']['error'];
-        $fileType = $_FILES['file']['type'];
+        if (isset($_FILES['file']['name'])) {
+
+            if (!($_FILES['file']['name'] == "")) {
 
 
-        $fileExt = explode('.', $fileName);
-        $fileActualExt = strtolower(end($fileExt));
+                $file = $_FILES['file'];
+                echo "Hey";
+                echo $_FILES['file']['name'];
 
-        $allowed = array('jpg', 'jpeg', 'png');
+                $fileName = $_FILES['file']['name'];
+                $fileTmpName = $_FILES['file']['tmp_name'];
+                $fileSize = $_FILES['file']['size'];
+                $fileError = $_FILES['file']['error'];
+                $fileType = $_FILES['file']['type'];
 
 
-        if (in_array($fileActualExt, $allowed)){
-            if($fileError === 0){
-                if($fileSize< 1000000){
-                    $fileNameNew = uniqid('', true).".".$fileActualExt;
-                    $fileDestination = "img_upload/post_pics/".$fileNameNew;
-                    move_uploaded_file($fileTmpName,$fileDestination);
-                    $bild_id = $fileNameNew;
+                $fileExt = explode('.', $fileName);
+                $fileActualExt = strtolower(end($fileExt));
 
-                }else {
-                    echo"Datei zu groß (max. Größe: 1 MB)";
+                $allowed = array('jpg', 'jpeg', 'png');
+
+
+                if (in_array($fileActualExt, $allowed)) {
+                    if ($fileError === 0) {
+                        if ($fileSize < 1000000) {
+                            $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                            $fileDestination = "img_upload/post_pics/" . $fileNameNew;
+                            move_uploaded_file($fileTmpName, $fileDestination);
+                            $bild_id = $fileNameNew;
+
+                        } else {
+                            echo "Datei zu groß (max. Größe: 1 MB)";
+
+                        }
+                    } else {
+                        echo "Upload Fehlgeschlagen";
+
+                    }
+                } else {
+                    echo "Dateiformat nicht unterstützt";
 
                 }
-            }else {
-                echo "Upload Fehlgeschlagen";
-
             }
-        }else {
-            echo "Dateiformat nicht unterstützt";
-
         }
 
     }
