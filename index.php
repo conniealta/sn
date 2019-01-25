@@ -211,7 +211,7 @@ nav -->
     // WARUM IST DAS AUSKOMMENTIERT? KANN DAS WEG? - LORI
 
 
-    if (isset($_POST['post'])) {
+    if(isset($_POST['post'])){
         $file = $_FILES['file'];
 
         $fileName = $_FILES['file']['name'];
@@ -227,23 +227,25 @@ nav -->
         $allowed = array('jpg', 'jpeg', 'png');
 
 
-        if (in_array($fileActualExt, $allowed)) {
-            if ($fileError === 0) {
-                if ($fileSize < 1000000) {
-                    $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                    $fileDestination = "img_upload/post_pics/" . $fileNameNew;
-                    move_uploaded_file($fileTmpName, $fileDestination);
+        if (in_array($fileActualExt, $allowed)){
+            if($fileError === 0){
+                if($fileSize< 1000000){
+                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+                    $fileDestination = "img_upload/post_pics/".$fileNameNew;
+                    move_uploaded_file($fileTmpName,$fileDestination);
                     $bild_id = $fileNameNew;
 
-                } else {
-                    echo "Datei zu groß (max. Größe: 1 MB)";
-                }
-            } else {
-                echo "Fehlgeschlagen (oder Fehler je nachdem) ";
-            }
+                }else {
+                    echo"Datei zu groß (max. Größe: 1 MB)";
 
-        } else {
+                }
+            }else {
+                echo "Upload Fehlgeschlagen";
+
+            }
+        }else {
             echo "Dateiformat nicht unterstützt";
+
         }
 
     }
