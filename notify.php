@@ -40,12 +40,12 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
 }
 
 ?>
-</main>
+
 
 <?php
 include('footer.php');
 
 ?>
 
-
+</main>
 

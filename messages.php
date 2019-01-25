@@ -46,4 +46,8 @@ if (isset($_POST['send'])) {
     }
 }
 ?>
-    </main>
+    <?php
+    include('footer.php');
+    ?>
+</main>
+

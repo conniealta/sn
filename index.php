@@ -475,7 +475,9 @@ nav -->
     }
     ?>
 
+    <?php
+    include('footer.php');
+    ?>
 </main>
-<footer>
 
-</footer>
+

@@ -84,11 +84,10 @@ if (isset($_GET['mid'])) {
 ?>
 
 
+    <?php
+    include('footer.php');
+    ?>
 </main>
-
-<?php
-include('footer.php');
-?>
 
 
 

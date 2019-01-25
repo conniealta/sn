@@ -287,10 +287,10 @@ echo"<a href='following.php?username=".$username."'> Following</a> ";
     <?php echo $posts;
    ?>
 </div>
-</main>
+
 <?php
 include('footer.php');
 ?>
-
+</main>
 
 
