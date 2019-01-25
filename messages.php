@@ -31,7 +31,7 @@ else {
 
 
 
-<h1>Send a Message</h1>
+<h1>Sende eine Nachricht</h1>
 <form action="messages.php?receiver=<?php echo htmlspecialchars($_GET['receiver']); ?>" method="post">
     <textarea name="body" rows="8" cols="80"></textarea>
     <input type="submit" name="send" value="Send Message">
