@@ -81,15 +81,13 @@ if (isset($_GET['username'])) {
         }
     }
 
-    if(isset($_POST['post'])){
+    if (isset($_POST['post'])) {
 
-        if(isset($_FILES['file']['name'])) {
+        if (isset($_FILES['file']['name'])) {
 
-            if(!($_FILES['file']['name'] == ""))  {
-
+            if (!($_FILES['file']['name'] == "")) {
 
                 $file = $_FILES['file'];
-
                 $fileName = $_FILES['file']['name'];
                 $fileTmpName = $_FILES['file']['tmp_name'];
                 $fileSize = $_FILES['file']['size'];
@@ -103,23 +101,23 @@ if (isset($_GET['username'])) {
                 $allowed = array('jpg', 'jpeg', 'png');
 
 
-                if (in_array($fileActualExt, $allowed)){
-                    if($fileError === 0){
-                        if($fileSize< 1000000){
-                            $fileNameNew = uniqid('', true).".".$fileActualExt;
-                            $fileDestination = "img_upload/post_pics/".$fileNameNew;
-                            move_uploaded_file($fileTmpName,$fileDestination);
+                if (in_array($fileActualExt, $allowed)) {
+                    if ($fileError === 0) {
+                        if ($fileSize < 1000000) {
+                            $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                            $fileDestination = "img_upload/post_pics/" . $fileNameNew;
+                            move_uploaded_file($fileTmpName, $fileDestination);
                             $bild_id = $fileNameNew;
 
-                        }else {
-                            echo"Datei zu groß (max. Größe: 1 MB)";
+                        } else {
+                            echo "Datei zu groß (max. Größe: 1 MB)";
 
                         }
-                    }else {
+                    } else {
                         echo "Upload Fehlgeschlagen";
 
                     }
-                }else {
+                } else {
                     echo "Dateiformat nicht unterstützt";
 
                 }
