@@ -73,12 +73,12 @@
 
                 <li class="nav-item">
                     <?php
-                    echo "<a href='profile.php?username=$username'>Profil</a>"
+                    echo "<a  class=\"nav-link\"href='profile.php?username=$username'>Profil</a>"
                     ?>
-
-                <li>
+                </li>
+                <li class="nav-item">
                     <?php
-                    echo "<a  href='my-messages.php?username=$username'>Messages</a>"
+                    echo "<a class=\"nav-link\" href='my-messages.php?username=$username'>Messages</a>"
                     ?>
 
                 </li>
@@ -87,7 +87,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link " href="notify.php?username=$username">Benachrichtigungen</a>
+                    <a class="nav-link" href="notify.php?username=$username">Benachrichtigungen</a>
                 </li>
 
                 <li>
@@ -125,12 +125,14 @@
                      <span class="glyphicon glyphicon-search"></span>
                  </button>
              </form>-->
+            <div class="header_search">
             <form action="suche.php" method="post" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                        name="searchbox" value="">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Search
                 </button>
             </form>
+            </div>
             <!--
             <form  action="suche.php" method="post">
                 <input style="margin-left:190px;" type="text" name="searchbox" value="">

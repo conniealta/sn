@@ -25,17 +25,20 @@ else {
 
 
 
-
+<h1>Sende eine Nachricht</h1>
 
 <main class="container">
 
 
-<h1>Sende eine Nachricht</h1>
+<div class="send-message-box">
 <form action="messages.php?receiver=<?php echo htmlspecialchars($_GET['receiver']); ?>" method="post">
     <textarea name="body" rows="8" cols="80"></textarea>
     <input type="submit" name="send" value="Send Message">
 </form>
+</div>
 
+
+<div class="message-sent-box">
 <?php
 if (isset($_POST['send'])) {
     if (DB::query('SELECT id FROM list5 WHERE id=:receiver', array(':receiver'=>$_GET['receiver']))) {
@@ -46,6 +49,8 @@ if (isset($_POST['send'])) {
     }
 }
 ?>
+</div>
+
     <?php
     include('footer.php');
     ?>

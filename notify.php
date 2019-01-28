@@ -2,17 +2,25 @@
 session_start();
 include('header.php');
 include('Post.php');
+
+echo "<h1>Benachrichtigungen</h1>";
 ?>
+
+
 <main class="container">
 
 <?php
-echo "<h1>Benachrichtigungen</h1>";
+
+
+
 if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':userid'=>$user_loggedin))) {
     $notifications = DB::query('SELECT * FROM notifications WHERE receiver=:userid ORDER BY notifications.id DESC', array(':userid'=>$user_loggedin));
 
+?>
 
+<div class="notify-box">
 
-
+     <?php
     foreach ($notifications as $n) {
         if ($n['type'] == 1) {
             $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
@@ -39,13 +47,9 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
 
 }
 
-?>
-
-
-<?php
 include('footer.php');
 
 ?>
-
+</div>
 </main>
 

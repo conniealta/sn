@@ -186,13 +186,23 @@ class Post {
 
         $posts = "";
 
+
         foreach($dbposts as $p) {
+
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $p['id'], ':userid' => $loggedIn_userid))) {
                 // damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde, wenn die eingeloggte Person den Post noch nicht geliked hat, wird dieses Formular angezeigt:
 
+
                     if (!$p['img_id']== "") { // wenn es ein Bild gibt, dann führ das aus (zeig das Bild an!)
 
-                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '."<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
+
+                        $posts .= "<div class='row post_box'>";
+                        $posts .= "<div class='col-lg-3'>";
+                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>";
+                        $posts .= "<a href='profile.php?username=".$username." ' >".$username."</a>";
+                        $posts .= "</div>";
+                        $posts .= "<div class='col-lg-9 post_body'>";
+                        $posts .= "<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
 
                        ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
@@ -212,12 +222,18 @@ class Post {
 
 
                         $posts .= Comment::displayComments2($p['id']);
-                        $posts .= "</form><hr /></br />
+                        $posts .= "</form></div></div>
                 ";
                     }
 
                     else { // wenn es kein Bild im Post gibt, dann führe das aus:
-                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
+                        $posts .= "<div class='row post_box'>";
+                        $posts .= "<div class='col-lg-3'>";
+                        $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>";
+                        $posts .= "<a href='profile.php?username=".$username." ' >".$username."</a>";
+                        $posts .= "</div>";
+                        $posts .= "<div class='col-lg-9 post_body'>";
+                        $posts .= self::link_add($p['body'])."<br><br>".$p['posted_at']
 
                         ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
@@ -237,6 +253,7 @@ class Post {
 
 
                         $posts .= Comment::displayComments2($p['id']);
+                        $posts .= "</div></div>";
 
                         // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
                        // $posts .= Comment::displayComments($p['id'])."</form><hr /></br />";
@@ -249,7 +266,13 @@ class Post {
                         //Comment::displayComments($p['id']).
 
                 if (!$p['img_id']== "") {
-                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $username . '</a>' . ' ' . ' ' . "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
+                    $posts .= "<div class='row post_box'>";
+                    $posts .= "<div class='col-lg-3'>";
+                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>";
+                    $posts .= "<a href='profile.php?username=" . $username . " ' >" . $username . "</a>";
+                    $posts .= "</div>";
+                    $posts .= "<div class='col-lg-9 post_body'>";
+                    $posts .= "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
 
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
@@ -271,12 +294,18 @@ class Post {
                 $posts .= Comment::displayComments2($p['id']);
                 $posts .= "
              
-              </form><hr /></br />
+              </form></br /></div></div>
                 ";
                 }
 
                 else {
-                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>".' '.' '."<a href='profile.php?username=".$username." ' >".$username.'</a>'.' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
+                    $posts .= "<div class='row post_box'>";
+                    $posts .= "<div class='col-lg-3'>";
+                    $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>";
+                    $posts .= "<a href='profile.php?username=".$username." ' >".$username."</a>";
+                    $posts .= "</div>";
+                    $posts .= "<div class='col-lg-9 post_body'>";
+                    $posts .= self::link_add($p['body'])."<br><br>".$p['posted_at']
 
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
@@ -298,11 +327,14 @@ class Post {
                     $posts .= Comment::displayComments2($p['id']);
                     $posts .= "
              
-              </form><hr /></br />
+              </form></br /></div></div>
                 ";
                 }
+
             }
+
         }
+
 
         return $posts;
     }

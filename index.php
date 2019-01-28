@@ -130,11 +130,10 @@ nav -->
 
 
                                                               Fände es irgendwie cooler wenn da der Name stehen würde - Lori-->
-    <div class="container höhe-postbox bg-white ">
+    <div class="container höhe-postbox bgwhite">
         <div class="row">
 
-
-            <div class="col-lg-3 user_details column py-2">
+            <div class="col-lg-3 user_details column py-2" style="z-index: 0;">
                 <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
                     <img src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
 
@@ -146,6 +145,8 @@ nav -->
                     </a>
                 </div>
             </div>
+
+
             <form class=" col-lg-9 py-2 post_form" action="index.php" method="POST" enctype="multipart/form-data">
 
                     <textarea name="postbody" rows="8" cols="80"
@@ -199,9 +200,9 @@ nav -->
 
 -->
 
-
     <h1 class="title py-5"> Feed </h1>     <!-- Hier ein Synonym für Feed finden - Lori -->
 
+<div class="post-content-box">
 
     <?php
 
@@ -483,8 +484,8 @@ nav -->
 
         }
     }
-    ?>
-
+  ?>
+</div>
     <?php
     include('footer.php');
     ?>

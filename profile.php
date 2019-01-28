@@ -208,91 +208,84 @@ if (isset($_GET['username'])) {
 
 
 <main class="container">
-
-<h1>Das Profil von '<?php echo $username; ?>'</h1>
-
-
-<form action="profile.php?username=<?php echo $username; ?>" method="post">
-
-    <?php
-
-    if ($userid != $followerid) { //nur wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist, wird der Button angezeigt
-        if ($isFollowing) {
-            echo '<input type="submit" name="unfollow" value="Unfollow">';
-        } else {
-            echo '<input type="submit" name="follow" value="Follow">';
-        }
-    }
-    //wenn "$isFollowing = True" wird der Unfollow-Button gezeigt
-    //wenn "$isFollowing = False" wird der Follow-Button gezeigt
-
-    echo"<a href='messages.php?receiver=".$userid."'> Schreibe eine Nachricht</a> ";
-    ?>
-
-    <div class="user_details column">
-
+<div class="row">
+    <div class="col-lg-3 profile_pic">
         <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>
 
+        <?php
+        if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
+            echo '<a href="account-settings.php">Profil bearbeiten</a>';
+        }
+        ?>
 
+
+        <?php
+
+        echo"<a href='followers.php?username=".$username."'> Followers</a>";
+        echo"<a href='following.php?username=".$username."'> Following</a> ";
+        ?>
+
+    </div>
+    <div class="col-lg-9 bgwhite">
+        <h1>Das Profil von '<?php echo $username; ?>'</h1>
         <div class="user_details_left_right">
-            <a href="profile.php?username=<?php echo $username; ?>" >
                 <?php
-                echo $fname2 . " " . $lname2."<br>"."<br>";
-                echo $age2. " ". 'Jahre alt'."<br>"."<br>";
-                echo $studiengang2."<br>"."<br>";
-                echo $semester2. ". ". ' Semester '."<br>"."<br>";
-                echo ' Interessen: '.$interessen2. " "."<br>"."<br>";
+                echo $fname2 . " " . $lname2."<br>";
+                echo $age2. " ". 'Jahre alt'."<br>";
+                echo $studiengang2."<br>";
+                echo $semester2. ". ". ' Semester '."<br>";
+                echo ' Interessen: '.$interessen2. " "."<br>";
                 // diese sind in "user_data.php" definiert --> das sind die Infos der Person, auf deren Profilseite wir sind
                 ?>
-            </a>
+
+        </div><!-- user details -->
+
+        <form action="profile.php?username=<?php echo $username; ?>" method="post">
+
+            <?php
+
+            if ($userid != $followerid) { //nur wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist, wird der Button angezeigt
+                if ($isFollowing) {
+                    echo '<input type="submit" name="unfollow" value="Unfollow">';
+                } else {
+                    echo '<input type="submit" name="follow" value="Follow">';
+                }
+            }
+            //wenn "$isFollowing = True" wird der Unfollow-Button gezeigt
+            //wenn "$isFollowing = False" wird der Follow-Button gezeigt
+
+            echo"<a href='messages.php?receiver=".$userid."' style='display: block; padding: 16px 0;'> Schreibe eine Nachricht</a> ";
+            ?>
+
+        </form>
+
+        <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
+
+            <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe etwas..."></textarea>
+            <input type="file" name="file">
+            <input type="submit" name="post" value="Post">
+
+        </form>
+        <hr>
+
+        <div class="posts_area"></div>
+        <!-- <button id="load_more">Load More Posts</button> -->
+        <img id="loading" src="images/icons/loading.gif">
+
+        <!--Anzeigen von Posts (oben wird die Variable definiert: $posts = Post::displayPosts...)-->
+        <div class="posts">
+            <?php echo $posts;
+            ?>
         </div>
 
     </div>
-
-
-</form>
-
-<br><br><br>
-
-
-<?php
-if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
-    echo '<a href="account-settings.php">Profil bearbeiten</a>';
-}
-?>
-<br><br><br>
-
-<?php
-
-echo"<a href='followers.php?username=".$username."'> Followers</a> <h />";
-echo"<a href='following.php?username=".$username."'> Following</a> ";
-?>
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-<div class="main_column column">
-    <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe etwas..."></textarea>
-        <input type="submit" name="post" value="Post">
-        <hr>
-
-    </form>
-
-    <div class="posts_area"></div>
-    <!-- <button id="load_more">Load More Posts</button> -->
-    <img id="loading" src="images/icons/loading.gif">
 </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
-<!--Anzeigen von Posts (oben wird die Variable definiert: $posts = Post::displayPosts...)-->
-<div class="posts">
-    <?php echo $posts;
-   ?>
-</div>
+
+
+
 
 <?php
 include('footer.php');

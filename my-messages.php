@@ -47,6 +47,8 @@ if (isset($_GET['mid'])) {
     ?>
 <main class="container">
     <h1>Meine Nachrichten</h1>
+
+ <div class="message-box">
     <?php
     include('Post.php');
     $messages = DB::query('SELECT messages.*, list5.username FROM messages, list5 WHERE (receiver=:receiver OR sender=:sender) AND list5.id = messages.sender ORDER BY messages.id DESC', array(':receiver'=>$user_loggedin, ':sender'=>$user_loggedin));
@@ -82,7 +84,7 @@ if (isset($_GET['mid'])) {
 
 }
 ?>
-
+ </div>
 
     <?php
     include('footer.php');

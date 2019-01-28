@@ -617,10 +617,15 @@ nav ul { /*nav ul statt ul wiel ul sonst hintergrund des footers beeinflusst */
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: transparent;
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding: 14px 16px;
+  }
 }
 
 nav ul li {
@@ -698,6 +703,27 @@ nav a:hover {
   z-index: -1;
   min-height: 170px;
 }
+.profile_pic img {width: 100% !important;}
+
+
+.message-sent-box{
+
+
+}
+
+
+.post-content-box{
+
+
+}
+
+
+.notify-box{
+
+
+}
+
+
 
 .post_form {
   width: 100%;
@@ -718,18 +744,17 @@ textarea:focus {
 }
 
 .post_form input[type="submit"] {
-  width: 11%;
-  height: 60px;
+  padding: 16px 32px;
   border: none;
   border-radius: 3px;
   background-color: #3498db;
   font-family: 'Bellota-BoldItalic', sans-serif;
-  color: #1E75CA;
+  color: #FFF;
   text-shadow: #73B6E2 0.5px 0.5px 0px;
   font-size: 90%;
-  position: absolute;
   outline: 0;
   margin: 0;
+  cursor: pointer;
 }
 
 .post_form input[type="submit"]:active {
@@ -1196,6 +1221,10 @@ textarea:focus {
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
   color: #e9ecef;
 }
+.navbar {z-index: 5000;}
+ul.navbar-nav {width: 100%; display: block;}
+.header_search {float: right; position: relative; top: 8px;}
+.header_search::after {content: ""; display: block; clear: both;}
 
 .active {
   background-color: #69c6ec;
@@ -1310,10 +1339,16 @@ li a:hover {
 }
 
 .user_details_left_right {
-  width: 120px;
-  display: inline-table;
-  position: absolute;
+  width: 100%;
+  display: block;
+  position: relative;
+  color: #666;
+  font-size: 16px;
+  line-height: 22px;
 }
+.post_body textarea {border: 1px solid #DDD; margin: 15px 0;}
+.post_box {border-bottom: 1px solid #EEE; padding: 20px 0; margin-bottom: 20px;}
+.comment_box {padding-top: 10px;}
 .höhe-postbox{
   height: 500px;
 }
@@ -1322,8 +1357,20 @@ li a:hover {
   padding-top: 50px
 }
 
+
+
+.message-box{
+  margin-top: 100px;
+  background-color: #FFFFFF;
+}
 footer {
   color: #00a4ff;
+
+}
+
+.footer-content {
+background: #FFFFFF;
+
 
 }
 
