@@ -1,9 +1,12 @@
 <?php
 session_start();
+
+$pageTitle = "Ich folge..";
+
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 ?>
 
-<br><br><br>
+<main class="container">
 <h1> Following - Wem folge ich? </h1>
 <br><br>
 
@@ -63,8 +66,6 @@ else {
 
 </form>
 
+</main>
 
-<?php
-
-?>
 

@@ -4,44 +4,32 @@ include('header.php');
 
 ?>
 
-<br><br>
-<h3>Benutzereinstellungen </h3>
+<main class="container" style="padding-top: 100px;">
 
-<br><br>
+<h1>Benutzereinstellungen </h1>
 
-<h4>Profilbild ändern</h4>
-
-<div class="user_details column">
-
-    <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
-
-    <div class="user_details_left_right">
-        <a href="profile.php?username=<?php echo $username; ?>" >
-            <?php
-            echo $fname . " " . $lname;
-
-            ?>
-        </a>
-    </div>
-
-</div>
-
-
-<br><br><br><br><br><br><br><br><br><br>
-
-
-<?php
-if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
-    echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
+<div class="row">
+    <div class="col-lg-3 profile_pic" style="margin-top: 0;">
+        <a href='img_upload/profile_pics/<?php echo $profile_pic;?>'><img src='img_upload/profile_pics/<?php echo $profile_pic;?>'></a>
+        <div class="change_img">
+        <strong>Profilbild ändern</strong>
+        <?php
+        if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
+            echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
     <button type="submit" name="submit"> Profilbild hochladen </button>
 
 </form>';
-}
+        }
 
-?>
+        ?>
+        </div>
 
-<br><br>
+    </div>
+
+    <div class="col-lg-9 bgwhite" style="padding: 20px;">
+
+
 
 <h4>Benutzerdaten ändern</h4>
     <form action="do-account-settings.php" method="post">
@@ -54,7 +42,7 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
 
         <br>
-        <input type="submit" name="update_account" value="Ändere deine Angaben">
+        <input type="submit" name="update_account" value="&Auml;ndere deine Angaben">
 
     </form>
 
@@ -80,9 +68,39 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
         <br><br>
 
 <h4>Benutzerinformationen ändern</h4>
+
+
         <form action="do-account-settings.php" method="post">
-        <p>Vorname:
-        <input type="text" size="40" maxlength="250" name="fname" value="<?php echo $fname; ?>"</p>
+
+            <table>
+                <tr>
+                    <td>Vorname:
+
+                    </td>
+                    <td>
+                        <input type="text" size="40" maxlength="250" name="fname" value="<?php echo $fname; ?>"
+
+                    </td>
+
+                </tr>
+
+
+
+
+
+
+
+            </table>
+
+
+
+
+
+
+
+
+
+
 
         <p>Nachname:
         <input type="text" size="40" maxlength="250" name="lname" value="<?php echo $lname; ?>"></p>
@@ -232,8 +250,9 @@ if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profi
 
     </form>
 
-<br><br><br><br><br><br><br><br><br><br>
+</div>
+</div>
 
-
+</main>
 </body>
 </html>

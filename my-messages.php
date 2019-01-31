@@ -1,10 +1,10 @@
 <?php
 session_start();
-?>
 
 
+$pageTitle = "Meine Nachrichten";
 
-<?php
+
 include('header.php');
 ?>
 
@@ -45,7 +45,7 @@ if (isset($_GET['mid'])) {
 } else {
 
     ?>
-<main class="container">
+<main class="container" style="padding-top: 100px;">
     <h1>Meine Nachrichten</h1>
 
  <div class="message-box">
@@ -86,10 +86,12 @@ if (isset($_GET['mid'])) {
 ?>
  </div>
 
-    <?php
-    include('footer.php');
-    ?>
+
 </main>
+
+<?php
+include('footer.php');
+?>
 
 
 

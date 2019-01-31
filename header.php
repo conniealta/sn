@@ -43,14 +43,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
 
 
-    <Title> Alcyone </Title>
+    <Title><?php echo $pageTitle; ?> - Alcyone</Title>
 
 
 </head>
 
 <body>
+
 <nav class="navbar navbar-expand-lg pos-fixed navbar-light bg-light" style="min-width: 100%">
-    <a class="navbar-brand" href="#">Alcyone</a>
+    <a class="navbar-brand" href="index.php">Alcyone</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -60,23 +61,23 @@
 
             <ul class="header">
 
-                <li class="nav-item active">
+                <li class="nav-item <?php if (strpos($_SERVER['REQUEST_URI'], "index") !== false){ echo "active";} ?>">
                     <?php
                     session_start();
                     include('user_data.php');
                     $user_loggedin = $_SESSION['angemeldet'];
                     $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-                    echo "<a class='active' href='index.php?username=$username'>Home</a>"
+                    echo "<a class=\"nav-link\" href='index.php?username=$username'>Home</a>"
                     ?>
                 </li>
 
 
-                <li class="nav-item">
+                <li class="nav-item <?php if (strpos($_SERVER['REQUEST_URI'], "profil") !== false){ echo "active";} ?>">
                     <?php
-                    echo "<a  class=\"nav-link\"href='profile.php?username=$username'>Profil</a>"
+                    echo "<a  class=\"nav-link\" href='profile.php?username=$username'>Profil</a>"
                     ?>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php if (strpos($_SERVER['REQUEST_URI'], "messages") !== false){ echo "active";} ?>">
                     <?php
                     echo "<a class=\"nav-link\" href='my-messages.php?username=$username'>Messages</a>"
                     ?>
@@ -86,7 +87,7 @@
                 <!-- hier habe ich die Navbar alt integriert - warum kann ich hier die profilseite nitcht mit php integrieren?-->
 
 
-                <li class="nav-item">
+                <li class="nav-item <?php if (strpos($_SERVER['REQUEST_URI'], "notify") !== false){ echo "active";} ?>">
                     <a class="nav-link" href="notify.php?username=$username">Benachrichtigungen</a>
                 </li>
 

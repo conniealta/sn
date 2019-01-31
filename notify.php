@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$pageTitle = "Benachrichtigungen";
+
 include('header.php');
 include('Post.php');
 
@@ -8,7 +11,7 @@ echo "<h1>Benachrichtigungen</h1>";
 
 
 <main class="container">
-
+<div class="message-box"
 <?php
 
 

@@ -7,13 +7,15 @@ session_start();
 
 <?php
 
-include('header.php');
 
+$pageTitle = "Nachrichten";
+
+include('header.php');
 
 
 if(!isset($_SESSION["angemeldet"]))
 {
-    echo"Bitte zuerst <a href=\"login.php\">einloggen</a>";
+    echo"<a href=\"login.php\">einloggen</a>";
     die();
 }
 else {
@@ -25,10 +27,11 @@ else {
 
 
 
-<h1>Sende eine Nachricht</h1>
 
-<main class="container">
 
+<main class="container" style="padding-top: 100px;">
+
+    <h1>Sende eine Nachricht</h1>
 
 <div class="send-message-box">
 <form action="messages.php?receiver=<?php echo htmlspecialchars($_GET['receiver']); ?>" method="post">

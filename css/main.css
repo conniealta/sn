@@ -185,7 +185,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #0250c5;
+  background: #69c6ec;
   background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
   background: -o-linear-gradient(bottom, #0250c5, #d43f8d);
   background: -moz-linear-gradient(bottom, #0250c5, #d43f8d);
@@ -234,7 +234,7 @@ iframe {
 .login100-form-title {
   font-family: Raleway-Black;
   font-size: 30px;
-  color: #007bff;
+  color: #69c6ec;
   line-height: 1.2;
   text-transform: uppercase;
   text-align: center;
@@ -454,7 +454,7 @@ iframe {
 
 
 .btn-face {
-  color: #3b5998;
+  color: #69c6ec;
 }
 
 .btn-face i {
@@ -476,7 +476,7 @@ iframe {
 
 .btn-face:hover,
 .btn-google:hover {
-  border-color: #d33f8d;
+  border-color: #69c6ec;
 }
 
 
@@ -582,7 +582,7 @@ body {
 }
 
 a {
-  color: #20AAE5;
+  color: #69c6ec;
   text-decoration: none;
 }
 
@@ -590,8 +590,8 @@ a {
   width: 100%;
   min-width: 1050px;
   height: 40px;
-  background-color: #20aae5;
-  border-bottom: 0.25em solid #1894ca;
+  background-color: #69c6ec;
+  border-bottom: 0.25em solid #69c6ec;
   margin: 0 0 10px 0;
   display: inline-flex;
   position: fixed;
@@ -604,8 +604,8 @@ a {
   font-size: 30;
   position: relative;
   top: 9px;
-  text-shadow: #73B6E2 0.5px 0.5px 0px;
-  color: #1086BA;
+  text-shadow: #69c6ec 0.5px 0.5px 0px;
+  color: #69c6ec;
 }
 
 a:hover {
@@ -656,7 +656,7 @@ nav a{
 }
 
 nav a:hover {
-  border-bottom: 7px solid #00a4ff;                        /*unterstirchenes wenn man mit der maus drüber geht nav bar*/
+  border-bottom: 7px solid #69c6ec;                        /*unterstirchenes wenn man mit der maus drüber geht nav bar*/
   color: #fff;
 }
 
@@ -747,14 +747,19 @@ textarea:focus {
   padding: 16px 32px;
   border: none;
   border-radius: 3px;
-  background-color: #3498db;
-  font-family: 'Bellota-BoldItalic', sans-serif;
+  background-color: #69c6ec;
   color: #FFF;
-  text-shadow: #73B6E2 0.5px 0.5px 0px;
+  text-shadow: #69c6ec 0.5px 0.5px 0px;
   font-size: 90%;
   outline: 0;
   margin: 0;
   cursor: pointer;
+}
+
+.post_form form
+{
+  margin-top: 20px;
+
 }
 
 .post_form input[type="submit"]:active {
@@ -804,21 +809,21 @@ textarea:focus {
 }
 #comment_form input[type="submit"] {
   border:none;
-  background-color: #20AAE5;
-  color: #156588;
+  background-color: #69c6ec;
+  color: #69c6ec;
   border-radius: 5px;
   width: 13%;
   height: 35px;
   margin-top: 3px;
   position: absolute;
   font-family: 'Bellota-BoldItalic', sans-serif;
-  text-shadow: #73B6E2 0.5px 0.5px 0px;
+  text-shadow: #69c6ec 0.5px 0.5px 0px;
 }
 
 .newsfeedPostOptions {
   padding: 0px;
   text-decoration: none;
-  color:#20AAE5;
+  color:#69c6ec;
   border:none;
 }
 
@@ -832,7 +837,7 @@ textarea:focus {
   background-color: transparent;
   border: none;
   font-size: 14px;
-  color: #3498db;
+  color: #69c6ec;
   padding: 0;
   height: auto;
   width: auto;
@@ -852,8 +857,8 @@ textarea:focus {
   height: 100%;
   float: left;
   position: relative;
-  background-color: #37B0E9;
-  border-right: 10px solid #83D6FE;
+  background-color: #69c6ec;
+  border-right: 10px solid #69c6ec;
   color: #CBEAF8;
   margin-right: 20px;
 }
@@ -862,13 +867,13 @@ textarea:focus {
   min-width: 80px;
   width: 55%;
   margin: 20px;
-  border: 5px solid #83D6FE;
+  border: 5px solid #69c6ec;
   border-radius: 100px;
 }
 
 .profile_info {
   display: list-item;
-  background-color: #2980b9;
+  background-color: #69c6ec;
   width: 100%;
   padding: 10px 0 10px 0;
 }
@@ -891,7 +896,7 @@ textarea:focus {
   background-color: #2ecc71;
 }
 .info {
-  background-color: #3498db;
+  background-color: #69c6ec;
 }
 .deep_blue {
   background-color: #0043f0;
@@ -961,11 +966,11 @@ textarea:focus {
   margin: 0;
   position: absolute;
   border:none;
-  background-color: #20AAE5;
-  color: #156588;
+  background-color: #69c6ec;
+  color: #69c6ec;
   border-radius: 5px;
   font-family: 'Bellota-BoldItalic', sans-serif;
-  text-shadow: #73B6E2 0.5px 0.5px 0px;
+  text-shadow: #69c6ec 0.5px 0.5px 0px;
 }
 .message {
   border: 1px solid #000;
@@ -976,8 +981,8 @@ textarea:focus {
 }
 
 .message#blue {
-  background-color: #3498db;
-  border-color: #2980b9;
+  background-color: #69c6ec;
+  border-color: #69c6ec;
   float: right;
   margin-bottom: 5px;
 }
@@ -1040,7 +1045,7 @@ textarea:focus {
 
 .liveSearchText {
   background-color: transparent;
-  color: #1E96CA;
+  color: #69c6ec;
 }
 
 .liveSearchText p{
@@ -1073,7 +1078,7 @@ textarea:focus {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #F00;
+  background-color: #69c6ec;
   border-radius: 10px;
   position: absolute;
   left: 8px;
@@ -1082,7 +1087,7 @@ textarea:focus {
 
 .resultDisplayNotification {
   height: auto;
-  color: #1485BD;
+  color: #69c6ec;
   padding-bottom: 7px;
 }
 
@@ -1144,7 +1149,7 @@ textarea:focus {
   height: 30px;
   border: 1px solid #DADADA;
   border-top: none;
-  background-color: #20AAE5;
+  background-color: #69c6ec;
   text-align: center;
 }
 
@@ -1229,6 +1234,8 @@ ul.navbar-nav {width: 100%; display: block;}
 .active {
   background-color: #69c6ec;
 }
+.active a {color: #FFF !important;}
+nav a:hover {border-bottom: 0; color: #69c6ec !important;}
 
 
 .btn-outline-primary {
@@ -1262,7 +1269,7 @@ ul {
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  color: #00a4ff;                                                   /* Schrift ändert farbe in nav bar bei hover - lori */
+  color: #69c6ec;                                                   /* Schrift ändert farbe in nav bar bei hover - lori */
   text-decoration: none;
   overflow: no-content;
 }
@@ -1346,9 +1353,9 @@ li a:hover {
   font-size: 16px;
   line-height: 22px;
 }
-.post_body textarea {border: 1px solid #DDD; margin: 15px 0;}
+.post_body textarea {border: 1px solid #DDD; margin: 15px 0; display: block;}
 .post_box {border-bottom: 1px solid #EEE; padding: 20px 0; margin-bottom: 20px;}
-.comment_box {padding-top: 10px;}
+.comment_box {padding: 15px 0;}
 .höhe-postbox{
   height: 500px;
 }
@@ -1360,19 +1367,67 @@ li a:hover {
 
 
 .message-box{
-  margin-top: 100px;
   background-color: #FFFFFF;
+  margin-top: 20px;
+  padding: 20px;
 }
+.change_img {
+  margin-top: 20px;
+}
+.change_img input[type="file"] {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+
 footer {
-  color: #00a4ff;
+  color: #69c6ec;
+  background: #FFFFFF;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 20px;
 
 }
 
-.footer-content {
+footer .container {
+  height: 100%;
+}
+footer .footer-content {
 background: #FFFFFF;
-
-
+  text-align: center;
+  height: 100%;
 }
 
+footer ul li {
+  padding-right: 20px;
+  font-size: 15px;
+}
+
+.col-lg-3.profile_pic {
+  margin-top: 20px;
+}
+.post-content-box.home .col-lg-9 {
+  padding: 20px 0;
+}
+.post-content-box.home .col-lg-3 {
+  padding: 20px;
+}
+input[type="submit"], input.like-button, .change_img button {
+  display: inline-block;
+  border:none;
+  background-color: #69c6ec;
+  color: #FFF;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 3px;
+  text-shadow: #69c6ec 0.5px 0.5px 0px;
+  cursor: pointer;
+}
+input[type="text"] {
+  border: 1px solid #EEE;
+  padding: 5px;
+}
+input.like-button {margin-right: 10px;}
 
 

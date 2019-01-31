@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+
+$pageTitle = "Mein Profil";
+
+
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 include('Post.php');
 include('Comment.php');
@@ -209,7 +214,7 @@ if (isset($_GET['username'])) {
 
 <main class="container">
 <div class="row">
-    <div class="col-lg-3 profile_pic">
+    <div class="col-lg-3 profile_pic" style="margin-top: 0;">
         <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>
 
         <?php
@@ -218,15 +223,9 @@ if (isset($_GET['username'])) {
         }
         ?>
 
-
-        <?php
-
-        echo"<a href='followers.php?username=".$username."'> Followers</a>";
-        echo"<a href='following.php?username=".$username."'> Following</a> ";
-        ?>
-
     </div>
-    <div class="col-lg-9 bgwhite">
+    <div class="col-lg-9">
+        <div class="bgwhite" style="margin-bottom: 20px; padding: 20px;">
         <h1>Das Profil von '<?php echo $username; ?>'</h1>
         <div class="user_details_left_right">
                 <?php
@@ -236,6 +235,10 @@ if (isset($_GET['username'])) {
                 echo $semester2. ". ". ' Semester '."<br>";
                 echo ' Interessen: '.$interessen2. " "."<br>";
                 // diese sind in "user_data.php" definiert --> das sind die Infos der Person, auf deren Profilseite wir sind
+
+
+                echo"<a href='followers.php?username=".$username."'> Followers</a>";
+                echo"<a href='following.php?username=".$username."'> Following</a> ";
                 ?>
 
         </div><!-- user details -->
@@ -258,6 +261,9 @@ if (isset($_GET['username'])) {
             ?>
 
         </form>
+        </div>
+
+        <div class="bgwhite" style="padding: 20px; margin-bottom: 20px;">
 
         <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
 
@@ -266,7 +272,9 @@ if (isset($_GET['username'])) {
             <input type="submit" name="post" value="Post">
 
         </form>
-        <hr>
+        </div>
+
+        <div class="bgwhite" style="padding: 20px;">
 
         <div class="posts_area"></div>
         <!-- <button id="load_more">Load More Posts</button> -->
@@ -279,17 +287,14 @@ if (isset($_GET['username'])) {
         </div>
 
     </div>
+    </div>
 </div>
 
 
-
-
-
-
+</main>
 
 <?php
 include('footer.php');
 ?>
-</main>
 
 

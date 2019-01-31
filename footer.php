@@ -1,5 +1,5 @@
 <footer>
-
+<div class="container">
 <div class="footer-content">
     <ul>
         <li> Impressum </li>
@@ -8,5 +8,5 @@
     </ul>
 
 </div>
-
+</div>
 </footer>
