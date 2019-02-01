@@ -8,130 +8,13 @@ include('Post.php');
 include('Comment.php');
 
 ?>
-<!--Das hier schiebt das Willkommen runter...-Lori-->
-<!--
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Alcyone</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-
-    </button>
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-
-            <li class="nav-item active">
-                <a class="nav-link " href="index.php">Home</a>     <!-- HIER WÄRE EIN LOGO NICE MIT DEM MAN AUF DIE STARTSEITE KOMMT - LORI
-           ACTIVE HIER WEIL WIR UNS AUF DER HOME BEFINDEN -->
-
-<!--
-            </li>
-
-
-            <li class="nav-item">
-                <?php /*
-                include('user_data.php');
-                $user_loggedin = $_SESSION['angemeldet'];
-                $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-                echo "<a class='nav-link' href='profile.php?username='$username'>Mein Profil</a>"
-              */ ?>
-                <!-- Eigentlich muss ich hier php einbinden damit profilname angezeigt wird...<ul>
-
-
-        <li>
-            <?php /*
-                session_start();
-                include ('user_data.php');
-                $user_loggedin = $_SESSION['angemeldet'];
-                $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-                echo "<a class='active' href='index.php?username=$username'>Feed</a>"
-                ?>
-
-        </li>
-
-        <li>
-
-            <?php
-                echo "<a href='profile.php?username=$username'>Profil</a>"
-                */ ?>         <!-- hier habe ich die Navbar alt integriert - warum kann ich hier die profilseite nitcht mit php integrieren?-->
-<!-- </li>
-            <li>
-                <?php /*
-                echo "<a  href='my-messages.php?username=$username'>Messages</a>"
-                ?>
-            </li>
-
-            <li class="dropdown">
-                <?php
-                echo "<a href='notify.php?username=$username'>Benachrichtigungen</a>"
-                ?>
-            </li>
-
-            <li>
-
-
-            </li>
-
-            <!--                                                               Auskommentiert weil es mir komplett die Navbar verschiebt - Lori
-            <li class="nav-item">
-                <?php /*
-                session_start();
-                include('user_data.php');
-                $user_loggedin = $_SESSION['angemeldet'];
-                $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-                echo "<a class='active' href='index.php?username=$username'>Feed</a>"*/
-?>
-
-                <a class="nav-link" href='profile.php?username=$username'>Mein Profil</a>
-            </li>--->
-<!--
-            <li class="nav-item">
-                <a class="nav-link" href="my-messages.php?username=$username">Messages</a>
-                <!--hier link auf seite messages.php
-
-            <li class="nav-item">
-                <a class="nav-link " href="notify.php?username=$username">Benachrichtigungen</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">Ausloggen</a>
-            </li>
-
-
-    </div>
-
-    <!-- DAS IST DIE BOOTSTRAP SUCHLEISTE Icon anstelle von Search wäre cool - MUSS NOCH FORMULAR BEKOMMEN WIE ANDERE LEISTE UM AUCH DIE LEUTE ZU FINDEN CONNY FRAGEN - LORI
-
-    <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">
-            <span class="glyphicon glyphicon-search"></span>
-        </button>
-    </form>
-
-
-</nav>
-nav -->
 
 <main class="container" style="padding-top: 50px">
     <!--mit container mittig gesetzt - mit container fluid ist es auf komplette bildbreite verteilt-->
-    <h1 class="py-5"> Willkommen <?php echo $user_name; ?></h1>    <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert
+    <h1 class="py-5"> Willkommen <?php echo $user_name; ?></h1>
 
 
-
-
-
-
-
-
-
-                                                              Fände es irgendwie cooler wenn da der Name stehen würde - Lori-->
     <div class="container bgwhite">
         <div class="row">
 
@@ -166,55 +49,12 @@ nav -->
             </div>
         </div>
     </div>
-    <!-- <div class="main_column column">
 
-         <!-- Profil-Bild mit Infos -->
-    <!--
-        <div class="user_details column">
-            <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
-                <img src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
-
-            <div class="user_details_left_right">
-                <a href="profile.php?username=<?php echo $user_name; ?>">
-                    <?php
-    echo $fname . " " . $lname;
-    ?>
-                </a>
-            </div>
-        </div>                                         <!-- schließt das gesamte div des containers - Lori-->
-    <!--
-
-            <form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
-
-                <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe hier um etwas zu posten.."></textarea>
-                <input type="submit" name="post" value="Post">
-                <br><br>
-                <input type="file" name="file">
-
-                <hr>
-
-            </form>
-
-
-            <div class="posts_area"></div>
-            <!-- <button id="load_more">Load More Posts</button> -->
-    <!--
-     <img id="loading" src="images/icons/loading.gif">
- </div>
-
--->
-
-    <h1 class="title py-5"> Home </h1>     <!-- Hier ein Synonym für Feed finden - Lori -->
+    <h1 class="title py-5"> Home </h1>
 
     <div class="post-content-box home">
 
         <?php
-
-        //$userid = DB::query('SELECT id FROM list5 WHERE username=:username', array(':username'=>$_GET['username']))[0]['id'];
-
-
-        // WARUM IST DAS AUSKOMMENTIERT? KANN DAS WEG? - LORI
-
 
         if (isset($_POST['post'])) {
 
@@ -279,14 +119,11 @@ nav -->
 
         if (isset($_POST['like'])) {
             Post::likePost($_GET['postid'], $user_loggedin);
-
-            //header('Location: index.php?postid=$_GET["postid"]');
         }
 
         if (isset($_POST['unlike'])) {
             Post::likePost($_GET['postid'], $user_loggedin);
 
-            // header('Location: index.php?postid=$_GET["postid"]');
         }
 
 
@@ -294,9 +131,6 @@ nav -->
         if (isset($_POST['comment'])) {
             Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin);
 
-            //header('Location: index.php?postid=."$post['id']"');
-
-            //echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
         }
 
 
@@ -332,19 +166,6 @@ nav -->
 
 
         <?php
-        // Löschen von Kommentaren:                                          Warum Auskommentiert? - Lori
-        /*if (isset($_POST['deletecomment'])) {
-        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid))) {
-        DB::query('DELETE FROM posts WHERE id=:postid and user_id=:userid', array(':postid'=>$_GET['postid'], ':userid'=>$followerid));
-        DB::query('DELETE FROM post_likes WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
-        DB::query('DELETE FROM comments WHERE post_id=:postid', array(':postid'=>$_GET['postid']));
-        echo 'Post gelöscht!';
-        }
-        }
-        */ ?>
-
-
-        <?php
 
         //Anzeigen des letzten Posts der eingeloggten Person --> Variablen sind in include('user_data.php'):
 
@@ -358,6 +179,7 @@ nav -->
             echo "<img src='img_upload/post_pics/$img'>" . Post::link_add($body);
 
             echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
+
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
                 /* damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
@@ -390,6 +212,7 @@ nav -->
             echo "</div>";
             echo "<div class='col-lg-9 bgwhite post_body'>";
             echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
+
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
 

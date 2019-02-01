@@ -255,15 +255,10 @@ class Post {
                         $posts .= Comment::displayComments2($p['id']);
                         $posts .= "</div></div>";
 
-                        // !!! So werden die Kommentare ganz oben gezeigt, obwohl alles stimmt:
-                       // $posts .= Comment::displayComments($p['id'])."</form><hr /></br />";
-
                     }
 
             }
             else { // Der Unterschied zwischen dem Haupt-If und diesem Else ist der Unlike/Like-Button !!
-
-                        //Comment::displayComments($p['id']).
 
                 if (!$p['img_id']== "") {
                     $posts .= "<div class='row post_box'>";
