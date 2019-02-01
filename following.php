@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-$pageTitle = "Alcyone - Ich folge..";
+$pageTitle = "Ich folge..";
 
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 ?>
 
 <main class="container">
 <h1> Wem folge ich? </h1>
-<br><br>
+
 
 
 <?php

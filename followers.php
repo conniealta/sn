@@ -2,7 +2,7 @@
 session_start();
 
 
-$pageTitle = "Alcyone - Meine Follower";
+$pageTitle = "Meine Follower";
 
 
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
@@ -10,7 +10,7 @@ include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert un
 
 <main class="container" style="padding-top:20px;">
 <h1> Followers - Wer folgt mir? </h1>
-<br><br>
+
 
 
 

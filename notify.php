@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pageTitle = "Alcyone Benachrichtigungen";
+$pageTitle = "Benachrichtigungen";
 
 include('header.php');
 include('Post.php');
@@ -11,7 +11,7 @@ echo "<h1>Benachrichtigungen</h1>";
 
 
 <main class="container">
-<div class="message-box"
+<div class="message-box">
 <?php
 
 
@@ -21,7 +21,7 @@ if (DB::query('SELECT * FROM notifications WHERE receiver=:userid', array(':user
 
 ?>
 
-<div class="notify-box">
+
 
      <?php
     foreach ($notifications as $n) {
@@ -54,5 +54,6 @@ include('footer.php');
 
 ?>
 </div>
+
 </main>
 

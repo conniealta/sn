@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pageTitle = "Alcyone - Startseite";
+$pageTitle = "Startseite";
 
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 include('Post.php');
@@ -204,7 +204,7 @@ nav -->
 
 -->
 
-    <h1 class="title py-5"> Feed </h1>     <!-- Hier ein Synonym für Feed finden - Lori -->
+    <h1 class="title py-5"> Home </h1>     <!-- Hier ein Synonym für Feed finden - Lori -->
 
     <div class="post-content-box home">
 
@@ -253,7 +253,7 @@ nav -->
 
                             }
                         } else {
-                            echo "Upload Fehlgeschlagen";
+                            echo "Upload fehlgeschlagen";
 
                         }
                     } else {
