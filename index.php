@@ -50,7 +50,7 @@ include('Comment.php');
         </div>
     </div>
 
-    <h1 class="title py-5"> Home </h1>
+   <!-- <h1 class="title py-5"> Home </h1>-->
 
     <div class="post-content-box home">
 

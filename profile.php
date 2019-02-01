@@ -204,7 +204,7 @@ if (isset($_GET['username'])) {
         }
         ?>
         <div class="bgwhite profile_pic" style="margin-bottom: 20px; padding: 20px;">
-            <h2>Profil von <?php echo $username; ?></h2>
+            <h3>Profil von <?php echo $username; ?></h3>
             <div class="user_details_left_right">
                 <?php
                 echo $fname2 . " " . $lname2."<br>";

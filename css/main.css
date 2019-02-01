@@ -52,7 +52,7 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+
 }
 
 /*---------------------------------------------*/
@@ -573,8 +573,8 @@ iframe {
 
 body {
   line-height: 17px;
-  background-color: #E6EAE8;                                              /*Hintergrund der kompletten Seite*/
-  font-size: 20px;
+  background-color: #f0f4f2;                                              /*Hintergrund der kompletten Seite*/
+  font-size: 15px;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -744,15 +744,15 @@ textarea:focus {
 }
 
 .post_form input[type="submit"] {
-  padding: 16px 32px;
+  padding: 10px 25px;
   border: none;
   border-radius: 3px;
   background-color: #69c6ec;
   color: #FFF;
   text-shadow: #69c6ec 0.5px 0.5px 0px;
-  font-size: 90%;
+  font-size: 70%;
   outline: 0;
-  margin: 0;
+  margin: 15px;
   cursor: pointer;
 }
 
@@ -1420,7 +1420,7 @@ input[type="submit"], input.like-button, .change_img button {
   color: #FFF;
   border-radius: 5px;
   padding: 10px 20px;
-  margin-top: 3px;
+  margin: 3px;
   text-shadow: #69c6ec 0.5px 0.5px 0px;
   cursor: pointer;
 }

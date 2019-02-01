@@ -16,11 +16,11 @@ echo '<h1>Meine Nachrichten</h1>';
 ?>
 
 
-<main class="container">
+<main class="container" style="margin-top: 100px">
 
     <h1>Benachrichtigungen</h1>
 
-    <div class="message-box" style="margin-top: 80px">
+    <div class="message-box" >
 
 
         <?php
