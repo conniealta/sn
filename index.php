@@ -62,11 +62,7 @@ include('Comment.php');
 
                 if (!($_FILES['file']['name'] == "")) {
 
-
                     $file = $_FILES['file'];
-                    echo "Hey";
-                    echo $_FILES['file']['name'];
-
                     $fileName = $_FILES['file']['name'];
                     $fileTmpName = $_FILES['file']['tmp_name'];
                     $fileSize = $_FILES['file']['size'];
