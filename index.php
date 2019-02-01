@@ -35,7 +35,7 @@ include('Comment.php');
             </div>
 
             <div class="col-lg-9 bgwhite post_form">
-                <h2 style="margin-top: 20px;"> Blablibluuuuuuuu</h2>
+                <h2 style="margin-top: 30px;">Was möchtest du mitteilen?</h2>
                 <form action="index.php" method="POST" enctype="multipart/form-data">
 
                     <textarea name="postbody" rows="8" cols="80"
@@ -53,7 +53,7 @@ include('Comment.php');
         </div>
     </div>
 
-    <h1 class="title py-5"> Home </h1>
+   <!-- <h1 class="title py-5"> Home </h1>-->
 
     <div class="post-content-box home">
 
@@ -65,23 +65,17 @@ include('Comment.php');
 
                 if (!($_FILES['file']['name'] == "")) {
 
-
                     $file = $_FILES['file'];
-                    echo "Hey";
-                    echo $_FILES['file']['name'];
-
                     $fileName = $_FILES['file']['name'];
                     $fileTmpName = $_FILES['file']['tmp_name'];
                     $fileSize = $_FILES['file']['size'];
                     $fileError = $_FILES['file']['error'];
                     $fileType = $_FILES['file']['type'];
 
-
                     $fileExt = explode('.', $fileName);
                     $fileActualExt = strtolower(end($fileExt));
 
                     $allowed = array('jpg', 'jpeg', 'png');
-
 
                     if (in_array($fileActualExt, $allowed)) {
                         if ($fileError === 0) {
