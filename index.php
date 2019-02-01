@@ -111,35 +111,6 @@ include('Comment.php');
                 Comment::createComment($_POST['commentbody'], $_GET['postid'], $user_loggedin);
             }
 
-            // Suchfunktion:
-            if (isset($_POST['searchbox'])) {
-                $tosearch = explode(" ", $_POST['searchbox']); //wir splittern es in einzelnen Leerfeldern (in Buchstaben) auf
-
-                if (count($tosearch) == 1) { // wenn es ein Wort ist
-                    $tosearch = str_split($tosearch[0], 2); // z.B. "Robert" -> "Ro be rt"
-                }
-                $whereclause = "";
-                $paramsarray = array(':username' => '%' . $_POST['searchbox'] . '%');
-
-                for ($i = 0; $i < count($tosearch); $i++) {
-                    $whereclause .= " OR username LIKE :u$i ";
-                    $paramsarray[":u$i"] = $tosearch[$i];
-                }
-
-                $users = DB::query('SELECT list5.username FROM list5 WHERE list5.username LIKE :username ' . $whereclause . '', $paramsarray);
-                print_r($users);
-                $whereclause = "";
-                $paramsarray = array(':body' => '%' . $_POST['searchbox'] . '%');
-                for ($i = 0; $i < count($tosearch); $i++) {
-                    if ($i % 2) { // jedes zweite Wort
-                        $whereclause .= " OR body LIKE :p$i ";
-                        $paramsarray[":p$i"] = $tosearch[$i];
-                    }
-                }
-
-                $posts = DB::query('SELECT posts.body, list5.username, posts.posted_at FROM posts, list5 WHERE list5.id = posts.user_id AND posts.body LIKE :body ' . $whereclause . 'LIMIT 15', $paramsarray);
-                echo json_encode($posts);
-            }
             ?>
 
 
