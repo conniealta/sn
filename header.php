@@ -130,7 +130,7 @@
             <form action="suche.php" method="post" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Suchen nach.." aria-label="Suchen"
                        name="searchbox" value="">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Search
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Suchen
                 </button>
             </form>
             </div>
