@@ -187,7 +187,7 @@ if (isset($_GET['username'])) {
 
         if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:loggeduser', array(':postid' => $_GET['postid'], ':loggeduser' => $userid))) {
             Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
-        }
+        } //Kommentar-Funktion bei den Profilen von anderen Benutzern
     }
 
 } else {
