@@ -1,7 +1,7 @@
 
 <html>
 <head>
-    <title>Welcome to Swirlfeed!</title>
+    <title>Willkommen bei Alcyone!</title>
     <link rel="stylesheet" type="text/css" href="css/register_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/register.js"></script>
