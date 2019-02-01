@@ -17,7 +17,7 @@ include('Comment.php');
 <?php
 
 $username = "";
-// je nachdem, auf welcher Profilseite wir sind, heißt die Profilseite z.B. "profile2.php?username=dani"
+// je nachdem, auf welcher Profilseite wir sind, heißt die Profilseite z.B. "profile.php?username=dani"
 $isFollowing = False; //bedeutet, dass man einem Benutzer noch nicht folgt
 
 

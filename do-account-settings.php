@@ -50,13 +50,13 @@ if(isset($_POST['submit'])){
                 $statement->execute(array("$user_loggedin", "$bild_id"));
 
             }else {
-                echo"Deine Datei ist zu groß! (Max Größe 1MB)";
+                echo "Datei zu groß (max. Größe: 1 MB)";
             }
         }else {
-            echo"Fehler!";
+            echo "Upload Fehlgeschlagen!";
         }
     }else {
-        echo"Dieses Dateiformat wird nicht unterstützt!";
+        echo "Dateiformat nicht unterstützt";
     }
     header('Location: account-settings.php');
 }
