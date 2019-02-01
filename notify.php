@@ -66,7 +66,7 @@ echo '<h1>Meine Nachrichten</h1>';
 
 
 
-include('footer.php');
+
 
 
         ?>
