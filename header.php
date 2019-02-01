@@ -33,11 +33,6 @@
     <link rel="stylesheet" type="text/css" href=" " media="screen"/>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/register.js"></script>
-    <!--=============================================================0
-
-
-
-        <link rel="icon" type="image/png" href="/.......png"                                      HIER ÄNDERUNG DER GANZE BLOCK und die zeile hier drunter LORI 19.01>-->
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
@@ -84,9 +79,6 @@
 
                 </li>
 
-                <!-- hier habe ich die Navbar alt integriert - warum kann ich hier die profilseite nitcht mit php integrieren?-->
-
-
                 <li class="nav-item <?php if (strpos($_SERVER['REQUEST_URI'], "notify") !== false){ echo "active";} ?>">
                     <a class="nav-link" href="notify.php?username=$username">Benachrichtigungen</a>
                 </li>
@@ -97,35 +89,7 @@
                     <a class="nav-link" href="logout.php">Ausloggen</a>
                 </li>
             </ul>
-            <!--                                                               Auskommentiert weil es mir komplett die Navbar verschiebt - Lori
-            <li class="nav-item">
-                <?php /*
-                session_start();
-                include('user_data.php');
-                $user_loggedin = $_SESSION['angemeldet'];
-                $username = DB::query('SELECT username FROM list5 WHERE id=:userid', array(':userid' => $user_loggedin))[0]['username'];
-                echo "<a class='active' href='index.php?username=$username'>Feed</a>"*/
-            ?>
 
-                <a class="nav-link" href='profile.php?username=$username'>Mein Profil</a>
-            </li>--->
-
-
-            <!-- DAS IST DIE BOOTSTRAP SUCHLEISTE Icon anstelle von Search wäre cool - MUSS NOCH FORMULAR BEKOMMEN WIE ANDERE LEISTE UM AUCH DIE LEUTE ZU FINDEN CONNY FRAGEN - LORI-->
-            <!--
-                        <form action="suche.php" method="post">
-                            <input style="margin-left:190px;" type="text" name="searchbox" value="">
-                            <input type="submit" name="search" value="Suchen">
-                        </form>-->
-
-            <!-- <form  action="suche.php" method="post" class="navbar-form navbar-left" role="search">
-                 <div class="form-group">
-                     <input type="text" class="searchbox" placeholder="Search">
-                 </div>
-                 <button type="submit" class="btn bg-white" value="Suchen">
-                     <span class="glyphicon glyphicon-search"></span>
-                 </button>
-             </form>-->
             <div class="header_search">
             <form action="suche.php" method="post" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Suchen nach.." aria-label="Suchen"
@@ -134,13 +98,7 @@
                 </button>
             </form>
             </div>
-            <!--
-            <form  action="suche.php" method="post">
-                <input style="margin-left:190px;" type="text" name="searchbox" value="">
-                <input type="submit" name="search" value="Suchen">
-            </form>-->
 
-            <!-- Kommentar-->
     </div>
 
 </nav>
