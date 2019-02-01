@@ -33,7 +33,7 @@ if(isset($_POST['register_button'])) {
     <div class="login_box">
 
         <div class="login_header">
-            <h1>HdM Social Network!</h1>
+            <h1>Alycone!</h1>
             Login or sign up below!
         </div>
         <br>
