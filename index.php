@@ -434,7 +434,7 @@ nav -->
                 echo "<div class='container my-2 bg-white'>";
                 echo "<div class='row'>";
                 echo "<div class='col-lg-3'>";
-                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>.';
+                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
                 echo "</div>";
                 echo "<div class='col-lg-9 bgwhite post_body'>";
                 echo "<img src='img_upload/post_pics/" . $post['img_id'] . "'>" . Post::link_add($post['body']);

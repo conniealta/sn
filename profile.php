@@ -226,7 +226,7 @@ if (isset($_GET['username'])) {
     </div>
     <div class="col-lg-9">
         <div class="bgwhite" style="margin-bottom: 20px; padding: 20px;">
-        <h1>Das Profil von '<?php echo $username; ?>'</h1>
+        <h1>Das Profil von <?php echo $username; ?></h1>
         <div class="user_details_left_right">
                 <?php
                 echo $fname2 . " " . $lname2."<br>";
