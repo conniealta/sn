@@ -180,30 +180,11 @@ if (isset($_GET['username'])) {
     */
 
 
-
-
-
-// !!!!!!!!!!!
-  //Comment::displayComments2($_GET['postid']);
-
-    //Comment::displayComments($posts['id']); //-> damit werden die Kommentare nicht unter den Posts sondern ganz oben angezeigt
-
-  // PROBLEM ! --> Kommentare werden nicht angezeigt ... Die werden nur beim Feed angezeigt. Ich hab auch so probiert:
-    //$comments = Comment::displayComments($_GET['postid']);
-    // $comment = Comment::displayComments($_GET['postid']);
-    //Comment::displayComments($posts['id']);
-
-
     if (isset($_POST['comment'])) {
         if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
             Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
         }
     }
-
-    /*  if (isset($_POST['comment'])) {
-          Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
-      }*/
-
 
 } else {
     die('User not found!');
