@@ -197,8 +197,6 @@ include('Comment.php');
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
-// Wie kann ich folgendes Problem lösen: Wenn man etwas kommentiert, liked, postet wird die Seite neu geladen (und es bleibt nicht z.B. beim jeweiligen Kommentar, wo die Maus ist)
-// header('Location: index.php?postid=".$post_id."');
 
             Comment::displayComments($post_id);
             echo "</div></div></div><!-- Ende Container -->";
