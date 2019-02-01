@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$pageTitle = "Alcyone - Profil bearbeiten";
+
 include('header.php');
 
 ?>

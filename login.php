@@ -10,6 +10,10 @@
 
 <?php
 
+$pageTitle = "Alcyone - Login";
+
+
+
 if(isset($_POST['register_button'])) {
     echo '
 		<script>
