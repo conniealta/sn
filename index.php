@@ -32,7 +32,7 @@ include('Comment.php');
             </div>
 
             <div class="col-lg-9 bgwhite post_form">
-                <h2 style="margin-top: 20px;"> Blablibluuuuuuuu</h2>
+                <h2 style="margin-top: 30px;">Was möchtest du mitteilen?</h2>
                 <form action="index.php" method="POST" enctype="multipart/form-data">
 
                     <textarea name="postbody" rows="8" cols="80"

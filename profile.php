@@ -203,12 +203,9 @@ if (isset($_GET['username'])) {
             echo '<a href="account-settings.php">Profil bearbeiten</a>';
         }
         ?>
-
-    </div>
-    <div class="col-lg-9">
-        <div class="bgwhite" style="margin-bottom: 20px; padding: 20px;">
-        <h1>Das Profil von <?php echo $username; ?></h1>
-        <div class="user_details_left_right">
+        <div class="bgwhite profile_pic" style="margin-bottom: 20px; padding: 20px;">
+            <h2>Profil von <?php echo $username; ?></h2>
+            <div class="user_details_left_right">
                 <?php
                 echo $fname2 . " " . $lname2."<br>";
                 echo $age2. " ". 'Jahre alt'."<br>";
@@ -222,27 +219,30 @@ if (isset($_GET['username'])) {
                 echo"<a href='following.php?username=".$username."'> Following</a> ";
                 ?>
 
-        </div><!-- user details -->
+            </div><!-- user details -->
 
-        <form action="profile.php?username=<?php echo $username; ?>" method="post">
+            <form action="profile.php?username=<?php echo $username; ?>" method="post">
 
-            <?php
+                <?php
 
-            if ($userid != $followerid) { //nur wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist, wird der Button angezeigt
-                if ($isFollowing) {
-                    echo '<input type="submit" name="unfollow" value="Unfollow">';
-                } else {
-                    echo '<input type="submit" name="follow" value="Follow">';
+                if ($userid != $followerid) { //nur wenn die eingeloggte Person nicht auf ihrer eigenen Profilseite ist, wird der Button angezeigt
+                    if ($isFollowing) {
+                        echo '<input type="submit" name="unfollow" value="Unfollow">';
+                    } else {
+                        echo '<input type="submit" name="follow" value="Follow">';
+                    }
                 }
-            }
-            //wenn "$isFollowing = True" wird der Unfollow-Button gezeigt
-            //wenn "$isFollowing = False" wird der Follow-Button gezeigt
+                //wenn "$isFollowing = True" wird der Unfollow-Button gezeigt
+                //wenn "$isFollowing = False" wird der Follow-Button gezeigt
 
-            echo"<a href='messages.php?receiver=".$userid."' style='display: block; padding: 16px 0;'> Schreibe eine Nachricht</a> ";
-            ?>
+                echo"<a href='messages.php?receiver=".$userid."' style='display: block; padding: 16px 0;'> Schreibe eine Nachricht</a> ";
+                ?>
 
-        </form>
+            </form>
         </div>
+    </div>
+    <div class="col-lg-9">
+
 
         <div class="bgwhite" style="padding: 20px; margin-bottom: 20px;">
 
