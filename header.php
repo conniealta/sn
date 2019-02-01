@@ -43,7 +43,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
 
 
-    <Title><?php echo $pageTitle; ?> - Alcyone</Title>
+    <Title><?php echo $pageTitle; ?>Alcyone</Title>
 
 
 </head>
@@ -128,7 +128,7 @@
              </form>-->
             <div class="header_search">
             <form action="suche.php" method="post" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                <input class="form-control mr-sm-2" type="search" placeholder="Suchen nach.." aria-label="Suchen"
                        name="searchbox" value="">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Search
                 </button>

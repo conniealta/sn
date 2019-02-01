@@ -61,5 +61,4 @@ if(isset($_POST['searchbox'])) {
 ?>
 
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
