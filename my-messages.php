@@ -45,6 +45,7 @@ if (isset($_GET['mid'])) {
 } else {
 
     ?>
+
 <main class="container" style="padding-top: 100px;">
     <h1>Meine Nachrichten</h1>
 
