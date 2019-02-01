@@ -454,7 +454,7 @@ nav -->
               </form>
 
 
-              <form action='index.php?postid=" . $post_id . " 'method='post' class='comment_form'>
+              <form action='index.php?postid=" . $post['id'] . " 'method='post' class='comment_form'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
@@ -486,7 +486,7 @@ nav -->
 
 
 
-              <form action='index.php?postid=" . $post_id . " 'method='post' class='comment_form'>
+              <form action='index.php?postid=" . $post['id'] . " 'method='post' class='comment_form'>
               <textarea name='commentbody' rows='3' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>

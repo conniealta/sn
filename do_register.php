@@ -130,7 +130,9 @@ if(isset($_POST["email"]) AND isset($_POST["passwort"])AND isset($_POST["usernam
         $result = $statement->execute(array(':fname' => $fname, ':lname' => $lname, ':username' => $username, ':email' => $email, ':passwort'=> hash('sha256', $passwort, false), ':profilepic' => $profile_pic));
 
         if($result) {
-            echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+            //echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+            echo "Du wurdest erfolgreich registriert!";
+            header('Location: login.php');
         }
         else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
