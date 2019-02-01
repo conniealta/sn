@@ -121,7 +121,7 @@ nav -->
 
 <main class="container" style="padding-top: 50px">
     <!--mit container mittig gesetzt - mit container fluid ist es auf komplette bildbreite verteilt-->
-    <h1 class="py-5"> Willkommen <?php echo $user_name; ?></h1>    <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert
+    <h1 class="py-5"> Willkommen, <?php echo $user_name; ?></h1>    <!-- die markierten Variablen sind oben in "header.php" in "user_data.php" definiert
 
 
 
@@ -352,12 +352,15 @@ nav -->
             echo "<div class='container my-2 bg-white'>"; // container mit margin auf der y-Achse von 2 (Bootstrap angabe) und einem weisen hintergrung (kann geändert werden) - Lori
             echo "<div class='row'>";
             echo "<div class='col-lg-3'>";
-            echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'><a href='profile.php?username=" . $user_name . "'  > $user_name  </a>";
+            echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'><a href='profile.php?username=" . $user_name . "'  > $user_name </a>";
             echo "</div>";
             echo "<div class='col-lg-9 bgwhite post_body'>";
             echo "<img src='img_upload/post_pics/$img'>" . Post::link_add($body);
 
             echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
+
+
+
 
             if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post_id, ':userid' => $user_loggedin))) {
                 /* damit überprüfen wir, ob der Post durch die eingeloggte Person schon geliked wurde
