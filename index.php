@@ -17,44 +17,7 @@ include('Comment.php');
 
 
 
-
-    <div class="container bgwhite">
-        <div class="row">
-
-            <div class="col-lg-3 profile_pic">
-                <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
-                    <img src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
-
-                <div class="user_details_left_right">
-                    <a href="profile.php?username=<?php echo $user_name; ?>">
-                        <?php
-                        echo $fname . " " . $lname;
-                        ?>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-9 bgwhite post_form">
-                <h2 style="margin-top: 30px;">Was möchtest du mitteilen?</h2>
-                <form action="index.php" method="POST" enctype="multipart/form-data">
-
-                    <textarea name="postbody" rows="8" cols="80"
-                              placeholder="Schreibe hier um etwas zu posten.."></textarea>
-
-
-                    <input type="file" name="file">
-                    <input type="submit" name="post" value="Post">
-
-                    <hr>
-
-                </form>
-
-            </div>
-        </div>
-    </div>
-
    <!-- <h1 class="title py-5"> Home </h1>-->
-
     <div class="post-content-box home">
 
         <?php
@@ -65,17 +28,23 @@ include('Comment.php');
 
                 if (!($_FILES['file']['name'] == "")) {
 
+
                     $file = $_FILES['file'];
+                    echo "Hey";
+                    echo $_FILES['file']['name'];
+
                     $fileName = $_FILES['file']['name'];
                     $fileTmpName = $_FILES['file']['tmp_name'];
                     $fileSize = $_FILES['file']['size'];
                     $fileError = $_FILES['file']['error'];
                     $fileType = $_FILES['file']['type'];
 
+
                     $fileExt = explode('.', $fileName);
                     $fileActualExt = strtolower(end($fileExt));
 
                     $allowed = array('jpg', 'jpeg', 'png');
+
 
                     if (in_array($fileActualExt, $allowed)) {
                         if ($fileError === 0) {

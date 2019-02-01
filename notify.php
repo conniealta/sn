@@ -23,15 +23,27 @@ echo '<h1>Meine Nachrichten</h1>';
     <div class="message-box" >
 
 
+
         <?php
         foreach ($notifications as $n) {
             if ($n['type'] == 1) {
                 $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
                 #hier wird der name des users ermittelt der die Benachrichtigung auslöst
+
+
+
+    foreach ($notifications as $n) {
+
+            if ($n['type'] == 1) {
+                $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
+                #hier wird der name des users ermittelt der die Benachrichtigung auslöst
+
+
                 if ($n['extra'] == "") {
                     echo "Du hast eine Benachrichtigung!<hr />";
                 } else {
                     $extra = json_decode($n['extra']);
+
                     echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat dich in einem Post</a> markiert! - " . $extra->postbody . "<hr />";
                 }
 
@@ -41,6 +53,24 @@ echo '<h1>Meine Nachrichten</h1>';
                 echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen Post</a> geliked! " . "<hr />";
 
 
+
+                    echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat dich in einem Post</a> markiert! - " . $extra->postbody . "<hr />";
+                }
+
+            } else {
+
+                if ($n['type'] == 2) {
+
+                    $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
+
+
+                    echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen Post</a> geliked! " . "<hr />";
+
+            }
+
+                }
+
+
             }
 
         }
@@ -48,7 +78,17 @@ echo '<h1>Meine Nachrichten</h1>';
 
         }
 
+
         include('footer.php');
+
+
+
+
+
+
+
+include('footer.php');
+
 
         ?>
     </div>

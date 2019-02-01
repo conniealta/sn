@@ -235,8 +235,14 @@ if (isset($_GET['username'])) {
                 //wenn "$isFollowing = True" wird der Unfollow-Button gezeigt
                 //wenn "$isFollowing = False" wird der Follow-Button gezeigt
 
+
                 echo"<a href='messages.php?receiver=".$userid."' style='display: block; padding: 16px 0;'> Schreibe eine Nachricht</a> ";
                 ?>
+
+            if ($userid != $followerid) {
+                echo "<a href='messages.php?receiver=" . $userid . "' style='display: block; padding: 16px 0;'> Schreibe eine Nachricht</a> ";
+            }
+            ?>
 
             </form>
         </div>
