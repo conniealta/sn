@@ -7,7 +7,7 @@ include('Comment.php');
 ?>
 
 
-<br><br><br><br><br>
+<br><br><br><br><br><br>
 
 <h1 class="title"> Suche  </h1>
 
