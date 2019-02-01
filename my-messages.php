@@ -2,7 +2,7 @@
 session_start();
 
 
-$pageTitle = "Meine Nachrichten";
+$pageTitle = "Alcyone - Meine Nachrichten";
 
 
 include('header.php');

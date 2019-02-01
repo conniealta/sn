@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pageTitle = "Benachrichtigungen";
+$pageTitle = "Alcyone Benachrichtigungen";
 
 include('header.php');
 include('Post.php');

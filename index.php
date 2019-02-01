@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pageTitle = "Startseite";
+$pageTitle = "Alcyone - Startseite";
 
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 include('Post.php');
