@@ -49,6 +49,8 @@ if(isset($_POST['submit'])){
                 $statement = $pdo->prepare($sql);
                 $statement->execute(array("$user_loggedin", "$bild_id"));
 
+                header('Location: account-settings.php');
+
             }else {
                 echo "Datei zu groß (max. Größe: 1 MB)";
             }
@@ -58,7 +60,7 @@ if(isset($_POST['submit'])){
     }else {
         echo "Dateiformat nicht unterstützt";
     }
-    header('Location: account-settings.php');
+
 }
 
 
