@@ -7,8 +7,6 @@ include('Comment.php');
 ?>
 
 
-
-
 <br><br><br><br><br>
 
 <h1 class="title"> Suche  </h1>
@@ -33,17 +31,6 @@ if(isset($_POST['searchbox'])) {
         $paramsarray[":u$i"] = $tosearch[$i];
     }
 
-   /* $users = DB::query('SELECT list5.username FROM list5 WHERE list5.username LIKE :username '.$whereclause.'', $paramsarray);
-    $user_search = $users['username'];
-    print_r($user_search);
-    print_r($users);*/
-
-   /*  So??
-   foreach ($users as $user1) ...
-   $user_search = $user1['username']
-   */
-
-
     $pdo=new PDO ($dsn, $dbuser, $dbpass, $options);
     $statement = $pdo->prepare('SELECT list5.username, list5.profile_pic FROM list5 WHERE list5.username LIKE :username '.$whereclause.'');
 
@@ -54,7 +41,6 @@ if(isset($_POST['searchbox'])) {
         }
     }
     print_r( "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $prof_pic . "'>". ' ' . ' ' . "<a href='profile.php?username=" . $user_search . " ' >" . $user_search . '</a>'  );
-
 
 }
 
