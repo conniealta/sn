@@ -16,7 +16,7 @@ include('header.php');
                 <strong>Profilbild ändern</strong>
                 <?php
                 if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
-                    echo '<form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data">
+                    echo '<form action="do-account-settings.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
     <button type="submit" name="submit"> Profilbild hochladen </button>
 
