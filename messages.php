@@ -8,7 +8,7 @@ session_start();
 <?php
 
 
-$pageTitle = "Alcyone - Nachrichten";
+$pageTitle = "Schreibe eine Nachricht";
 
 include('header.php');
 

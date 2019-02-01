@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+
+$pageTitle = "Suche";
+
+
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 include('Post.php');
 include('Comment.php');

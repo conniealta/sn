@@ -1,6 +1,7 @@
 <!DOCTYPE html> <!-- das ist HTML 5 -->
 <html lang="de">
 <head>
+
     <meta charset="utf-8">
 
 
@@ -43,7 +44,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
 
 
-    <Title><?php echo $pageTitle; ?>Alcyone</Title>
+    <Title><?php echo $pageTitle; ?> - Alcyone</Title>
 
 
 </head>

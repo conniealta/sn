@@ -2,7 +2,7 @@
 session_start();
 
 
-$pageTitle = "Alcyone - Mein Profil";
+$pageTitle = "Mein Profil";
 
 
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
@@ -258,7 +258,7 @@ if (isset($_GET['username'])) {
         <div class="bgwhite" style="padding: 20px;">
 
         <div class="posts_area"></div>
-        <!-- <button id="load_more">Load More Posts</button> -->
+        <!-- <button id="load_more">Load More Posts</button>
         <img id="loading" src="images/icons/loading.gif">
 
         <!--Anzeigen von Posts (oben wird die Variable definiert: $posts = Post::displayPosts...)-->
