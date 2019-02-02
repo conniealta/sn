@@ -10,7 +10,7 @@ include('Post.php');
 include('Comment.php');
 ?>
 
-<br><br><br><br><br><br>
+
 
 
 
@@ -197,7 +197,7 @@ if (isset($_GET['username'])) {
 ?>
 
 
-<main class="container">
+<main class="container" style="padding-top: 100px;">
 <div class="row">
     <div class="col-lg-3 profile_pic" style="margin-top: 0;">
         <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>

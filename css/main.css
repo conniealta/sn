@@ -150,7 +150,7 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Raleway-Regular;
+  font-family: Poppins-Regular;
   font-size: 16px;
   color: #999999;
   line-height: 1.4;
@@ -694,7 +694,7 @@ nav a:hover {
 .user_details_left_right {
   width: 120px;
   display: inline-table;
-  position: absolute;
+  position: relative;
 }
 
 .main_column {
@@ -1287,7 +1287,7 @@ body {
   font-size: 20px;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Poppins-Regular;
 }
 
 ul {
