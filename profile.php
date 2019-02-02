@@ -197,19 +197,15 @@ if (isset($_GET['username'])) {
 ?>
 
 
-<main class="container" style="padding-top: 100px;">
+<main class="container" style="padding-top: 120px;">
 <div class="row">
     <div class="col-lg-3 profile_pic" style="margin-top: 0;">
         <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>
 
-        <?php
-        if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
-            echo '<a href="account-settings.php">Profil bearbeiten</a>';
-        }
-        ?>
+
         <div class="bgwhite profile_pic" style="margin-bottom: 20px; padding: 20px;">
 
-            <h3>Profil von <a href="profile.php?username=<?php echo $username; ?>">
+            <h3>Profil von <a style="font-size: 28px;" href="profile.php?username=<?php echo $username; ?>">
                 <?php
                 echo $username;
                 ?>
@@ -225,12 +221,22 @@ if (isset($_GET['username'])) {
                 echo $semester2. ". ". ' Semester '."<br>";
                 echo ' Interessen: '.$interessen2. " "."<br>";
                 // diese sind in "user_data.php" definiert --> das sind die Infos der Person, auf deren Profilseite wir sind
+?>
 
-
-                echo"<a href='followers.php?username=".$username."'> Followers</a>";
+                <div class="follow_information">
+                <?php
+                echo"<a href='followers.php?username=".$username."'> Follower</a>";
                 echo"<a href='following.php?username=".$username."'> Following</a> ";
                 ?>
 
+                <div class="edit_profilebox">
+                <?php
+                if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
+                    echo '<a href="account-settings.php">Profil bearbeiten</a>';
+                }
+                ?>
+                </div>
+                </div>
             </div><!-- user details -->
 
             <form action="profile.php?username=<?php echo $username; ?>" method="post">

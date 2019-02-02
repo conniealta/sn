@@ -6,7 +6,7 @@ $pageTitle = "Ich folge...";
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 ?>
 
-<main class="container">
+<main class="container" style="padding-top: 80px;">
 <h1> Wem folge ich? </h1>
 
 

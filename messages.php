@@ -29,7 +29,7 @@ else {
 
 
 
-<main class="container" style="padding-top: 100px;">
+<main class="container" style="padding-top: 80px;">
 
     <h1>Sende eine Nachricht</h1>
 

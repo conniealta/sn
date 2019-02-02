@@ -16,7 +16,7 @@ echo '<h1>Meine Nachrichten</h1>';
 
 
 
-<main class="container" style="margin-top: 100px">
+<main class="container" style="margin-top: 80px">
 
     <h1>Benachrichtigungen</h1>
 

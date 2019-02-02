@@ -692,6 +692,8 @@ nav a:hover {
 }
 
 .user_details_left_right {
+
+  padding-top: 10px;
   width: 120px;
   display: inline-table;
   position: relative;
@@ -702,28 +704,30 @@ nav a:hover {
   width: 70%;
   z-index: -1;
   min-height: 170px;
+
+
 }
 .profile_pic img {width: 100% !important;}
 
 
-.message-sent-box{
+
+
+.edit_profilebox {
+  padding-top: 10px;
+  padding-left: 50px;
 
 
 }
 
-
-.post-content-box{
-
-
-}
-
-
-.notify-box{
-
+.follow_information{
+  padding-top: 10px;
 
 }
 
+.container {
 
+
+}
 
 .post_form {
   width: 100%;

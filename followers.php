@@ -8,7 +8,7 @@ $pageTitle = "Meine Follower";
 include('header.php'); // in "header.php" ist auch "user_data.php" inkludiert und $_SESSION["angemeldet"];
 ?>
 
-<main class="container" style="padding-top:20px;">
+<main class="container" style="padding-top:80px;">
 <h1> Followers - Wer folgt mir? </h1>
 
 
