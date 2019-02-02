@@ -29,14 +29,14 @@ else {
 
 
 
-<main class="container" style="padding-top: 80px;">
+<main class="container" style="padding-top: 70px;">
 
     <h1>Sende eine Nachricht</h1>
 
 <div class="send-message-box">
 <form action="messages.php?receiver=<?php echo htmlspecialchars($_GET['receiver']); ?>" method="post">
     <textarea name="body" rows="8" cols="80"></textarea>
-    <input type="submit" name="send" value="Sende Nachricht">
+    <input type="submit" name="send" value="Sende eine Nachricht">
 </form>
 </div>
 

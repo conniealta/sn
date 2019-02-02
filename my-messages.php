@@ -47,8 +47,9 @@ if (isset($_GET['mid'])) {
 
     ?>
 
-<main class="container" style="padding-top: 80px;">
-    <h1>Meine Nachrichten</h1>
+<main class="container" style="padding-top: 70px;">
+    <h1 class="py-4">Meine Nachrichten</h1>
+
 
  <div class="message-box">
     <?php

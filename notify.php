@@ -16,11 +16,14 @@ echo '<h1>Meine Nachrichten</h1>';
 
 
 
-<main class="container" style="margin-top: 80px">
+<main class="container" style="margin-top: 70px">
 
-    <h1>Benachrichtigungen</h1>
+    <h1 class="py-4"style="font-size: 40px;"> Deine Benachrichtigungen</h1>
 
-    <div class="message-box" >
+
+
+<div class="row">
+    <div class="container bgwhite" style="padding: 20px;">
 
 
 
@@ -39,13 +42,13 @@ echo '<h1>Meine Nachrichten</h1>';
                 } else {
                     $extra = json_decode($n['extra']);
 
-                    echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat dich in einem Post</a> markiert! - " . $extra->postbody . "<hr />";
+                    echo "<a style='font-size:20px;' href='profile.php?username=" . $senderName . "'> @$senderName </a> hat dich in einem Post</a> markiert! - " . $extra->postbody . "<hr />";
                 }
 
             } else if ($n['type'] == 2) {
                 $senderName = DB::query('SELECT username FROM list5 WHERE id=:senderid', array(':senderid' => $n['sender']))[0]['username'];
 
-                echo "<a href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen Post</a> geliked! " . "<hr />";
+                echo "<a style='font-size:20px;' href='profile.php?username=" . $senderName . "'> @$senderName </a> hat deinen Post</a> geliked! " . "<hr />";
 
 
 
@@ -71,6 +74,6 @@ echo '<h1>Meine Nachrichten</h1>';
 
         ?>
     </div>
-
+</div>
 </main>
 

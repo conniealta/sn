@@ -58,8 +58,8 @@ body, html {
 /*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
-	font-size: 14px;
-	line-height: 1.7;
+	font-size: 16px;
+	line-height: 1.8;
 	color: #666666;
 	margin: 0px;
 	transition: all 0.4s;
@@ -104,7 +104,7 @@ input {
 
 textarea {
   outline: none;
-  border: none;
+
 }
 
 textarea:focus, input:focus {
@@ -691,13 +691,6 @@ nav a:hover {
   margin-right: 5px;
 }
 
-.user_details_left_right {
-
-  padding-top: 10px;
-  width: 120px;
-  display: inline-table;
-  position: relative;
-}
 
 .main_column {
   float:right;
@@ -713,14 +706,24 @@ nav a:hover {
 
 
 .edit_profilebox {
+  margin: 20px;
   padding-top: 10px;
-  padding-left: 50px;
+  padding-left: 0px;
+  display: inline-block;
 
 
 }
 
-.follow_information{
-  padding-top: 10px;
+
+
+
+.col-3 follow_information{
+
+
+
+}
+
+.follower_info{
 
 }
 
@@ -744,7 +747,7 @@ nav a:hover {
 }
 
 textarea:focus {
-  outline: 0;
+
 }
 
 .post_form input[type="submit"] {
@@ -1355,7 +1358,16 @@ li a:hover {
   position: relative;
   color: #666;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 28px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+
+}
+
+
+
+
 }
 .post_body textarea {border: 1px solid #DDD; margin: 15px 0; display: block;}
 .post_box {border-bottom: 1px solid #EEE; padding: 20px 0; margin-bottom: 20px;}
@@ -1372,8 +1384,8 @@ li a:hover {
 
 .message-box{
   background-color: #FFFFFF;
-  margin-top: 20px;
   padding: 20px;
+
 }
 .change_img {
   margin-top: 20px;
@@ -1407,6 +1419,11 @@ footer ul li {
   padding-right: 20px;
   font-size: 15px;
 }
+
+.bgwhite{
+
+}
+
 
 .col-lg-3.profile_pic {
   margin-top: 20px;

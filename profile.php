@@ -197,7 +197,12 @@ if (isset($_GET['username'])) {
 ?>
 
 
-<main class="container" style="padding-top: 120px;">
+<main class="container" style="padding-top: 70px;">
+    <h1 class="py-4"><a style="font-size: 40px;" href="profile.php?username=<?php echo $username; ?>">
+            <?php
+            echo $username;
+            ?>
+        </a>'s Profil</h1>
 <div class="row">
     <div class="col-lg-3 profile_pic" style="margin-top: 0;">
         <a href='img_upload/profile_pics/<?php echo $profile_pic2;?>'>      <img src='img_upload/profile_pics/<?php echo $profile_pic2;?>'></a>
@@ -222,14 +227,25 @@ if (isset($_GET['username'])) {
                 echo ' Interessen: '.$interessen2. " "."<br>";
                 // diese sind in "user_data.php" definiert --> das sind die Infos der Person, auf deren Profilseite wir sind
 ?>
+            </div> <!-- user_details-->
 
-                <div class="follow_information">
-                <?php
-                echo"<a href='followers.php?username=".$username."'> Follower</a>";
-                echo"<a href='following.php?username=".$username."'> Following</a> ";
+                <div class="col-3 follow_information">
+
+                    <div class="follower_info">
+                    <?php
+                echo"<a style='font-size:20px;' href='followers.php?username=".$username."'> Follower</a>";
                 ?>
 
-                <div class="edit_profilebox">
+
+                    <?php
+                echo"<a style='font-size:20px;' href='following.php?username=".$username."'> Following</a> ";
+                ?>
+
+                </div>
+
+
+
+                <div class="edit_profilebox" >
                 <?php
                 if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
                     echo '<a href="account-settings.php">Profil bearbeiten</a>';
@@ -237,7 +253,7 @@ if (isset($_GET['username'])) {
                 ?>
                 </div>
                 </div>
-            </div><!-- user details -->
+
 
             <form action="profile.php?username=<?php echo $username; ?>" method="post">
 
@@ -266,15 +282,23 @@ if (isset($_GET['username'])) {
     <div class="col-lg-9">
 
 
-        <div class="bgwhite" style="padding: 20px; margin-bottom: 20px;">
+
+
 
         <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
+            <div class="bgwhite" style="padding: 20px; margin-bottom: 20px;">
+                <div class="form-group">
+                    <label for="comment">Schreibe etwas...</label>
+                    <textarea class="form-control" rows="3" id="comment"></textarea>
+                </div>
 
             <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe etwas..."></textarea>
             <input type="file" name="file">
             <input type="submit" name="post" value="Post">
 
         </form>
+
+
         </div>
 
         <div class="bgwhite" style="padding: 20px;">

@@ -7,9 +7,13 @@ include('Comment.php');
 ?>
 
 
-    <main class="container" style="padding-top: 50px">
+    <main class="container" style="padding-top: 70px">
         <!--mit container mittig gesetzt - mit container fluid ist es auf komplette bildbreite verteilt-->
-        <h1 class="py-5"> Willkommen, <?php echo $user_name; ?></h1>
+        <h1 class="py-4"> Hallo <a style="font-size: 40px;" href="profile.php?username=<?php echo $username; ?>">
+                <?php
+                echo $username;
+                ?>
+            </a>!</h1>
 
 
         <div class="container bgwhite">

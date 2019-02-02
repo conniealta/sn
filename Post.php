@@ -199,7 +199,7 @@ class Post {
                         $posts .= "<div class='row post_box'>";
                         $posts .= "<div class='col-lg-3'>";
                         $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>";
-                        $posts .= "<a href='profile.php?username=".$username." ' >".$username."</a>";
+                        $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=".$username." ' >".$username."</a>";
                         $posts .= "</div>";
                         $posts .= "<div class='col-lg-9 post_body'>";
                         $posts .= "<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
@@ -230,7 +230,7 @@ class Post {
                         $posts .= "<div class='row post_box'>";
                         $posts .= "<div class='col-lg-3'>";
                         $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>";
-                        $posts .= "<a href='profile.php?username=".$username." ' >".$username."</a>";
+                        $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=".$username." ' >".$username." </a>";
                         $posts .= "</div>";
                         $posts .= "<div class='col-lg-9 post_body'>";
                         $posts .= self::link_add($p['body'])."<br><br>".$p['posted_at']
@@ -264,7 +264,7 @@ class Post {
                     $posts .= "<div class='row post_box'>";
                     $posts .= "<div class='col-lg-3'>";
                     $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $profilePic . "'>";
-                    $posts .= "<a href='profile.php?username=" . $username . " ' >" . $username . "</a>";
+                    $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $username . " ' >" . $username . "</a>";
                     $posts .= "</div>";
                     $posts .= "<div class='col-lg-9 post_body'>";
                     $posts .= "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
@@ -297,7 +297,7 @@ class Post {
                     $posts .= "<div class='row post_box'>";
                     $posts .= "<div class='col-lg-3'>";
                     $posts .= "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/".$profilePic."'>";
-                    $posts .= "<a href='profile.php?username=".$username." ' >".$username."</a>";
+                    $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=".$username." ' >".$username."</a>";
                     $posts .= "</div>";
                     $posts .= "<div class='col-lg-9 post_body'>";
                     $posts .= self::link_add($p['body'])."<br><br>".$p['posted_at']
