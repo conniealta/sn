@@ -22,7 +22,8 @@ session_start();
 if (isset($_GET['mid'])) {
     $message = DB::query('SELECT * FROM messages WHERE id=:mid AND (receiver=:receiver OR sender=:sender)', array(':mid'=>$_GET['mid'], ':receiver'=>$user_loggedin, ':sender'=>$user_loggedin))[0];
 
-    echo '<h1>Meine Nachrichten</h1>';
+    echo '<h1> Nachrichten </h1> <br> <br>';
+    echo '<h2>Schreibe eine Nachricht</h2>';
     echo  "<a  href='my-messages.php?username=$username'>Zurück</a> <br> <br>";
 
     echo htmlspecialchars($message['body']);
