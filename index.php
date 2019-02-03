@@ -130,7 +130,7 @@ include('Comment.php');
                 echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'><a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . "'  > $user_name  </a>";
                 echo "</div>";
                 echo "<div class='col-lg-9 bgwhite post_body'>";
-                echo "<img src='img_upload/post_pics/$img'>" . Post::link_add($body);
+                echo "<img src='img_upload/post_pics/$img'>" . Post::link_add($body).' '."<br><br>".$post_time;
                 echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
 
@@ -156,7 +156,7 @@ include('Comment.php');
                 echo "<div class='container mt-4 bg-white'>";
                 echo "<div class='row'>";
                 echo "<div class='col-lg-3'>";
-                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . " ' > $user_name  </a> " . Post::link_add($body);
+                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . " ' > $user_name  </a> " . Post::link_add($body).' '."<br><br>".$post_time;
                 echo "</div>";
                 echo "<div class='col-lg-9 bgwhite post_body'>";
 
