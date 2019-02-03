@@ -181,8 +181,9 @@ include('Comment.php');
                 echo "</div></div></div>";
             }
 
+
             // Anazeigen der Posts der anderen Benutzer mit den jeweiligen Kommentaren:
-            $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username, posts.img_id, list5.profile_pic FROM list5, posts, followers
+            $followingposts = DB::query('SELECT posts.id, posts.body, posts.likes, list5.username, posts.img_id, list5.profile_pic, posts.posted_at FROM list5, posts, followers
                              WHERE posts.user_id = followers.user_id
                              AND list5.id = posts.user_id
                              AND follower_id = :userid
@@ -201,7 +202,7 @@ include('Comment.php');
                     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a style='font-size:20px; padding-left: 20px;'href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
                     echo "</div>";
                     echo "<div class='col-lg-9 bgwhite post_body'>";
-                    echo "<img src='img_upload/post_pics/" . $post['img_id'] . "'>" . Post::link_add($post['body']);
+                    echo "<img src='img_upload/post_pics/" . $post['img_id'] . "'>" . Post::link_add($post['body']).' '."<br><br>".$post['posted_at'];
                     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
                     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
@@ -229,7 +230,7 @@ include('Comment.php');
                     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
                     echo "</div>";
                     echo "<div class='col-lg-9 bgwhite post_body'>";
-                    echo Post::link_add($post['body']);
+                    echo Post::link_add($post['body']).' '."<br><br>".$post['posted_at'];
                     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
                     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
