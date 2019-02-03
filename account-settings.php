@@ -9,14 +9,14 @@ include('header.php');
 
 <main class="container" style="padding-top: 100px;">
 
-    <h1>Benutzereinstellungen </h1>
+    <h1>Deine Benutzereinstellungen</h1>
 
     <div class="row">
         <div class="col-lg-3 profile_pic" style="margin-top: 0;">
             <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'><img
                         src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
             <div class="change_img">
-                <strong>Profilbild ändern</strong>
+                <h4 py-4 >Profilbild ändern</h4>
                 <?php
                 if ($user_loggedin) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird der Prodilbild-Upload angezeigt
                     echo '<form action="do-account-settings.php" method="POST" enctype="multipart/form-data">
@@ -34,7 +34,7 @@ include('header.php');
         <div class="col-lg-9 bgwhite" style="padding: 20px;">
 
 
-            <h4>Benutzerdaten ändern</h4>
+            <h4 style="padding-bottom: 30px;">Benutzerdaten ändern</h4>
             <form action="do-account-settings.php" method="post">
 
                 <p>Username:
@@ -51,7 +51,7 @@ include('header.php');
 
             <br><br>
 
-            <h4>Passwort ändern</h4>
+            <h4 style="padding-bottom: 30px;">Passwort ändern</h4>
             <form action="do-account-settings.php" method="post">
                 <p>Altes Passwort:
                     <input type="password" size="40" maxlength="250" name="old_password" placeholder="••••••"></p>
@@ -70,7 +70,7 @@ include('header.php');
 
             <br><br>
 
-            <h4>Benutzerinformationen ändern</h4>
+            <h4 style="padding-bottom: 30px;">Benutzerinformationen ändern</h4>
 
 
             <form action="do-account-settings.php" method="post">

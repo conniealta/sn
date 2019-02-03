@@ -650,14 +650,14 @@ nav {
 
 nav a{
   position: relative;
-  color: #fff;
+  color: #D3D3D3;
   text-decoration: none;
   font-size: 17px;
 }
 
 nav a:hover {
   border-bottom: 7px solid #69c6ec;                        /*unterstirchenes wenn man mit der maus drüber geht nav bar*/
-  color: #fff;
+
 }
 
 .wrapper {
@@ -1424,7 +1424,10 @@ footer ul li {
 
 }
 
+.post-content-box home{
 
+
+}
 
 
 .col-lg-3.profile_pic {
@@ -1432,6 +1435,7 @@ footer ul li {
 }
 .post-content-box.home .col-lg-9 {
   padding: 20px 0;
+
 }
 .post-content-box.home .col-lg-3 {
   padding: 20px;

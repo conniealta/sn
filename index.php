@@ -92,6 +92,7 @@ include('Comment.php');
                 }
             }
 
+
             // Text-Post-Funktion und Bild-Post-Funktion:
             if (isset($_POST['post'])) {
                 if ($_FILES['file']['size'] == 0) { //wenn der Post kein Bild enthält bzw. keine Datei
@@ -100,6 +101,8 @@ include('Comment.php');
                     $postid = Post::createImgPost2($bild_id, $_POST['postbody'], $user_loggedin, $post_id);
                 }
             }
+
+
 
             //Liking-Funktion:
             if (isset($_POST['like'])) {
