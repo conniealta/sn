@@ -208,7 +208,7 @@ class Post {
                        ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
                  
-                 <span>".$p['likes']." likes</span>
+                 <span style='font-size: 14px;'>".$p['likes']." likes</span>
                  ";
 
                         if ($userid == $loggedIn_userid){
@@ -216,6 +216,7 @@ class Post {
                         }
                         //damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
+                        $posts .= "<br>";
                         $posts .= "<br>";
                         $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
@@ -243,7 +244,7 @@ class Post {
                     
                     
                  <input type='submit' name='like' value='Like'>
-                 <span>".$p['likes']." likes</span>
+                 <span style='font-size: 14px;'>".$p['likes']." likes</span>
                  ";
 
                         if ($userid == $loggedIn_userid){
@@ -252,12 +253,14 @@ class Post {
                         //damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
                         $posts .= "<br>";
+                        $posts .= "<br>";
                         $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
               <textarea name='commentbody' rows='2' class='form-control' id='commentbody'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>";
 
+                        $posts .= "<br>";
                         $posts .= "<br>";
                         $posts .= Comment::displayComments2($p['id']);
                         $posts .= "</div></div>";
@@ -278,7 +281,7 @@ class Post {
 
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
-                 <span>" . $p['likes'] . " likes</span>
+                 <span style='font-size: 14px;'>" . $p['likes'] . " likes</span>
                  
                  
               
@@ -290,6 +293,7 @@ class Post {
                 #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
                 #$userid == $loggedIn_userid
 
+                    $posts .= "<br>";
                     $posts .= "<br>";
                     $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
@@ -317,7 +321,7 @@ class Post {
 
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
-                 <span>" . $p['likes'] . " likes</span>
+                 <span style='font-size: 14px;'>" . $p['likes'] . " likes</span>
               
                 ";
 
@@ -328,13 +332,14 @@ class Post {
                     #$userid == $loggedIn_userid
 
                     $posts .= "<br>";
+                    $posts .= "<br>";
                     $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
               <textarea name='commentbody' rows='2' class='form-control' id='commentbody'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>";
 
-
+                    $posts .= "<br>";
                     $posts .= "<br>";
                     $posts .= Comment::displayComments2($p['id']);
                     $posts .= "

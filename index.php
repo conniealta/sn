@@ -23,7 +23,7 @@ include('Comment.php');
                     <a href='img_upload/profile_pics/<?php echo $profile_pic; ?>'>
                         <img src='img_upload/profile_pics/<?php echo $profile_pic; ?>'></a>
 
-                    <div class="user_details_left_right">
+                    <div class="user_details_left_right" style="text-align: center">
                         <a href="profile.php?username=<?php echo $user_name; ?>">
                             <?php
                             echo $fname . " " . $lname;
@@ -32,15 +32,15 @@ include('Comment.php');
                     </div>
                 </div>
 
-                <div class="col-lg-9 bgwhite post_form">
+                <div class="col-lg-9 bgwhite post_form" style="padding-left: 50px;">
                     <h2 style="margin-top: 30px;">Was möchtest du mitteilen?</h2>
                     <form action="index.php" method="POST" enctype="multipart/form-data">
 
-                    <textarea name="postbody" class="form-control" rows="8" cols="80"
+                    <textarea name="postbody" class="form-control" rows="1" cols="80"
                               placeholder="Schreibe hier um etwas zu posten.."></textarea>
 
 
-                        <input style="padding-left:20px; font-size: 16px;" type="file" name="file">
+                        <input style="padding-left:20px; margin-right: 100px; font-size: 16px;" type="file" name="file">
                         <input type="submit" name="post" value="Post">
 
                         <hr>
@@ -127,7 +127,7 @@ include('Comment.php');
                 echo "<div class='container my-2 bg-white'>"; // container mit margin auf der y-Achse von 2 (Bootstrap angabe) und einem weisen hintergrung (kann geändert werden) - Lori
                 echo "<div class='row'>";
                 echo "<div class='col-lg-3'>";
-                echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'><a href='profile.php?username=" . $user_name . "'  > $user_name  </a>";
+                echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'><a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . "'  > $user_name  </a>";
                 echo "</div>";
                 echo "<div class='col-lg-9 bgwhite post_body'>";
                 echo "<img src='img_upload/post_pics/$img'>" . Post::link_add($body);
@@ -142,7 +142,7 @@ include('Comment.php');
                     echo "<input type='submit' name='unlike' value='Unlike' class='like-button'>";
                 }
 
-                echo "<span>" . $post_likes . " likes</span>
+                echo "<span style='font-size: 14px;'>" . $post_likes . " likes</span>
               </form>
               <form action='index.php?postid=" . $post_id . " 'method='post' class='comment_form'>
               <textarea name='commentbody' class='form-control' rows='2' cols='50'></textarea>
@@ -156,7 +156,7 @@ include('Comment.php');
                 echo "<div class='container mt-4 bg-white'>";
                 echo "<div class='row'>";
                 echo "<div class='col-lg-3'>";
-                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=" . $user_name . " ' > $user_name  </a> " . Post::link_add($body);
+                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . " ' > $user_name  </a> " . Post::link_add($body);
                 echo "</div>";
                 echo "<div class='col-lg-9 bgwhite post_body'>";
 
@@ -168,7 +168,7 @@ include('Comment.php');
                     echo "<input type='submit' name='unlike' value='Unlike' class='like-button'>";
                 }
 
-                echo "<span>" . $post_likes . " likes</span>
+                echo "<span style='font-size: 14px;'>" . $post_likes . " likes</span>
              
               </form>
               <form action='index.php?postid=" . $post_id . " 'method='post' class='comment_form'>
@@ -198,7 +198,7 @@ include('Comment.php');
                     echo "<div class='container my-2 bg-white'>";
                     echo "<div class='row'>";
                     echo "<div class='col-lg-3'>";
-                    echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
+                    echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a style='font-size:20px; padding-left: 20px;'href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
                     echo "</div>";
                     echo "<div class='col-lg-9 bgwhite post_body'>";
                     echo "<img src='img_upload/post_pics/" . $post['img_id'] . "'>" . Post::link_add($post['body']);
@@ -212,7 +212,7 @@ include('Comment.php');
                         echo "<input type='submit' name='unlike' value='Unlike' class='like-button'>";
                     }
 
-                    echo "<span>" . $post['likes'] . " likes</span>
+                    echo "<span style='font-size: 14px;'>" . $post['likes'] . " likes</span>
              
               </form>
               <form action='index.php?postid=" . $post['id'] . " 'method='post' class='comment_form'>
@@ -226,7 +226,7 @@ include('Comment.php');
                     echo "<div class='container my-5 bg-white'>";
                     echo "<div class='row'>";
                     echo "<div class='col-lg-3'>";
-                    echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
+                    echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
                     echo "</div>";
                     echo "<div class='col-lg-9 bgwhite post_body'>";
                     echo Post::link_add($post['body']);
@@ -238,7 +238,7 @@ include('Comment.php');
                         echo "<input type='submit' name='unlike' value='Unlike' class='like-button'>";
                     }
 
-                    echo "<span>" . $post['likes'] . " likes</span>
+                    echo "<span style='font-size: 14px;'>" . $post['likes'] . " likes</span>
              
               </form>
               <form action='index.php?postid=" . $post['id'] . " 'method='post' class='comment_form'>

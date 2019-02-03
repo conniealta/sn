@@ -286,7 +286,7 @@ if (isset($_GET['username'])) {
         <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
 
 
-            <div class="bgwhite" style="padding: 20px; margin-bottom: 20px;">
+            <div class="bgwhite" style="padding: 20px 50px; margin-bottom: 20px;">
                 <div class="form-group">
                     <label for="comment">Schreibe etwas...</label>
                     <textarea name="postbody" class="form-control" rows="3" id="comment" placeholder="Schreibe etwas..."></textarea>

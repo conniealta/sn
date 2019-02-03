@@ -724,12 +724,12 @@ nav a:hover {
 
 .post_form textarea {
   width: 81%;
-  height: 60px;
+  height: 120px;
   border-radius: 3px;
   margin-right: 5px;
   border: 1px solid #D3D3D3;
-  font-size: 12px;
-  padding: 5px;
+  font-size: 14px;
+  padding: 10px;
 }
 
 textarea:focus {
@@ -1448,6 +1448,8 @@ input.like-button {margin-right: 10px;}
 nav ul li {
   float:none;
 }
+
+
   .form-control{
     width:100%!important;
   }
