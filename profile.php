@@ -179,16 +179,18 @@ if (isset($_GET['username'])) {
      "return" --> dies gibt die Variable '$posts = "";' zurück , die all den HTML-Code und alle Posts beinhaltet
     */
 
-
-    if (isset($_POST['comment'])) {
-        if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
-            Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
+    if ($user_loggedin == $userid) {
+        if (isset($_POST['comment'])) {
+            if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:userid', array(':postid' => $_GET['postid'], ':userid' => $followerid))) {
+                Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
+            }
         }
-
+    } else {
         if (DB::query('SELECT id FROM posts WHERE id=:postid AND user_id=:loggeduser', array(':postid' => $_GET['postid'], ':loggeduser' => $userid))) {
             Comment::createComment($_POST['commentbody'], $_GET['postid'], $followerid);
         } //Kommentar-Funktion bei den Profilen von anderen Benutzern
     }
+
 
 } else {
     die('User not found!');

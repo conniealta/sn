@@ -32,7 +32,7 @@ class Comment {
     }
 
 
-//damit werden die Kommentare bei "profile.php" nicht ganz oben angezeigt, sondern unter den jeweiligen Posts
+//damit werden die Kommentare bei "profile.php" nicht ganz oben angezeigt, sondern unter den jeweiligen Posts:
     public static function displayComments2 ($postId) {
         $comments = DB::query('SELECT comments.comment, list5.username, list5.profile_pic FROM comments, list5 WHERE post_id = :postid AND comments.user_id = list5.id', array(':postid'=>$postId));
         // Join machen --> Fremdschlüssel mit den Primärschlüsseln zusammenfügen, sodass nur der Kommentar und der Name des Nutzers, der ihn geschrieben hat, angezeigt werden
