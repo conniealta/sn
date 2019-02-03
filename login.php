@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/register.js"></script>
 </head>
-<body>
+<body background="hdm.jpg">
 
 <?php
 
@@ -37,8 +37,8 @@ if(isset($_POST['register_button'])) {
     <div class="login_box">
 
         <div class="login_header">
-            <h1>Alycone!</h1>
-            Login or sign up below!
+            <h1>Alycone</h1>
+            Logg dich ein oder Registriere dich
         </div>
         <br>
         <div id="first">
@@ -49,18 +49,16 @@ if(isset($_POST['register_button'])) {
                 <input type="password" name="passwort" placeholder="Passwort">
                 <br>
                 <div class="contact100-form-checkbox m-l-4">
-                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                    <label class="label-checkbox100" for="ckb1">
-                        Remember me
-                    </label>
+
                 </div>
                 <input type="submit" name="login_button" value="Login">
                 <br>
-                <a href="#" id="signup" class="signup">Need an account? Register here!</a>
+                <a href="#" id="signup" class="signup">Neu hier? Registrier dich!</a>
 
             </form>
 
         </div>
+
 
 
 

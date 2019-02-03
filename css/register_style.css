@@ -96,6 +96,11 @@ input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hove
 	border-color: #69c6ec;
 }
 
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+}
+
 #second {
 	display: none;
 }
