@@ -9,7 +9,7 @@ include('header.php');
 
 <main class="container" style="padding-top: 100px;">
 
-    <h1>Deine Benutzereinstellungen</h1>
+    <h1 style="padding-bottom: 40px;">Deine Benutzereinstellungen</h1>
 
     <div class="row">
         <div class="col-lg-3 profile_pic" style="margin-top: 0;">
@@ -354,7 +354,7 @@ include('header.php');
                 </table>
 
 
-                <input type="submit" name="update_info" value="Ändere deine Angaben">
+                <input type="submit" name="update_info" value="Ändern">
 
 
 

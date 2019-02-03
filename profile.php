@@ -229,9 +229,8 @@ if (isset($_GET['username'])) {
 ?>
             </div> <!-- user_details-->
 
-                <div class="col-3 follow_information">
+                <div class="mx-auto text-center">
 
-                    <div class="follower_info">
                     <?php
                 echo"<a style='font-size:20px;' href='followers.php?username=".$username."'> Follower</a>";
                 ?>
@@ -241,11 +240,10 @@ if (isset($_GET['username'])) {
                 echo"<a style='font-size:20px;' href='following.php?username=".$username."'> Following</a> ";
                 ?>
 
-                </div>
 
 
 
-                <div class="edit_profilebox" >
+                <div class="mx-auto text-center">
                 <?php
                 if ($userid == $followerid) { //nur wenn die eingeloggte Person  auf ihrer eigenen Profilseite ist, wird die Funktion "Profil bearbeiten" angezeigt
                     echo '<a href="account-settings.php">Profil bearbeiten</a>';
@@ -286,13 +284,14 @@ if (isset($_GET['username'])) {
 
 
         <form class="post_form" action="profile.php?username=<?php echo $username; ?>" method="POST" enctype="multipart/form-data">
+
+
             <div class="bgwhite" style="padding: 20px; margin-bottom: 20px;">
                 <div class="form-group">
                     <label for="comment">Schreibe etwas...</label>
-                    <textarea class="form-control" rows="3" id="comment"></textarea>
-                </div>
+                    <textarea name="postbody" class="form-control" rows="3" id="comment" placeholder="Schreibe etwas..."></textarea>
 
-            <textarea name="postbody" rows="8" cols="80" placeholder="Schreibe etwas..."></textarea>
+                </div>
             <input type="file" name="file">
             <input type="submit" name="post" value="Post">
 

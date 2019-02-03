@@ -153,7 +153,7 @@ include('Comment.php');
                 Comment::displayComments($post_id);
                 echo "</div></div></div><!-- Ende Container -->";
             } else { // wenn der Post kein Bild enthält, wird das gleiche ausgeführt, aber ohne Platzhalter für "$img":
-                echo "<div class='container m-2 bg-white'>";
+                echo "<div class='container mt-4 bg-white'>";
                 echo "<div class='row'>";
                 echo "<div class='col-lg-3'>";
                 echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a href='profile.php?username=" . $user_name . " ' > $user_name  </a> " . Post::link_add($body);
