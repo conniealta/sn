@@ -203,7 +203,9 @@ class Post {
                         $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=".$username." ' >".$username."</a>";
                         $posts .= "</div>";
                         $posts .= "<div class='col-lg-9 post_body'>";
-                        $posts .= "<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
+                        $posts .= "<img src='img_upload/post_pics/".$p['img_id']."'>".' '.' '.self::link_add($p['body']).' '.' '."<br><br><span style='font-size:15px;'>.".$p['posted_at']."</span>"
+
+
 
                        ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                  <input type='submit' name='like' value='Like'>
@@ -216,7 +218,7 @@ class Post {
                         }
                         //damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
-                        $posts .= "<br>";
+
                         $posts .= "<br>";
                         $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
@@ -237,7 +239,7 @@ class Post {
                         $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=".$username." ' >".$username." </a>";
                         $posts .= "</div>";
                         $posts .= "<div class='col-lg-9 post_body'>";
-                        $posts .= self::link_add($p['body'])."<br><br>".$p['posted_at']
+                        $posts .= self::link_add($p['body'])."<br><br><span style='font-size:15px;'>".$p['posted_at']."</span>"
 
                         ."<form action='profile.php?username=$username&postid=" . $p['id']."' method='post'>
                     
@@ -252,7 +254,7 @@ class Post {
                         }
                         //damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
 
-                        $posts .= "<br>";
+
                         $posts .= "<br>";
                         $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
@@ -260,7 +262,7 @@ class Post {
               <input type='submit' name='comment' value='Kommentieren'>
               </form>";
 
-                        $posts .= "<br>";
+
                         $posts .= "<br>";
                         $posts .= Comment::displayComments2($p['id']);
                         $posts .= "</div></div>";
@@ -277,8 +279,7 @@ class Post {
                     $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $username . " ' >" . $username . "</a>";
                     $posts .= "</div>";
                     $posts .= "<div class='col-lg-9 post_body'>";
-                    $posts .= "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '."<br><br>".$p['posted_at']
-
+                    $posts .= "<img src='img_upload/post_pics/" . $p['img_id'] . "'>" . self::link_add($p['body']).' '.' '."<br><br><span style='font-size:15px;'>".$p['posted_at']."</span>"
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
                  <span style='font-size: 14px;'>" . $p['likes'] . " likes</span>
@@ -293,7 +294,7 @@ class Post {
                 #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
                 #$userid == $loggedIn_userid
 
-                    $posts .= "<br>";
+
                     $posts .= "<br>";
                     $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
@@ -317,7 +318,7 @@ class Post {
                     $posts .= "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=".$username." ' >".$username."</a>";
                     $posts .= "</div>";
                     $posts .= "<div class='col-lg-9 post_body'>";
-                    $posts .= self::link_add($p['body'])."<br><br>".$p['posted_at']
+                    $posts .= self::link_add($p['body'])."<br><br><span style='font-size:15px;'>".$p['posted_at']."</span>"
 
                     ."<form action='profile.php?username=$username&postid=" . $p['id'] . "' method='post'>
                  <input type='submit' name='unlike' value='Unlike'>
@@ -331,7 +332,7 @@ class Post {
                     #damit die Löschen Buttons nur sichtbar auf dem eigenen Profil sind
                     #$userid == $loggedIn_userid
 
-                    $posts .= "<br>";
+
                     $posts .= "<br>";
                     $posts .= "<form action='profile.php?postid=" . $p['id'] . " 'method='post'>
               <label for='commentbody'></label>
@@ -339,7 +340,7 @@ class Post {
               <input type='submit' name='comment' value='Kommentieren'>
               </form>";
 
-                    $posts .= "<br>";
+
                     $posts .= "<br>";
                     $posts .= Comment::displayComments2($p['id']);
                     $posts .= "

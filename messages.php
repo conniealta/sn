@@ -31,17 +31,22 @@ else {
 
 <main class="container" style="padding-top: 70px;">
 
-    <h1>Sende eine Nachricht</h1>
+    <h1 py-4>Sende eine Nachricht</h1>
 
-<div class="send-message-box">
+<div class="send-message-box" style="margin-top:80px;">
+
 <form action="messages.php?receiver=<?php echo htmlspecialchars($_GET['receiver']); ?>" method="post">
-    <textarea name="body" rows="8" cols="80"></textarea>
+
+    <textarea name="body" rows="8" cols="80" class='form-control'></textarea>
     <input type="submit" name="send" value="Sende eine Nachricht">
 </form>
 </div>
 
 
-<div class="message-sent-box">
+
+
+
+    <div class="message-sent-box">
 <?php
 if (isset($_POST['send'])) {
     if (DB::query('SELECT id FROM list5 WHERE id=:receiver', array(':receiver'=>$_GET['receiver']))) {

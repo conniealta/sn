@@ -33,7 +33,7 @@ include('Comment.php');
                 </div>
 
                 <div class="col-lg-9 bgwhite post_form" style="padding-left: 50px;">
-                    <h2 style="margin-top: 30px;">Was möchtest du mitteilen?</h2>
+                    <h2 style="margin-top: 30px; margin-bottom: 30px;">Was möchtest du mitteilen?</h2>
                     <form action="index.php" method="POST" enctype="multipart/form-data">
 
                     <textarea name="postbody" class="form-control" rows="1" cols="80"
@@ -130,7 +130,9 @@ include('Comment.php');
                 echo "<img style='width: 75px; height: 75px; border-radius: 55px;' src='img_upload/profile_pics/$profile_pic'><a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . "'  > $user_name  </a>";
                 echo "</div>";
                 echo "<div class='col-lg-9 bgwhite post_body'>";
-                echo "<img src='img_upload/post_pics/$img'>" . Post::link_add($body);
+                echo "<img src='img_upload/post_pics/$img'>";
+                echo "<span style='font-size: 30px;'>".Post::link_add($post['body'])."</span>";
+
                 echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
 
@@ -156,9 +158,11 @@ include('Comment.php');
                 echo "<div class='container mt-4 bg-white'>";
                 echo "<div class='row'>";
                 echo "<div class='col-lg-3'>";
-                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . " ' > $user_name  </a> " . Post::link_add($body);
+                echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/$profile_pic'>  <a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $user_name . " ' > $user_name  </a> "/*. Post::link_add($body)*/;
                 echo "</div>";
                 echo "<div class='col-lg-9 bgwhite post_body'>";
+                echo "<img src='img_upload/post_pics/$img'>";
+                echo "<span style='font-size: 30px;'>".Post::link_add($post['body'])."</span>";
 
                 echo "<form action='index.php?postid=" . $post_id . "' method='post'>";
 
@@ -201,7 +205,8 @@ include('Comment.php');
                     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a style='font-size:20px; padding-left: 20px;'href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
                     echo "</div>";
                     echo "<div class='col-lg-9 bgwhite post_body'>";
-                    echo "<img src='img_upload/post_pics/" . $post['img_id'] . "'>" . Post::link_add($post['body']);
+                    echo "<img src='img_upload/post_pics/" . $post['img_id'] . "'>";
+                    echo "<span style='font-size: 30px;'>".Post::link_add($post['body'])."</span>";
                     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
                     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {
@@ -229,7 +234,7 @@ include('Comment.php');
                     echo "<img style='width: 75px; height: 75px; border-radius: 55px; margin-left:10px;' src='img_upload/profile_pics/" . $post['profile_pic'] . "'>" . ' ' . ' ' . "<a style='font-size:20px; padding-left: 20px;' href='profile.php?username=" . $username . " ' >" . $post['username'] . '</a>';
                     echo "</div>";
                     echo "<div class='col-lg-9 bgwhite post_body'>";
-                    echo Post::link_add($post['body']);
+                    echo "<span style='font-size: 30px;'>".Post::link_add($post['body'])."</span>";
                     echo "<form action='index.php?postid=" . $post['id'] . "' method='post'>";
 
                     if (!DB::query('SELECT post_id FROM post_likes WHERE post_id=:postid AND user_id=:userid', array(':postid' => $post['id'], ':userid' => $user_loggedin))) {

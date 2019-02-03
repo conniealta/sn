@@ -792,7 +792,7 @@ textarea:focus {
 
 #comment_form textarea {
   border-color: #D3D3D3;
-  width: 85%;
+  width: 80%;!important;
   height: 35px;
   border-radius: 5px;
   color: #616060;
@@ -811,6 +811,17 @@ textarea:focus {
   font-family: 'Bellota-BoldItalic', sans-serif;
   text-shadow: #69c6ec 0.5px 0.5px 0px;
 }
+
+.comment_form textarea {
+  border-color: #D3D3D3;
+  width: 80%;!important;
+  border-radius: 5px;
+  color: #616060;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 
 .newsfeedPostOptions {
   padding: 0px;
@@ -1355,10 +1366,10 @@ li a:hover {
 
 }
 .post_body textarea {border: 1px solid #DDD; margin: 15px 0; display: block;}
-.post_box {border-bottom: 1px solid #EEE; padding: 20px 0; margin-bottom: 20px;}
-.comment_box {padding: 15px 0;}
+.post_box {border-bottom: 1px solid #EEE; padding: 20px 0; margin-bottom: 20px; }
+.comment_box {padding: 15px 0; font-size: 16px;}
 .höhe-postbox{
-  height: 500px;
+  height: 400px;
 }
 
 .place_content {
@@ -1435,6 +1446,7 @@ input[type="submit"], input.like-button, .change_img button {
   padding: 10px 20px;
   margin: 15px 0;
   text-shadow: #69c6ec 0.5px 0.5px 0px;
+  font-size: 80%;
   cursor: pointer;
 }
 input[type="text"] {
@@ -1450,7 +1462,7 @@ nav ul li {
 }
 
 
-  .form-control{
+  .width-100 {
     width:100%!important;
   }
 

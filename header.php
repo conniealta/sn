@@ -87,9 +87,9 @@
                     <a class="nav-link" href="logout.php">Ausloggen</a>
                 </li>
             <form action="suche.php" method="post" class="form-inline my-2  mt-2">
-                <input class="form-control mr-sm-2" type="search" placeholder="Suchen nach.." aria-label="Suchen"
+                <input class="form-control width-100 mr-sm-2" type="search" placeholder="Suchen nach.." aria-label="Suchen"
                        name="searchbox" value="">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Suchen
+                <button class="btn btn-outline-primary my-2 my-sm-0 width-100" type="submit" name="Suchen" value="Suchen">Suchen
                 </button>
             </form>
             </ul>
