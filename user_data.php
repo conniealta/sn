@@ -73,6 +73,7 @@ if($statement->execute(array(':userid'=>$user_loggedin))) {
         $img = $user->img_id;
         $post_id = $user->id;
         $post_likes = $user->likes;
+        $post_time = $user->posted_at;
     }
 }
 
