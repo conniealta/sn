@@ -53,10 +53,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-            <ul class="header">
-
+        <ul class="navbar-nav mr-auto header header_search">
                 <li class="nav-item <?php if (strpos($_SERVER['REQUEST_URI'], "index") !== false){ echo "active";} ?>">
                     <?php
                     session_start();
@@ -89,17 +86,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">Ausloggen</a>
                 </li>
-            </ul>
-
-            <div class="header_search">
-            <form action="suche.php" method="post" class="form-inline my-2 my-lg-0">
+            <form action="suche.php" method="post" class="form-inline my-2  mt-2">
                 <input class="form-control mr-sm-2" type="search" placeholder="Suchen nach.." aria-label="Suchen"
                        name="searchbox" value="">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="Suchen" value="Suchen">Suchen
                 </button>
             </form>
-            </div>
-
+            </ul>
     </div>
 
 </nav>

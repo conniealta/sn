@@ -443,8 +443,8 @@ iframe {
   width: calc((100% - 10px) / 2);
   height: 40px;
   border-radius: 3px;
-  border: 1px solid #e6e6e6;
-  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -555,6 +555,7 @@ iframe {
   .wrap-login100 {
     padding-left: 15px;
     padding-right: 15px;
+
   }
 }
 
@@ -625,6 +626,8 @@ nav ul { /*nav ul statt ul wiel ul sonst hintergrund des footers beeinflusst */
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 14px 16px;
+    float: none;
+
   }
 }
 
@@ -638,6 +641,7 @@ nav ul li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+
 }
 
 li a:hover {
@@ -733,15 +737,14 @@ textarea:focus {
 }
 
 .post_form input[type="submit"] {
-  padding: 10px 25px;
+  padding: 15px 30px;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: #69c6ec;
   color: #FFF;
   text-shadow: #69c6ec 0.5px 0.5px 0px;
-  font-size: 70%;
+  font-size: 90%;
   outline: 0;
-  margin: 15px;
   cursor: pointer;
 }
 
@@ -1217,7 +1220,7 @@ textarea:focus {
 }
 .navbar {z-index: 5000;}
 ul.navbar-nav {width: 100%; display: block;}
-.header_search {float: right; position: relative; top: 8px;}
+.header_search {float: right; position: relative;}
 .header_search::after {content: ""; display: block; clear: both;}
 
 .active {
@@ -1412,6 +1415,7 @@ footer ul li {
 }
 
 
+
 .col-lg-3.profile_pic {
   margin-top: 20px;
 }
@@ -1429,7 +1433,7 @@ input[type="submit"], input.like-button, .change_img button {
   color: #FFF;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: 3px;
+  margin: 15px 0;
   text-shadow: #69c6ec 0.5px 0.5px 0px;
   cursor: pointer;
 }
@@ -1440,3 +1444,15 @@ input[type="text"] {
 input.like-button {margin-right: 10px;}
 
 
+@media (max-width: 992px){
+nav ul li {
+  float:none;
+}
+  .form-control{
+    width:100%!important;
+  }
+
+.btn{
+  width: 99%;
+}
+}

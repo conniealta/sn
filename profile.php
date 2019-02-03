@@ -292,7 +292,7 @@ if (isset($_GET['username'])) {
                     <textarea name="postbody" class="form-control" rows="3" id="comment" placeholder="Schreibe etwas..."></textarea>
 
                 </div>
-            <input type="file" name="file">
+            <input style="padding-left:20px; font-size: 16px;" type="file" name="file">
             <input type="submit" name="post" value="Post">
 
         </form>

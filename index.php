@@ -36,11 +36,11 @@ include('Comment.php');
                     <h2 style="margin-top: 30px;">Was möchtest du mitteilen?</h2>
                     <form action="index.php" method="POST" enctype="multipart/form-data">
 
-                    <textarea name="postbody" rows="8" cols="80"
+                    <textarea name="postbody" class="form-control" rows="8" cols="80"
                               placeholder="Schreibe hier um etwas zu posten.."></textarea>
 
 
-                        <input type="file" name="file">
+                        <input style="padding-left:20px; font-size: 16px;" type="file" name="file">
                         <input type="submit" name="post" value="Post">
 
                         <hr>
@@ -145,7 +145,7 @@ include('Comment.php');
                 echo "<span>" . $post_likes . " likes</span>
               </form>
               <form action='index.php?postid=" . $post_id . " 'method='post' class='comment_form'>
-              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <textarea name='commentbody' class='form-control' rows='2' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
@@ -172,7 +172,7 @@ include('Comment.php');
              
               </form>
               <form action='index.php?postid=" . $post_id . " 'method='post' class='comment_form'>
-              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <textarea name='commentbody' class='form-control' rows='2' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
@@ -216,7 +216,7 @@ include('Comment.php');
              
               </form>
               <form action='index.php?postid=" . $post['id'] . " 'method='post' class='comment_form'>
-              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <textarea name='commentbody' class='form-control' rows='2' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";
@@ -242,7 +242,7 @@ include('Comment.php');
              
               </form>
               <form action='index.php?postid=" . $post['id'] . " 'method='post' class='comment_form'>
-              <textarea name='commentbody' rows='3' cols='50'></textarea>
+              <textarea name='commentbody' class='form-control' rows='2' cols='50'></textarea>
               <input type='submit' name='comment' value='Kommentieren'>
               </form>
               ";

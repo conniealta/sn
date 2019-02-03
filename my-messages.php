@@ -47,7 +47,7 @@ if (isset($_GET['mid'])) {
 
     ?>
 
-<main class="container" style="padding-top: 70px;">
+<main class="container" style="padding-top: 90px;">
     <h1 class="py-4">Meine Nachrichten</h1>
 
 
@@ -73,9 +73,9 @@ if (isset($_GET['mid'])) {
 
 
         if ($message['read'] == 0) { #hier wird festgestellt, ob die Nachricht bereits geöffnet wurde (1) oder nicht(0)
-            echo "<a href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a> wurde gesendet von <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username']) . "</a> <hr />";
+            echo "<a style='font-size: 20px;' href='my-messages.php?mid=" . $message['id'] . "'><strong>" . $m . "</strong></a sytle='font-size: 20px;' > wurde gesendet von <a style='font-size:20px;' href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username']) . "</a> <hr />";
         } else {
-            echo "<a href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> wurde gesendet von <a href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username']) . "</a> <hr />";
+            echo "<a sytle='font-size: 0px;' href='my-messages.php?mid=" . $message['id'] . "'>" . $m . "</a> wurde gesendet von <a style='font-size:20px;' href='profile.php?username=" . $message['username'] . "'>" . Post::link_add($message['username']) . "</a> <hr/>";
         }
 
 

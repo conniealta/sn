@@ -16,9 +16,9 @@ echo '<h1>Meine Nachrichten</h1>';
 
 
 
-<main class="container" style="margin-top: 70px">
+<main class="container" style="padding-top: 40px">
 
-    <h1 class="py-4"style="font-size: 40px;"> Deine Benachrichtigungen</h1>
+    <h1 class="py-4" style="font-size: 40px;"> Deine Benachrichtigungen</h1>
 
 
 
